@@ -1,0 +1,27 @@
+.header {
+    padding-top: 30px;
+    padding-bottom: 30px;
+    background-image: linear-gradient(to bottom right, #b4faff, #05b0ff);
+    color: #fff;
+    border-bottom-left-radius: 50%;
+    border-bottom-right-radius: 50%;
+    height: 500px;
+}
+
+p {
+    text-align: center;
+    font-family: Harmony OS Sans;
+}
+
+.h1 {
+    font-family: Harmony OS Sans;
+    font-weight: bold;
+    font-size: 50px;
+}
+
+
+.h2 {
+    font-family: Harmony OS Sans;
+    font-weight: bold;
+    font-size: 30px;
+}
