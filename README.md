@@ -10,14 +10,11 @@
     <a href="https://github.com/code-dream-star/code-blockly/"><img src="https://img.shields.io/github/stars/code-dream-star/code-blockly"></a>
     <a href="https://github.com/code-dream-star/code-blockly/"><img src="https://img.shields.io/github/forks/code-dream-star/code-blockly"></a>
     <a href="https://github.com/code-dream-star/code-blockly/issues"><img src="https://img.shields.io/github/issues/code-dream-star/code-blockly"></a>
-<<<<<<< HEAD
     <a href="https://github.com/code-dream-star/code-blockly/pulls"><img src="https://img.shields.io/github/issues-pr/code-dream-star/code-blockly"></a></br>
  <img src=https://img.shields.io/badge/author-1086_loves_programming-blue />
  <img src=https://img.shields.io/badge/version-v0.1.0(X000)--release-orange />
  <img src=https://img.shields.io/badge/version-v0.1.1(X020)--beta-orange />
-=======
     <a href="https://github.com/code-dream-star/code-blockly/pulls"><img src="https://img.shields.io/github/issues-pr/code-dream-star/code-blockly"></a>
->>>>>>> ce38593873c06cd8a73862f257e60ec140bc37ca
 </p>
 
 Code Blockly 基于开源的谷歌的 Blockly 开发，其含有多种语言的图形化界面非常利于新手快速上手编程，体验编程的乐趣。
