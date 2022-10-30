@@ -1,0 +1,27 @@
+{
+    "name": "CodeBlockly",
+    "short_name": "CodeBlockly",
+    "start_url": "/index.html",
+    "id": "/index.html",
+    "display": "standalone",
+    "background_color": "#0af",
+    "theme_color": "#0af",
+    "mode": "standalone",
+    "scope": "/",
+    "description": "",
+    "prefer_related_applications": false,
+    "icons": [
+        {
+            "src": "./static/icon/icon.ong",
+            "type": "image/png",
+            "sizes": "512x512",
+            "purpose": "any"
+        },
+        {
+            "src": "./static/icon/apple-touch-icon.png",
+            "type": "image/png",
+            "sizes": "192x192",
+            "purpose": "maskable"
+        }
+    ]
+}
