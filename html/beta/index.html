@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta
+            name="viewport"
+            content="width=device-width，initial-scale=1.0，maximum-scale=1.0，minimum-scale=1.e，user-scalable=no"
+        />
+        <title>Code Blockly - HTML - Beta</title>
+        <meta name="description" content="新一代图形化编辑器" />
+        <link
+            rel="shortcut icon"
+            href="../../static/logo/logo-beta.png"
+            type="image/x-icon"
+        />
+        <script>
+            window.onload = function () {
+                document.querySelector("html > body > span#loadtext").remove();
+            };
+            !(function () {
+                const date = new Date();
+                const list = [
+                    [12, 13],
+                    [2, 21],
+                    [3, 21],
+                ];
+                if (
+                    list
+                        .map((a) => {
+                            return JSON.stringify(a);
+                        })
+                        .includes(
+                            JSON.stringify([
+                                date.getMonth() + 1,
+                                date.getDate(),
+                            ])
+                        )
+                ) {
+                    document.querySelector("body").style.filter =
+                        "grayscale(100%)";
+                }
+            })();
+        </script>
+    </head>
+
+    <body>
+        <script>
+            var version = "V0.1.0(X003)-beta";
+            console.log(
+                `%c
+#####                           ######                                  #####                      
+#     #  ####  #####  ######    #     # #####  ######   ##   #    #    #     # #####   ##   #####  
+#       #    # #    # #         #     # #    # #       #  #  ##  ##    #         #    #  #  #    # 
+#       #    # #    # #####     #     # #    # #####  #    # # ## #     #####    #   #    # #    # 
+#       #    # #    # #         #     # #####  #      ###### #    #          #   #   ###### #####  
+#     # #    # #    # #         #     # #   #  #      #    # #    #    #     #   #   #    # #   #  
+ #####   ####  #####  ######    ######  #    # ###### #    # #    #     #####    #   #    # #    # 
+`,
+                "font-size:12px;color:#0af"
+            );
+            console.log(
+                `%c
+#####                           ######                                           
+#     #  ####  #####  ######    #     # #       ####   ####  #    # #      #   # 
+#       #    # #    # #         #     # #      #    # #    # #   #  #       # #  
+#       #    # #    # #####     ######  #      #    # #      ####   #        #   
+#       #    # #    # #         #     # #      #    # #      #  #   #        #   
+#     # #    # #    # #         #     # #      #    # #    # #   #  #        #   
+ #####   ####  #####  ######    ######  ######  ####   ####  #    # ######   #                                                                                   
+ `,
+                "font-size:12px;color:#0af;"
+            );
+            console.log("你好，欢迎使用 Code Blockly！");
+            console.log(
+                "这是一款基于 Google Blockly 创作的图形化软件，由 Code Dream Star 团队制作"
+            );
+            console.log("特别鸣谢：小宏XeLa，木水屑，广安，凌cloud");
+            console.log(
+                "代码开源：https://github.com/code-dream-star/code-blockly/"
+            );
+            console.log(
+                version,
+                "Copyright © 2022 by code-dream-star",
+                "All rights reserved"
+            );
+        </script>
+        <span
+            id="loadtext"
+            style="position: fixed; top: 8px; left: 8px; z-index: -1"
+            >加载中</span
+        >
+        <!-- 导入GoogleBlockly -->
+        <script src="../../../blockly/blockly_compressed.js"></script>
+        <script src="../../../blockly/blocks_compressed.js"></script>
+        <script src="../../../blockly/javascript_compressed.js"></script>
+        <script src="../../../blockly/msg/js/zh-hans.js"></script>
+        <script src="./block.js"></script>
+        <!-- 导入hljs -->
+        <script src="../../hljs.js"></script>
+        <!-- 导入jq -->
+        <script src="../../jq.js"></script>
+        <!-- 导入MDUI -->
+        <link
+            rel="stylesheet"
+            href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"
+        />
+        <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+        <!-- 图标库  -->
+        <!-- 自制图标 利用IconPark上传使用 -->
+        <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_7.c2ab411af132527e9c768322b31504b7.js"></script>
+        <!-- 导入css -->
+        <link rel="stylesheet" href="../../css.css" />
+        <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
+        <svg
+            style="
+                position: absolute;
+                width: 0px;
+                height: 0px;
+                overflow: hidden;
+            "
+            aria-hidden="true"
+        >
+            <symbol viewBox="0 0 48 48" id="icon-撤销" fill="none">
+                <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M44 40.8361C39.1069 34.8632 34.7617 31.4739 30.9644 30.6682C27.1671 29.8625 23.5517 29.7408 20.1182 30.303V41L4 23.5453L20.1182 7V17.167C26.4667 17.2172 31.8638 19.4948 36.3095 24C40.7553 28.5052 43.3187 34.1172 44 40.8361Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-重做" fill="none">
+                <path
+                    fill-rule="evenodd"
+                    clip-rule="evenodd"
+                    d="M44 40.8361C39.1069 34.8632 34.7617 31.4739 30.9644 30.6682C27.1671 29.8625 23.5517 29.7408 20.1182 30.303V41L4 23.5453L20.1182 7V17.167C26.4667 17.2172 31.8638 19.4948 36.3095 24C40.7553 28.5052 43.3187 34.1172 44 40.8361Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-放大" fill="none">
+                <path
+                    d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M21 15L21 27"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M15.0156 21.0156L27 21"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M33.2216 33.2217L41.7069 41.707"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-缩小" fill="none">
+                <path
+                    d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M15 21L27 21"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M33.2216 33.2217L41.7069 41.707"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-复制" fill="none">
+                <path
+                    d="M13 12.4316V7.8125C13 6.2592 14.2592 5 15.8125 5H40.1875C41.7408 5 43 6.2592 43 7.8125V32.1875C43 33.7408 41.7408 35 40.1875 35H35.5163"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M32.1875 13H7.8125C6.2592 13 5 14.2592 5 15.8125V40.1875C5 41.7408 6.2592 43 7.8125 43H32.1875C33.7408 43 35 41.7408 35 40.1875V15.8125C35 14.2592 33.7408 13 32.1875 13Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-复制-白" fill="none">
+                <path
+                    d="M13 12.4316V7.8125C13 6.2592 14.2592 5 15.8125 5H40.1875C41.7408 5 43 6.2592 43 7.8125V32.1875C43 33.7408 41.7408 35 40.1875 35H35.5163"
+                    stroke="#fff"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M32.1875 13H7.8125C6.2592 13 5 14.2592 5 15.8125V40.1875C5 41.7408 6.2592 43 7.8125 43H32.1875C33.7408 43 35 41.7408 35 40.1875V15.8125C35 14.2592 33.7408 13 32.1875 13Z"
+                    fill="none"
+                    stroke="#fff"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-代码" fill="none">
+                <path
+                    d="M16 13L4 25.4322L16 37"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M32 13L44 25.4322L32 37"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M28 4L21 44"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-预览" fill="none">
+                <rect
+                    x="4"
+                    y="8"
+                    width="40"
+                    height="32"
+                    rx="3"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M4 11C4 9.34315 5.34315 8 7 8H41C42.6569 8 44 9.34315 44 11V20H4V11Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                />
+                <circle
+                    r="2"
+                    transform="matrix(-1.31134e-07 -1 -1 1.31134e-07 10 14)"
+                    fill="#333"
+                />
+                <circle
+                    r="2"
+                    transform="matrix(-1.31134e-07 -1 -1 1.31134e-07 16 14)"
+                    fill="#333"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-关闭" fill="none">
+                <path
+                    d="M8 8L40 40"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M8 40L40 8"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-关闭-白" fill="none">
+                <path
+                    d="M8 8L40 40"
+                    stroke="#fff"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M8 40L40 8"
+                    stroke="#fff"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+            <symbol viewBox="0 0 48 48" id="icon-垃圾桶" fill="none">
+                <path
+                    d="M9 10V44H39V10H9Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M20 20V33"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M28 20V33"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M4 10H44"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                />
+                <path
+                    d="M16 10L19.289 4H28.7771L32 10H16Z"
+                    fill="none"
+                    stroke="#333"
+                    stroke-width="4"
+                    stroke-linejoin="round"
+                />
+            </symbol>
+        </svg>
+        <!--app -->
+        <div id="app">
+            <!-- 右下角导航栏 -->
+            <div class="right-bottom-navigation-bar">
+                <div class="right-bottom-navigation-bar-div" data-tip="撤销">
+                    <div class="right-bottom-navigation-bar-div-svg">
+                        <svg>
+                            <use xlink:href="#icon-撤销"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="right-bottom-navigation-bar-div" data-tip="重做">
+                    <div
+                        class="right-bottom-navigation-bar-div-svg"
+                        style="transform: rotate3d(0, 1, 0, 180deg)"
+                    >
+                        <svg>
+                            <use xlink:href="#icon-重做"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="right-bottom-navigation-bar-division"></div>
+                <div class="right-bottom-navigation-bar-div" data-tip="缩小">
+                    <div class="right-bottom-navigation-bar-div-svg">
+                        <svg>
+                            <use xlink:href="#icon-缩小"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div
+                    class="right-bottom-navigation-bar-text"
+                    data-tip="恢复回100%"
+                >
+                    100%
+                </div>
+                <div class="right-bottom-navigation-bar-div" data-tip="放大">
+                    <div class="right-bottom-navigation-bar-div-svg">
+                        <svg>
+                            <use xlink:href="#icon-放大"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="right-bottom-navigation-bar-division"></div>
+                <div class="right-bottom-navigation-bar-div" data-tip="代码">
+                    <div class="right-bottom-navigation-bar-div-svg">
+                        <svg>
+                            <use xlink:href="#icon-代码"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="right-bottom-navigation-bar-div" data-tip="预览">
+                    <div class="right-bottom-navigation-bar-div-svg">
+                        <svg>
+                            <use xlink:href="#icon-预览"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="right-bottom-navigation-bar-div" data-tip="回收站">
+                    <div class="right-bottom-navigation-bar-div-svg">
+                        <svg>
+                            <use xlink:href="#icon-垃圾桶"></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!-- 代码弹窗 -->
+            <div class="code-dialog">
+                <code>
+                    <a class="hljs-comment"></a>
+                </code>
+                <div class="code-dialog-button" left data-tip="复制代码">
+                    <div class="code-dialog-button-svg">
+                        <svg>
+                            <use xlink:href="#icon-复制-白"></use>
+                        </svg>
+                    </div>
+                </div>
+                <div class="code-dialog-button" right data-tip="关闭预览">
+                    <div class="code-dialog-button-svg">
+                        <svg>
+                            <use xlink:href="#icon-关闭-白"></use>
+                        </svg>
+                    </div>
+                </div>
+            </div>
+            <!-- 工作区 -->
+            <div class="workzone">
+                <div id="blocklyDiv"></div>
+            </div>
+            <!-- 积木定义xml -->
+            <xml id="toolbox" style="display: none">
+                <category name="模板" colour="%c template">
+                    <block type="define_web_pages">
+                        <statement name="blocks">
+                            <block type="define_web_pages_head">
+                                <statement name="blocks">
+                                    <block type="head_title">
+                                        <field name="title">Document</field>
+                                    </block>
+                                </statement>
+                                <statement name="blocks">
+                                    <block type="head_charset"></block>
+                                </statement>
+                                <next>
+                                    <block type="define_web_pages_body"></block>
+                                </next>
+                            </block>
+                        </statement>
+                    </block>
+                </category>
+                <category name="构造" colour="%c 构造">
+                    <block type="define_web_pages"></block>
+                    <block type="define_web_pages_head"></block>
+                    <block type="define_web_pages_body"></block>
+                </category>
+                <category name="头部配置" colour="%c head">
+                    <block type="head_charset"></block>
+                    <block type="head_title"></block>
+                    <block type="head_link"></block>
+                </category>
+                <category name="嵌入标签" colour="%c other">
+                    <block type="script"></block>
+                    <block type="style"></block>
+                </category>
+                <category name="文本" colour="%c text">
+                    <block type="body_p"></block>
+                    <block type="body_title"></block>
+                    <block type="body_a"></block>
+                    <block type="body_br"></block>
+                    <block type="body_annotation"></block>
+                </category>
+                <category name="表单" colour="%c form">
+                    <block type="create_a_form"></block>
+                    <block type="form_submit_button"></block>
+                    <block type="form_radio_button"></block>
+                    <block type="form_check_box"></block>
+                    <block type="form_password_box"></block>
+                    <block type="form_text_box"></block>
+                    <block type="form_bounding_box"></block>
+                    <!-- <block type="form_drop_down_list"></block> -->
+                </category>
+                <category name="媒体" colour="%c image">
+                    <block type="video_image"></block>
+                </category>
+                <category name="css" colour="%c css"></category>
+                <sep></sep>
+                <category name="控制台" colour="%c js_console">
+                    <block type="js_console_clear"></block>
+                    <block type="js_console_log"></block>
+                    <block type="js_console_warn"></block>
+                    <block type="js_console_error"></block>
+                </category>
+            </xml>
+        </div>
+        <!--加载blockly!-->
+        <script>
+            !(function () {
+                const config = {
+                    toolbox: document.getElementById("toolbox"),
+                    target: color,
+                };
+                config.toolbox.querySelectorAll("category").forEach((e) => {
+                    e.setAttribute(
+                        "colour",
+                        config.target[
+                            e.getAttribute("colour").replace("%c ", "")
+                        ]
+                    );
+                });
+            })();
+            var workspace = Blockly.inject("blocklyDiv", {
+                toolbox: document.getElementById("toolbox"), // xml位置
+                zoom: {
+                    // 缩放设置
+                    controls: true, // 显示缩放按钮控件
+                    wheel: true, // 允许使用鼠标滚轮缩放
+                    startScale: 1, // 初始积木大小
+                    maxScale: 3, // 最大大小
+                    minScale: 0.3, // 最小大小
+                },
+                move: {
+                    // 移动设置
+                    wheel: true, // 允许鼠标滚轮滑动
+                },
+                collapse: true, // 允许折叠块
+                comments: true, // 允许注释块
+                sounds: true, // 有音效
+                trashcan: true, // 显示垃圾桶
+                media: "../../blockly/media/", // 资源文件链接
+                theme: "../../blockly/core/theme/zelos.js",
+                renderer: "zelos", // 主题风格
+            });
+
+            // 加载toolbox图标
+            // test
+            console.log(workspace.toolbox_.tree_.children_);
+            // load
+            workspace.toolbox_.tree_.children_.forEach((e) => {
+                console.log({ e: e.element_.children[0].children[0] });
+                $(
+                    `<iconpark-icon icon-id="${$(
+                        e.element_
+                    ).text()}"></iconpark-icon>`
+                ).appendTo(e.element_.children[0].children[0]);
+            });
+
+            // 事件
+            workspace.addChangeListener(function (e) {
+                // 输出（test use）
+                console.log(e);
+                // 生成代码
+                var code = Blockly.JavaScript.workspaceToCode(workspace);
+                var html = hljs
+                    .highlight(
+                        "<!-- 代码由 " +
+                            window.location.href +
+                            " 生成，感谢您对我们的支持。-->\n" +
+                            code,
+                        { language: "HTML" }
+                    )
+                    .value.split("\n")
+                    .join("<br>")
+                    .split("  ")
+                    .join("&nbsp;&nbsp;");
+                $(".code-dialog > code").html(html);
+                // 导航栏
+                $(
+                    `.right-bottom-navigation-bar > div[data-tip="恢复回100%"]`
+                ).text(~~(workspace.scale * 100) + "%");
+            });
+
+            // code事件
+            function hideCodeDialog() {
+                $(".code-dialog")[0].classList.remove("show");
+                $("body")[0].classList.remove("code-dialog-show-body");
+            }
+            function showCodeDialog() {
+                $(".code-dialog").addClass("show");
+                $("body").addClass("code-dialog-show-body");
+            }
+
+            // 右下角导航
+            $(".right-bottom-navigation-bar > div").each((_, a) => {
+                a.addEventListener("click", function () {
+                    switch (a.getAttribute("data-tip")) {
+                        case "缩小":
+                            if (workspace.scale > 0.3)
+                                $(workspace).animate(
+                                    { scale: workspace.scale - 0.2 },
+                                    { duration: 100 }
+                                );
+                            break;
+                        case "放大":
+                            if (workspace.scale < 3)
+                                $(workspace).animate(
+                                    { scale: workspace.scale + 0.2 },
+                                    { duration: 100 }
+                                );
+                            break;
+                        case "恢复回100%":
+                            $(workspace).animate(
+                                { scale: 1 },
+                                { duration: 300 }
+                            );
+                            break;
+                        case "代码":
+                            if (
+                                $(".code-dialog")[0]
+                                    .className.split(" ")
+                                    .includes("show")
+                            ) {
+                                hideCodeDialog();
+                            } else {
+                                showCodeDialog();
+                            }
+                            break;
+                        case "预览":
+                            const d = window.open();
+                            d.document.write($(".code-dialog > code").text());
+                            break;
+                    }
+                });
+            });
+
+            $(".code-dialog-button[right]")[0].addEventListener("click", () => {
+                hideCodeDialog();
+            });
+
+            $(".code-dialog-button[left]")[0].addEventListener("click", () => {
+                try {
+                    this.navigator.clipboard.writeText(
+                        $(".code-dialog > code").text()
+                    );
+                } catch (e) {
+                    mdui.alert(
+                        `复制出错或您的浏览器不支持剪切板API（this.navigator.clipboard）！<br>请尝试升级浏览器或手动复制！<br>Error Log：<br><a style="color:red">${e}</a>`
+                    );
+                }
+                $(".code-dialog-button[left]")[0].setAttribute(
+                    "data-tip",
+                    "复制成功！"
+                );
+                setTimeout(() => {
+                    $(".code-dialog-button[left]")[0].setAttribute(
+                        "data-tip",
+                        "复制代码"
+                    );
+                }, 1000);
+            });
+
+            // 加载结束后，进行适配化这个适配可能有些Bug
+            setInterval(() => {
+                document.querySelectorAll(".workzone > div").forEach((e) => {
+                    e.style.height =
+                        document.documentElement.clientHeight + "px";
+                });
+            }, 16);
+            setInterval(() => {
+                Blockly.svgResize(workspace);
+            }, 16);
+        </script>
+    </body>
+</html>
