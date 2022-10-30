@@ -3,7 +3,7 @@
 <p>
  <img src=https://img.shields.io/badge/author-1086_loves_programming-blue />
  <img src=https://img.shields.io/badge/version-v0.1.0(X000)--release-orange />
- <img src=https://img.shields.io/badge/version-v0.1.1(X012)--beta-orange />
+ <img src=https://img.shields.io/badge/version-v0.1.2(X013)--beta-orange />
  </p>
  <p>
     <a href="https://github.com/code-dream-star/code-blockly/blob/main/licence"><img src="https://img.shields.io/github/license/code-dream-star/code-blockly"></a>
