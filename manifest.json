@@ -8,17 +8,17 @@
     "theme_color": "#0af",
     "mode": "standalone",
     "scope": "/",
-    "description": "",
+    "description": "Code Blockly基于开源的谷歌的Blockly开发，其含有多种语言的图形化界面非常利于新手快速上手编程，体验编程的乐趣。",
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "./static/icon/icon.ong",
+            "src": "./static/logo/logo.ong",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "any"
         },
         {
-            "src": "./static/icon/apple-touch-icon.png",
+            "src": "./static/logo/logo.png",
             "type": "image/png",
             "sizes": "192x192",
             "purpose": "maskable"
