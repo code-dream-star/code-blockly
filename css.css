@@ -459,3 +459,23 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
     background-color: #ffffff;
     color: #0070f3;
 }
+
+.blue-button_click {
+    display: inline-block;
+    border-radius: 4px;
+    -webkit-border-radius: 4px;
+    background-color: #0070f3;
+    border: none;
+    color: #ffffff;
+    text-align: center;
+    font-size: 20px;
+    padding: 20px;
+    width: 200px;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+    -moz-transition: all 0.5s;
+    cursor: pointer;
+    margin: 5px;
+    box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+    -webkit-box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+}
