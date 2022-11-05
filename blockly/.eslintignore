@@ -1,8 +1,7 @@
 *_compressed*.js
-*_uncompressed*.js
-gulpfile.js
 /msg/*
-/core/utils/global.js
+/build/*
+/dist/*
 /tests/blocks/*
 /tests/themes/*
 /tests/compile/*
@@ -18,3 +17,4 @@ gulpfile.js
 /externs/*
 /closure/*
 /scripts/gulpfiles/*
+/typings/*

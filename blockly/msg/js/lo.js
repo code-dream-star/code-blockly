@@ -2,6 +2,8 @@
 
 'use strict';
 
+var Blockly = Blockly || { Msg: Object.create(null) };
+
 Blockly.Msg["ADD_COMMENT"] = "ເພີ່ມຄຳອະທິບາຍ";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Can't delete the variable '%1' because it's part of the definition of the function '%2'";  // untranslated
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "ປ່ຽນຄ່າ:";
@@ -49,7 +51,7 @@ Blockly.Msg["CONTROLS_IF_TOOLTIP_1"] = "ຖ້າເງື່ອນໄຂເປ�
 Blockly.Msg["CONTROLS_IF_TOOLTIP_2"] = "If a value is true, then do the first block of statements. Otherwise, do the second block of statements.";  // untranslated
 Blockly.Msg["CONTROLS_IF_TOOLTIP_3"] = "If the first value is true, then do the first block of statements. Otherwise, if the second value is true, do the second block of statements.";  // untranslated
 Blockly.Msg["CONTROLS_IF_TOOLTIP_4"] = "If the first value is true, then do the first block of statements. Otherwise, if the second value is true, do the second block of statements. If none of the values are true, do the last block of statements.";  // untranslated
-Blockly.Msg["CONTROLS_REPEAT_HELPURL"] = "https://en.wikipedia.org/wiki/For_loop";
+Blockly.Msg["CONTROLS_REPEAT_HELPURL"] = "https://en.wikipedia.org/wiki/For_loop";  // untranslated
 Blockly.Msg["CONTROLS_REPEAT_INPUT_DO"] = "ເຮັດ";
 Blockly.Msg["CONTROLS_REPEAT_TITLE"] = "ເຮັດຄືນ %1 ຄັ້ງ";
 Blockly.Msg["CONTROLS_REPEAT_TOOLTIP"] = "ເຮັດຄຳສັ່ງບາງຄຳສັ່ງຄືນຫຼາຍໆຄັ້ງ.";
@@ -63,6 +65,8 @@ Blockly.Msg["DELETE_BLOCK"] = "ລຶບບລັອກ";
 Blockly.Msg["DELETE_VARIABLE"] = "Delete the '%1' variable";  // untranslated
 Blockly.Msg["DELETE_VARIABLE_CONFIRMATION"] = "Delete %1 uses of the '%2' variable?";  // untranslated
 Blockly.Msg["DELETE_X_BLOCKS"] = "ລຶບ %1 ບລັອກ";
+Blockly.Msg["DIALOG_CANCEL"] = "Cancel";  // untranslated
+Blockly.Msg["DIALOG_OK"] = "OK";  // untranslated
 Blockly.Msg["DISABLE_BLOCK"] = "ປິດໃຊ້ງານບລັອກ";
 Blockly.Msg["DUPLICATE_BLOCK"] = "ເຮັດສຳເນົາ";
 Blockly.Msg["DUPLICATE_COMMENT"] = "Duplicate Comment";  // untranslated
@@ -72,19 +76,6 @@ Blockly.Msg["EXPAND_BLOCK"] = "ຂະຫຍາຍບລັອກ";
 Blockly.Msg["EXTERNAL_INPUTS"] = "ອິນພຸດພາຍນອກ";
 Blockly.Msg["HELP"] = "ຊ່ວຍເຫຼືອ";
 Blockly.Msg["INLINE_INPUTS"] = "ອິນພຸດໃນບັນທັດ";
-Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
-Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
-Blockly.Msg["IOS_OK"] = "OK";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_ADD_INPUT"] = "+ Add Input";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_ALLOW_STATEMENTS"] = "Allow statements";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR"] = "This function has duplicate inputs.";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_INPUTS"] = "INPUTS";  // untranslated
-Blockly.Msg["IOS_VARIABLES_ADD_BUTTON"] = "Add";  // untranslated
-Blockly.Msg["IOS_VARIABLES_ADD_VARIABLE"] = "+ Add Variable";  // untranslated
-Blockly.Msg["IOS_VARIABLES_DELETE_BUTTON"] = "Delete";  // untranslated
-Blockly.Msg["IOS_VARIABLES_EMPTY_NAME_ERROR"] = "You can't use an empty variable name.";  // untranslated
-Blockly.Msg["IOS_VARIABLES_RENAME_BUTTON"] = "Rename";  // untranslated
-Blockly.Msg["IOS_VARIABLES_VARIABLE_NAME"] = "Variable name";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "create empty list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "Returns a list, of length 0, containing no data records";  // untranslated

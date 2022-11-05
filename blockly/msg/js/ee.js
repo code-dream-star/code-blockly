@@ -2,6 +2,8 @@
 
 'use strict';
 
+var Blockly = Blockly || { Msg: Object.create(null) };
+
 Blockly.Msg["ADD_COMMENT"] = "Ŋlɔ Numeɖeɖe";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Mate ŋu atutu teaŋutrɔna '%1' o elabe ewɔ akpa aɖe le teaŋutrɔna '%2' me.";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "Trɔ nuŋlɔdzesiawo:";
@@ -63,6 +65,8 @@ Blockly.Msg["DELETE_BLOCK"] = "Tutu Hatsotsoa";
 Blockly.Msg["DELETE_VARIABLE"] = "Tutu teaŋutrɔna '%1'";
 Blockly.Msg["DELETE_VARIABLE_CONFIRMATION"] = "Netutu %1 ŋkɔ si nètsɔ na teaŋutrɔna '%2'?";
 Blockly.Msg["DELETE_X_BLOCKS"] = "Tutu Hatsotso %1";
+Blockly.Msg["DIALOG_CANCEL"] = "Natasii";
+Blockly.Msg["DIALOG_OK"] = "Yoo";
 Blockly.Msg["DISABLE_BLOCK"] = "Tsi Hatsotsoa";
 Blockly.Msg["DUPLICATE_BLOCK"] = "Gbugbɔe Wɔ";
 Blockly.Msg["DUPLICATE_COMMENT"] = "Kɔpi Numeɖeɖea";
@@ -72,19 +76,6 @@ Blockly.Msg["EXPAND_BLOCK"] = "Hatsotsoa Me Nuwo Nedze";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Gotakpeɖeŋunuwo";
 Blockly.Msg["HELP"] = "Kpekpeɖeŋu";
 Blockly.Msg["INLINE_INPUTS"] = "Interdzikpeɖeŋuwo";
-Blockly.Msg["IOS_CANCEL"] = "Natasii";
-Blockly.Msg["IOS_ERROR"] = "Vodada";
-Blockly.Msg["IOS_OK"] = "YOO";
-Blockly.Msg["IOS_PROCEDURES_ADD_INPUT"] = "+ Tsɔ nu kpe Nudemea";
-Blockly.Msg["IOS_PROCEDURES_ALLOW_STATEMENTS"] = "Ɖe mɔ ɖe taɖodzinyawo ŋu";
-Blockly.Msg["IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR"] = "Nudeme evee le wɔƒe sia si.";
-Blockly.Msg["IOS_PROCEDURES_INPUTS"] = "NUDEMEWO";
-Blockly.Msg["IOS_VARIABLES_ADD_BUTTON"] = "Tsɔ kpee";
-Blockly.Msg["IOS_VARIABLES_ADD_VARIABLE"] = "+ Tsɔ nugba kpee";
-Blockly.Msg["IOS_VARIABLES_DELETE_BUTTON"] = "Tutui";
-Blockly.Msg["IOS_VARIABLES_EMPTY_NAME_ERROR"] = "Màte ŋu azã nugba si mena ŋkɔe o.";
-Blockly.Msg["IOS_VARIABLES_RENAME_BUTTON"] = "Gbugbɔ na ŋkɔe";
-Blockly.Msg["IOS_VARIABLES_VARIABLE_NAME"] = "Nugba ŋkɔ";
 Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "create empty list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "Returns a list, of length 0, containing no data records";  // untranslated
@@ -273,7 +264,7 @@ Blockly.Msg["MATH_TRIG_ACOS"] = "acos";  // untranslated
 Blockly.Msg["MATH_TRIG_ASIN"] = "asin";  // untranslated
 Blockly.Msg["MATH_TRIG_ATAN"] = "atan";  // untranslated
 Blockly.Msg["MATH_TRIG_COS"] = "cos";  // untranslated
-Blockly.Msg["MATH_TRIG_HELPURL"] = "https://en.wikipedia.org/wiki/Trigonometric_functions";
+Blockly.Msg["MATH_TRIG_HELPURL"] = "https://en.wikipedia.org/wiki/Trigonometric_functions";  // untranslated
 Blockly.Msg["MATH_TRIG_SIN"] = "sin";  // untranslated
 Blockly.Msg["MATH_TRIG_TAN"] = "tan";  // untranslated
 Blockly.Msg["MATH_TRIG_TOOLTIP_ACOS"] = "Return the arccosine of a number.";  // untranslated

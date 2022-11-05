@@ -11,7 +11,6 @@
  * that particular category. Also has a list of core block types provided
  * by Blockly.
  *
- * @author Emma Dauterman (evd2014)
  */
  'use strict';
 
@@ -361,6 +360,11 @@ StandardCategories.categoryMap['variables'] =
     new ListElement(ListElement.TYPE_CATEGORY, 'Variables');
 StandardCategories.categoryMap['variables'].hue = 330;
 StandardCategories.categoryMap['variables'].custom = 'VARIABLE';
+
+StandardCategories.categoryMap['typedvariables'] =
+    new ListElement(ListElement.TYPE_CATEGORY, 'TypedVariables');
+StandardCategories.categoryMap['typedvariables'].custom = 'VARIABLE_DYNAMIC';
+StandardCategories.categoryMap['typedvariables'].hue = 290;
 
 // All standard block types in provided in Blockly core.
 StandardCategories.coreBlockTypes =  ["controls_if", "logic_compare",

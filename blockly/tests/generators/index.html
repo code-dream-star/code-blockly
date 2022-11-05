@@ -3,91 +3,36 @@
 <head>
 <meta charset="utf-8">
 <title>Blockly Generator Tests</title>
-<script src="../../blockly_uncompressed.js"></script>
-
-<script src="../../generators/javascript.js"></script>
-<script src="unittest_javascript.js"></script>
-<script src="../../generators/javascript/logic.js"></script>
-<script src="../../generators/javascript/loops.js"></script>
-<script src="../../generators/javascript/math.js"></script>
-<script src="../../generators/javascript/text.js"></script>
-<script src="../../generators/javascript/lists.js"></script>
-<script src="../../generators/javascript/colour.js"></script>
-<script src="../../generators/javascript/variables.js"></script>
-<script src="../../generators/javascript/procedures.js"></script>
-
-<script src="../../generators/python.js"></script>
-<script src="unittest_python.js"></script>
-<script src="../../generators/python/logic.js"></script>
-<script src="../../generators/python/loops.js"></script>
-<script src="../../generators/python/math.js"></script>
-<script src="../../generators/python/text.js"></script>
-<script src="../../generators/python/lists.js"></script>
-<script src="../../generators/python/colour.js"></script>
-<script src="../../generators/python/variables.js"></script>
-<script src="../../generators/python/procedures.js"></script>
-
-<script src="../../generators/php.js"></script>
-<script src="unittest_php.js"></script>
-<script src="../../generators/php/logic.js"></script>
-<script src="../../generators/php/loops.js"></script>
-<script src="../../generators/php/math.js"></script>
-<script src="../../generators/php/text.js"></script>
-<script src="../../generators/php/lists.js"></script>
-<script src="../../generators/php/colour.js"></script>
-<script src="../../generators/php/variables.js"></script>
-<script src="../../generators/php/procedures.js"></script>
-
-<script src="../../generators/lua.js"></script>
-<script src="unittest_lua.js"></script>
-<script src="../../generators/lua/logic.js"></script>
-<script src="../../generators/lua/loops.js"></script>
-<script src="../../generators/lua/math.js"></script>
-<script src="../../generators/lua/text.js"></script>
-<script src="../../generators/lua/lists.js"></script>
-<script src="../../generators/lua/colour.js"></script>
-<script src="../../generators/lua/variables.js"></script>
-<script src="../../generators/lua/procedures.js"></script>
-
-<script src="../../generators/dart.js"></script>
-<script src="unittest_dart.js"></script>
-<script src="../../generators/dart/logic.js"></script>
-<script src="../../generators/dart/loops.js"></script>
-<script src="../../generators/dart/math.js"></script>
-<script src="../../generators/dart/text.js"></script>
-<script src="../../generators/dart/lists.js"></script>
-<script src="../../generators/dart/colour.js"></script>
-<script src="../../generators/dart/variables.js"></script>
-<script src="../../generators/dart/procedures.js"></script>
-
-<script src="unittest.js"></script>
-<script src="../../msg/messages.js"></script>
-<script src="../../blocks/logic.js"></script>
-<script src="../../blocks/loops.js"></script>
-<script src="../../blocks/math.js"></script>
-<script src="../../blocks/text.js"></script>
-<script src="../../blocks/lists.js"></script>
-<script src="../../blocks/colour.js"></script>
-<script src="../../blocks/variables.js"></script>
-<script src="../../blocks/procedures.js"></script>
-
 <script>
-'use strict';
-
+  var BLOCKLY_BOOTSTRAP_OPTIONS = {
+    additionalScripts: [
+      'msg/messages.js',
+      'tests/generators/unittest_javascript.js',
+      'tests/generators/unittest_python.js',
+      'tests/generators/unittest_php.js',
+      'tests/generators/unittest_lua.js',
+      'tests/generators/unittest_dart.js',
+      'tests/generators/unittest.js',
+    ],
+  }
+</script>
+<script src="../bootstrap.js"></script>
+<script>
 var demoWorkspace = null;
 var outputCode = '';
 
 function start() {
-  demoWorkspace = Blockly.inject('blocklyDiv',
-      {grid:
-         {spacing: 25,
-          length: 3,
-          colour: '#ccc',
-          snap: true},
-       media: '../../media/',
-       toolbox: document.getElementById('toolbox'),
-       zoom: {controls: true, wheel: true}
-       });
+  demoWorkspace = Blockly.inject('blocklyDiv', {
+    grid: {
+      spacing: 25,
+      length: 3,
+      colour: '#ccc',
+      snap: true
+    },
+    media: '../../media/',
+    toolbox: document.getElementById('toolbox'),
+    zoom: {controls: true, wheel: true}
+  });
   changeIndex();
 }
 
@@ -225,31 +170,31 @@ function toXml() {
 
 function toJavaScript() {
   var code = '\'use strict\';\n\n'
-  code += Blockly.JavaScript.workspaceToCode(demoWorkspace);
+  code += javascriptGenerator.workspaceToCode(demoWorkspace);
   setOutput(code);
   outputCode = code;
 }
 
 function toPython() {
-  var code = Blockly.Python.workspaceToCode(demoWorkspace);
+  var code = pythonGenerator.workspaceToCode(demoWorkspace);
   setOutput(code);
   outputCode = code;
 }
 
 function toPhp() {
-  var code = Blockly.PHP.workspaceToCode(demoWorkspace);
+  var code = phpGenerator.workspaceToCode(demoWorkspace);
   setOutput(code);
   outputCode = code;
 }
 
 function toLua() {
-  var code = Blockly.Lua.workspaceToCode(demoWorkspace);
+  var code = luaGenerator.workspaceToCode(demoWorkspace);
   setOutput(code);
   outputCode = code;
 }
 
 function toDart() {
-  var code = Blockly.Dart.workspaceToCode(demoWorkspace);
+  var code = dartGenerator.workspaceToCode(demoWorkspace);
   setOutput(code);
   outputCode = code;
 }
@@ -259,6 +204,12 @@ function changeIndex() {
   demoWorkspace.options.oneBasedIndex = oneBasedIndex;
   demoWorkspace.getToolbox().flyout_.workspace_.options.oneBasedIndex = oneBasedIndex;
 }
+</script>
+<script type=module>
+// Wait for Blockly to finish loading before running tests.
+import '../bootstrap_done.mjs';
+
+start();
 </script>
 
 <style>
@@ -290,7 +241,7 @@ h1 {
 }
 </style>
 </head>
-<body onload="start()">
+<body>
 
   <div id="blocklyDiv"></div>
 
@@ -362,6 +313,7 @@ h1 {
       <block type="text_count"></block>
       <block type="text_replace"></block>
       <block type="text_reverse"></block>
+      <block type="text_multiline"></block>
     </category>
     <category name="Lists" colour="260">
       <block type="lists_create_empty"></block>
@@ -431,7 +383,7 @@ h1 {
       </div>
       <div style="display: inline-block;">
         <input type="button" value="Python" onclick="toPython()">
-        <br><a target="_blank" href="https://repl.it/languages/python">interpreter</a>
+        <br><a target="_blank" href="https://repl.it/languages/python3">interpreter</a>
       </div>
       <div style="display: inline-block;">
         <input type="button" value="PHP" onclick="toPhp()">
@@ -439,7 +391,7 @@ h1 {
       </div>
       <div style="display: inline-block;">
         <input type="button" value="Lua" onclick="toLua()">
-        <br><a target="_blank" href="http://rextester.com/l/lua_online_compiler">interpreter</a>
+        <br><a target="_blank" href="https://rextester.com/l/lua_online_compiler">interpreter</a>
       </div>
       <div style="display: inline-block;">
         <input type="button" value="Dart" onclick="toDart()">

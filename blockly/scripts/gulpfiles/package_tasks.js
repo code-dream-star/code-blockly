@@ -14,32 +14,28 @@ gulp.replace = require('gulp-replace');
 gulp.rename = require('gulp-rename');
 gulp.insert = require('gulp-insert');
 gulp.umd = require('gulp-umd');
+gulp.replace = require('gulp-replace');
 
 var path = require('path');
 var fs = require('fs');
+var rimraf = require('rimraf');
+var {getPackageJson} = require('./helper_tasks');
+var {BUILD_DIR, RELEASE_DIR, TYPINGS_BUILD_DIR} = require('./config');
 
-var packageJson = require('../../package.json');
-var argv = require('yargs').argv;
-
-const upstream_url = "https://github.com/google/blockly.git";
-
-const blocklyRoot = '../../';
-
-// The destination path where all the NPM distribution files will go.
-const packageDistribution = 'dist';
-
+// Path to template files for gulp-umd.
+const TEMPLATE_DIR = 'scripts/package/templates';
 
 /**
  * A helper method for wrapping a file into a Universal Module Definition.
  * @param {string} namespace The export namespace.
  * @param {Array<Object>} dependencies An array of dependencies to inject.
  */
-function packageUMD(namespace, dependencies) {
+function packageUMD(namespace, dependencies, template = 'umd.template') {
   return gulp.umd({
     dependencies: function () { return dependencies; },
     namespace: function () { return namespace; },
     exports: function () { return namespace; },
-    template: path.join(__dirname, `${blocklyRoot}/package/templates/umd.template`)
+    template: path.join(TEMPLATE_DIR, template)
   });
 };
 
@@ -53,80 +49,94 @@ function packageCommonJS(namespace, dependencies) {
     dependencies: function () { return dependencies; },
     namespace: function () { return namespace; },
     exports: function () { return namespace; },
-    template: path.join(__dirname, `${blocklyRoot}/package/templates/node.template`)
+    template: path.join(TEMPLATE_DIR, 'node.template')
   });
 };
 
+// Sanity check that the BUILD_DIR directory exists, and that certain
+// files are in it.
+function checkBuildDir(done) {
+  // Check that directory exists.
+  if (!fs.existsSync(BUILD_DIR)) {
+    done(new Error(`The ${BUILD_DIR} directory does not exist.  ` +
+        'Has packageTasks.build been run?'));
+    return;
+  }
+  // Check files built by buildTasks.build exist in BUILD_DIR.
+  for (const fileName of [
+    'blockly_compressed.js',  // buildTasks.buildCompressed
+    'blocks_compressed.js',  // buildTasks.buildBlocks
+    'javascript_compressed.js',  // buildTasks.buildGenerators
+    'msg/js/en.js',  // buildTaks.buildLangfiles
+  ]) {
+    if (!fs.existsSync(`${BUILD_DIR}/${fileName}`)) {
+      done(new Error(
+          `Your ${BUILD_DIR} directory does not contain ${fileName}.  ` +
+          'Has packageTasks.build been run?  Try "npm run build".'));
+      return;
+    }
+  }
+  done();
+}
+
 /**
- * This task wraps blockly_compressed.js into a UMD module.
+ * This task copies the compressed files and their source maps into
+ * the release directory.
+ */
+function packageCompressed() {
+  return gulp.src('*_compressed.js?(.map)', {cwd: BUILD_DIR})
+    .pipe(gulp.dest(RELEASE_DIR));
+};
+
+/**
+ * This task wraps scripts/package/blockly.js into a UMD module.
  * @example import 'blockly/blockly';
  */
 function packageBlockly() {
-  return gulp.src('blockly_compressed.js')
-    .pipe(packageUMD('Blockly', []))
+  return gulp.src('scripts/package/blockly.js')
+    .pipe(packageUMD('Blockly', [{
+        name: 'Blockly',
+        amd: './blockly_compressed',
+        cjs: './blockly_compressed',
+      }]))
     .pipe(gulp.rename('blockly.js'))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task wraps blocks_compressed.js into a CommonJS module for Node.js.
- * This is an equivalent task to package-blockly but for Node.js.
- * @example import 'blockly/blockly-node';
- */
-function packageBlocklyNode() {
-  // Override textToDomDocument, providing a Node.js alternative to DOMParser.
-  return gulp.src('blockly_compressed.js')
-    .pipe(gulp.insert.append(`
-      if (typeof DOMParser !== 'function') {
-        var DOMParser = require("jsdom/lib/jsdom/living").DOMParser;
-        var XMLSerializer = require("jsdom/lib/jsdom/living").XMLSerializer;
-        var doc = Blockly.utils.xml.textToDomDocument(
-          '<xml xmlns="https://developers.google.com/blockly/xml"></xml>');
-        Blockly.utils.xml.document = function() {
-          return doc;
-        };
-      }`))
-    .pipe(packageCommonJS('Blockly', []))
-    .pipe(gulp.rename('blockly-node.js'))
-    .pipe(gulp.dest(packageDistribution));
-};
-
-/**
- * This task wraps blocks_compressed.js into a UMD module.
+ * This task wraps scripts/package/blocks.js into a UMD module.
  * @example import 'blockly/blocks';
  */
 function packageBlocks() {
-  return gulp.src('blocks_compressed.js')
-    .pipe(gulp.insert.prepend(`
-    Blockly.Blocks={};`))
-    .pipe(packageUMD('Blockly.Blocks', [{
-        name: 'Blockly',
-        amd: './core',
-        cjs: './core',
+  return gulp.src('scripts/package/blocks.js')
+    .pipe(packageUMD('BlocklyBlocks', [{
+        name: 'BlocklyBlocks',
+        amd: './blocks_compressed',
+        cjs: './blocks_compressed',
       }]))
     .pipe(gulp.rename('blocks.js'))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task wraps package/index.js into a UMD module.
+ * This task wraps scripts/package/index.js into a UMD module.
  * We implicitly require the Node entry point in CommonJS environments,
  * and the Browser entry point for AMD environments.
  * @example import * as Blockly from 'blockly';
  */
 function packageIndex() {
-  return gulp.src('package/index.js')
+  return gulp.src('scripts/package/index.js')
     .pipe(packageUMD('Blockly', [{
         name: 'Blockly',
         amd: './browser',
         cjs: './node',
       }]))
     .pipe(gulp.rename('index.js'))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task wraps package/browser/index.js into a UMD module.
+ * This task wraps scripts/package/browser/index.js into a UMD module.
  * By default, the module includes Blockly core and built-in blocks,
  * as well as the JavaScript code generator and the English block
  * localization files.
@@ -135,7 +145,7 @@ function packageIndex() {
  * @example import * as Blockly from 'blockly/browser';
  */
 function packageBrowser() {
-  return gulp.src('package/browser/index.js')
+  return gulp.src('scripts/package/browser/index.js')
     .pipe(packageUMD('Blockly', [{
         name: 'Blockly',
         amd: './core-browser',
@@ -154,11 +164,11 @@ function packageBrowser() {
         cjs: './javascript',
       }]))
     .pipe(gulp.rename('browser.js'))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task wraps package/browser/core.js into a UMD module.
+ * This task wraps scripts/package/browser/core.js into a UMD module.
  * By default, the module includes the Blockly core package and a
  * helper method to set the locale.
  * This module is configured (in package.json) to replaces the module
@@ -166,18 +176,18 @@ function packageBrowser() {
  * @example import * as Blockly from 'blockly/core';
  */
 function packageCore() {
-  return gulp.src('package/browser/core.js')
+  return gulp.src('scripts/package/browser/core.js')
     .pipe(packageUMD('Blockly', [{
         name: 'Blockly',
         amd: './blockly',
         cjs: './blockly',
       }]))
     .pipe(gulp.rename('core-browser.js'))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task wraps package/node/index.js into a CommonJS module for Node.js.
+ * This task wraps scripts/package/node/index.js into a CommonJS module for Node.js.
  * By default, the module includes Blockly core and built-in blocks,
  * as well as all the code generators and the English block localization files.
  * This module is configured (in package.json) to be replaced by the module
@@ -185,7 +195,7 @@ function packageCore() {
  * @example import * as Blockly from 'blockly/node';
  */
 function packageNode() {
-  return gulp.src('package/node/index.js')
+  return gulp.src('scripts/package/node/index.js')
     .pipe(packageCommonJS('Blockly', [{
         name: 'Blockly',
         cjs: './core',
@@ -212,11 +222,11 @@ function packageNode() {
         cjs: './dart',
       }]))
     .pipe(gulp.rename('node.js'))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task wraps package/node/core.js into a CommonJS module for Node.js.
+ * This task wraps scripts/package/node/core.js into a CommonJS module for Node.js.
  * By default, the module includes the Blockly core package for Node.js
  * and a helper method to set the locale.
  * This module is configured (in package.json) to be replaced by the module
@@ -224,31 +234,35 @@ function packageNode() {
  * @example import * as Blockly from 'blockly/core';
  */
 function packageNodeCore() {
-  return gulp.src('package/node/core.js')
+  return gulp.src('scripts/package/node/core.js')
     .pipe(packageCommonJS('Blockly', [{
         name: 'Blockly',
-        amd: './blockly-node',
-        cjs: './blockly-node',
+        amd: './blockly',
+        cjs: './blockly',
       }]))
     .pipe(gulp.rename('core.js'))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * A helper method for packaging a Blockly code generator into a UMD module.
+ * A helper method for wrapping a generator file into a UMD module.
  * @param {string} file Source file name.
  * @param {string} rename Destination file name.
- * @param {string} generator Generator export namespace.
+ * @param {string} namespace Export namespace.
  */
-function packageGenerator(file, rename, generator) {
-  return gulp.src(file)
-    .pipe(packageUMD(generator, [{
+function packageGenerator(file, rename, namespace) {
+  return gulp.src(`scripts/package/${rename}`)
+    .pipe(packageUMD(`Blockly${namespace}`, [{
         name: 'Blockly',
         amd: './core',
         cjs: './core',
+      }, {
+        name: `Blockly${namespace}`,
+        amd: `./${file}`,
+        cjs: `./${file}`,
       }]))
     .pipe(gulp.rename(rename))
-    .pipe(gulp.dest(packageDistribution));
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
@@ -256,7 +270,7 @@ function packageGenerator(file, rename, generator) {
  * @example import 'blockly/javascript';
  */
 function packageJavascript() {
-  return packageGenerator('javascript_compressed.js', 'javascript.js', 'Blockly.JavaScript');
+  return packageGenerator('javascript_compressed.js', 'javascript.js', 'JavaScript');
 };
 
 /**
@@ -264,7 +278,7 @@ function packageJavascript() {
  * @example import 'blockly/python';
  */
 function packagePython() {
-  return packageGenerator('python_compressed.js', 'python.js', 'Blockly.Python');
+  return packageGenerator('python_compressed.js', 'python.js', 'Python');
 };
 
 /**
@@ -272,7 +286,7 @@ function packagePython() {
  * @example import 'blockly/lua';
  */
 function packageLua() {
-  return packageGenerator('lua_compressed.js', 'lua.js', 'Blockly.Lua');
+  return packageGenerator('lua_compressed.js', 'lua.js', 'Lua');
 };
 
 /**
@@ -280,7 +294,7 @@ function packageLua() {
  * @example import 'blockly/dart';
  */
 function packageDart() {
-  return packageGenerator('dart_compressed.js', 'dart.js', 'Blockly.Dart');
+  return packageGenerator('dart_compressed.js', 'dart.js', 'Dart');
 };
 
 /**
@@ -288,25 +302,19 @@ function packageDart() {
  * @example import 'blockly/php';
  */
 function packagePHP() {
-  return packageGenerator('php_compressed.js', 'php.js', 'Blockly.PHP');
+  return packageGenerator('php_compressed.js', 'php.js', 'PHP');
 };
 
 /**
- * This task wraps each of the msg/js/* files into a UMD module.
+ * This task wraps each of the ${BUILD_DIR}/msg/js/* files into a UMD module.
  * @example import * as En from 'blockly/msg/en';
  */
 function packageLocales() {
   // Remove references to goog.provide and goog.require.
-  return gulp.src('msg/js/*.js')
+  return gulp.src(`${BUILD_DIR}/msg/js/*.js`)
       .pipe(gulp.replace(/goog\.[^\n]+/g, ''))
-      .pipe(gulp.insert.prepend(`
-      var Blockly = {};Blockly.Msg={};`))
-      .pipe(packageUMD('Blockly.Msg', [{
-          name: 'Blockly',
-          amd: '../core',
-          cjs: '../core',
-        }]))
-      .pipe(gulp.dest(`${packageDistribution}/msg`));
+      .pipe(packageUMD('Blockly.Msg', [], 'umd-msg.template'))
+      .pipe(gulp.dest(`${RELEASE_DIR}/msg`));
 };
 
 /**
@@ -317,83 +325,107 @@ function packageLocales() {
  */
 function packageUMDBundle() {
   var srcs = [
-    'blockly_compressed.js',
-    'msg/js/en.js',
-    'blocks_compressed.js',
-    'javascript_compressed.js'
+    `${BUILD_DIR}/blockly_compressed.js`,
+    `${BUILD_DIR}/msg/js/en.js`,
+    `${BUILD_DIR}/blocks_compressed.js`,
+    `${BUILD_DIR}/javascript_compressed.js`,
   ];
   return gulp.src(srcs)
-    .pipe(gulp.concat('blockly.min.js'))
-    .pipe(packageUMD('Blockly', []))
-    .pipe(gulp.dest(`${packageDistribution}`))
+      .pipe(gulp.concat('blockly.min.js'))
+      .pipe(gulp.dest(`${RELEASE_DIR}`));
 };
 
 /**
- * This task copies all the media/* files into the distribution directory.
+ * This task copies all the media/* files into the release directory.
  */
 function packageMedia() {
-  return gulp.src('./media/*')
-    .pipe(gulp.dest(`${packageDistribution}/media`));
+  return gulp.src('media/*')
+    .pipe(gulp.dest(`${RELEASE_DIR}/media`));
 };
 
 /**
- * This task copies the package.json file into the distribution directory.
+ * This task copies the package.json file into the release directory.
  */
 function packageJSON(cb) {
+  const packageJson = getPackageJson();
   const json = Object.assign({}, packageJson);
   delete json['scripts'];
-  if (!fs.existsSync(packageDistribution)) {
-    fs.mkdirSync(packageDistribution);
+  if (!fs.existsSync(RELEASE_DIR)) {
+    fs.mkdirSync(RELEASE_DIR, {recursive: true});
   }
-  fs.writeFileSync(`${packageDistribution}/package.json`,
+  fs.writeFileSync(`${RELEASE_DIR}/package.json`,
       JSON.stringify(json, null, 2));
   cb();
 };
 
 /**
- * This task copies the package/README.md file into the distribution directory.
- * This file is what developers will see at https://www.npmjs.com/package/blockly.
+ * This task copies the scripts/package/README.md file into the
+ * release directory.  This file is what developers will see at
+ * https://www.npmjs.com/package/blockly .
  */
 function packageReadme() {
-  return gulp.src('./package/README.md')
-    .pipe(gulp.dest(`${packageDistribution}`));
+  return gulp.src('scripts/package/README.md')
+    .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task copies the typings/blockly.d.ts TypeScript definition file into the
- * distribution directory.
- * The bundled declaration file is referenced in package.json in the types property.
+ * This task copies the generated .d.ts files in build/declarations and the
+ * hand-written .d.ts files in typings/ into the release directory. The main
+ * entrypoint file (index.d.ts) is referenced in package.json in the types
+ * property.
  */
 function packageDTS() {
-  return gulp.src('./typings/blockly.d.ts')
-    .pipe(gulp.dest(`${packageDistribution}`));
+  const handwrittenSrcs = [
+    'typings/*.d.ts',
+    'typings/msg/*.d.ts',
+  ];
+  return gulp.src(handwrittenSrcs, {base: 'typings'})
+      .pipe(gulp.src(`${TYPINGS_BUILD_DIR}/**/*.d.ts`))
+      .pipe(gulp.replace('AnyDuringMigration', 'any'))
+      .pipe(gulp.dest(RELEASE_DIR));
 };
 
 /**
- * This task prepares the NPM distribution files under the /dist directory.
+ * This task cleans the release directory (by deleting it).
  */
-const package = gulp.parallel(
-  packageIndex,
-  packageBrowser,
-  packageNode,
-  packageCore,
-  packageNodeCore,
-  packageBlockly,
-  packageBlocklyNode,
-  packageBlocks,
-  packageJavascript,
-  packagePython,
-  packageLua,
-  packageDart,
-  packagePHP,
-  packageLocales,
-  packageMedia,
-  packageUMDBundle,
-  packageJSON,
-  packageReadme,
-  packageDTS
-);
+function cleanReleaseDir(done) {
+  // Sanity check.
+  if (RELEASE_DIR === '.' || RELEASE_DIR === '/') {
+    throw new Error(`Refusing to rm -rf ${RELEASE_DIR}`);
+  }
+  rimraf(RELEASE_DIR, done);
+}
+
+/**
+ * This task prepares the files to be included in the NPM by copying
+ * them into the release directory.
+ */
+const package = gulp.series(
+    checkBuildDir,
+    cleanReleaseDir,
+    gulp.parallel(
+        packageIndex,
+        packageCompressed,
+        packageBrowser,
+        packageNode,
+        packageCore,
+        packageNodeCore,
+        packageBlockly,
+        packageBlocks,
+        packageJavascript,
+        packagePython,
+        packageLua,
+        packageDart,
+        packagePHP,
+        packageLocales,
+        packageMedia,
+        packageUMDBundle,
+        packageJSON,
+        packageReadme,
+        packageDTS)
+    );
 
 module.exports = {
-  package: package
+  cleanReleaseDir: cleanReleaseDir,
+  package: package,
 };

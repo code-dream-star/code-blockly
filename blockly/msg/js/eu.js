@@ -2,6 +2,8 @@
 
 'use strict';
 
+var Blockly = Blockly || { Msg: Object.create(null) };
+
 Blockly.Msg["ADD_COMMENT"] = "Iruzkina gehitu";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Ezin da '%1' aldagaia ezabatu '%2' funtzioaren definizioaren zati delako.";
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "Aldatu balioa:";
@@ -63,6 +65,8 @@ Blockly.Msg["DELETE_BLOCK"] = "Ezabatu blokea";
 Blockly.Msg["DELETE_VARIABLE"] = "%1 parametro izena ezabatu.";
 Blockly.Msg["DELETE_VARIABLE_CONFIRMATION"] = "Ezabatu %2 aldagaiaren %1 erabilerak?";
 Blockly.Msg["DELETE_X_BLOCKS"] = "Ezabatu %1 bloke";
+Blockly.Msg["DIALOG_CANCEL"] = "Utzi";
+Blockly.Msg["DIALOG_OK"] = "Ados";
 Blockly.Msg["DISABLE_BLOCK"] = "Ezgaitu blokea";
 Blockly.Msg["DUPLICATE_BLOCK"] = "Bikoiztu";
 Blockly.Msg["DUPLICATE_COMMENT"] = "Iruzkina bikoiztu";
@@ -72,19 +76,6 @@ Blockly.Msg["EXPAND_BLOCK"] = "Blokea Hedatu";
 Blockly.Msg["EXTERNAL_INPUTS"] = "Kanpoko sarrerak";
 Blockly.Msg["HELP"] = "Laguntza";
 Blockly.Msg["INLINE_INPUTS"] = "Inpuntak Linean";
-Blockly.Msg["IOS_CANCEL"] = "Utzi";
-Blockly.Msg["IOS_ERROR"] = "Errorea";
-Blockly.Msg["IOS_OK"] = "Ados";
-Blockly.Msg["IOS_PROCEDURES_ADD_INPUT"] = "+ Gehitu sarrera";
-Blockly.Msg["IOS_PROCEDURES_ALLOW_STATEMENTS"] = "Adierazpenak baimendu";
-Blockly.Msg["IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR"] = "Funtzio honek errepikatutako sarrerak ditu.";
-Blockly.Msg["IOS_PROCEDURES_INPUTS"] = "SARRERAK";
-Blockly.Msg["IOS_VARIABLES_ADD_BUTTON"] = "Gehitu";
-Blockly.Msg["IOS_VARIABLES_ADD_VARIABLE"] = "+ Gehitu aldagaia";
-Blockly.Msg["IOS_VARIABLES_DELETE_BUTTON"] = "Ezabatu";
-Blockly.Msg["IOS_VARIABLES_EMPTY_NAME_ERROR"] = "Ezin duzu aldagaiaren izen huts bat erabili.";
-Blockly.Msg["IOS_VARIABLES_RENAME_BUTTON"] = "Izena aldatu";
-Blockly.Msg["IOS_VARIABLES_VARIABLE_NAME"] = "Aldagaiaren izena";
 Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "sortu zerrenda hutsa";
 Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "Zerrenda bat itzultzen du, 0 luzera duena, daturik gabekoa";
@@ -223,7 +214,7 @@ Blockly.Msg["MATH_IS_POSITIVE"] = "positiboa da";
 Blockly.Msg["MATH_IS_PRIME"] = "zenbaki lehena da";
 Blockly.Msg["MATH_IS_TOOLTIP"] = "Check if a number is an even, odd, prime, whole, positive, negative, or if it is divisible by certain number. Returns true or false.";  // untranslated
 Blockly.Msg["MATH_IS_WHOLE"] = "zenbaki osoa da";
-Blockly.Msg["MATH_MODULO_HELPURL"] = "https://en.wikipedia.org/wiki/Modulo_operation";
+Blockly.Msg["MATH_MODULO_HELPURL"] = "https://en.wikipedia.org/wiki/Modulo_operation";  // untranslated
 Blockly.Msg["MATH_MODULO_TITLE"] = "%1 ÷ %2(r)en oroigarria";
 Blockly.Msg["MATH_MODULO_TOOLTIP"] = "Return the remainder from dividing the two numbers.";  // untranslated
 Blockly.Msg["MATH_MULTIPLICATION_SYMBOL"] = "×";  // untranslated
@@ -380,7 +371,7 @@ Blockly.Msg["TEXT_REPLACE_TOOLTIP"] = "Replace all occurances of some text withi
 Blockly.Msg["TEXT_REVERSE_HELPURL"] = "https://github.com/google/blockly/wiki/Text#reversing-text";  // untranslated
 Blockly.Msg["TEXT_REVERSE_MESSAGE0"] = "%1(e)ri buelta eman";
 Blockly.Msg["TEXT_REVERSE_TOOLTIP"] = "Reverses the order of the characters in the text.";  // untranslated
-Blockly.Msg["TEXT_TEXT_HELPURL"] = "https://en.wikipedia.org/wiki/String_(computer_science)";
+Blockly.Msg["TEXT_TEXT_HELPURL"] = "https://en.wikipedia.org/wiki/String_(computer_science)";  // untranslated
 Blockly.Msg["TEXT_TEXT_TOOLTIP"] = "Letra bat, hitza edo testuko lerroa.";
 Blockly.Msg["TEXT_TRIM_HELPURL"] = "https://github.com/google/blockly/wiki/Text#trimming-removing-spaces";  // untranslated
 Blockly.Msg["TEXT_TRIM_OPERATOR_BOTH"] = "trim spaces from both sides of";  // untranslated

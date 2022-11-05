@@ -4,69 +4,146 @@
     <meta charset="utf-8">
     <title>Mocha Tests for Blockly</title>
 
-    <link href="https://unpkg.com/mocha@5.2.0/mocha.css" rel="stylesheet" />
-    <script src="../../blockly_uncompressed.js"></script>
-    <script src="../../msg/messages.js"></script>
-    <script src="../../blocks/procedures.js"></script>
+    <link href="../../node_modules/mocha/mocha.css" rel="stylesheet" />
   </head>
+  <style>
+    #blocklyDiv {
+      height: 1000px;
+      position: fixed;
+      visibility: hidden;
+      width: 1000px;
+    }
+  </style>
   <body>
-
     <div id="mocha"></div>
     <div id="failureCount" style="display:none" tests_failed="unset"></div>
-    <script src="https://unpkg.com/chai/chai.js"></script>
-    <script src="https://unpkg.com/mocha@5.2.0/mocha.js"></script>
-    <script src="https://unpkg.com/sinon/pkg/sinon.js"></script>
+    <div id="failureMessages" style="display:none"></div>
+    <!-- Load mocha et al. before bootstrapping so that we can safely
+      goog.require() the test modules that make calls to (e.g.)
+      suite() at the top level. -->
+    <script src="../../node_modules/chai/chai.js"></script>
+    <script src="../../node_modules/mocha/mocha.js"></script>
+    <script src="../../node_modules/sinon/pkg/sinon.js"></script>
     <script>
       mocha.setup({
-        ui: 'tdd'
+        ui: 'tdd',
+        failZero: true,
       });
+
+      var BLOCKLY_BOOTSTRAP_OPTIONS = {
+        loadCompressed: false,
+        depsFiles: ['build/deps.js', 'build/deps.mocha.js'],
+        requires: [
+          // Blockly modules needed by tests.
+          'Blockly',
+          'Blockly.libraryBlocks',
+          'Blockly.Dart',
+          'Blockly.Dart.texts',
+          'Blockly.JavaScript',
+          'Blockly.JavaScript.texts',
+          'Blockly.Lua',
+          'Blockly.Lua.texts',
+          'Blockly.PHP',
+          'Blockly.PHP.texts',
+          'Blockly.Python',
+          'Blockly.Python.texts',
+
+          // Test modules.
+          'Blockly.test.astNode',
+          'Blockly.test.blockChangeEvent',
+          'Blockly.test.blockDeleteEvent',
+          'Blockly.test.blockCreateEvent',
+          'Blockly.test.blockJson',
+          'Blockly.test.blocks',
+          'Blockly.test.comments',
+          'Blockly.test.commentDeserialization',
+          'Blockly.test.connectionChecker',
+          'Blockly.test.connectionDb',
+          'Blockly.test.connection',
+          'Blockly.test.contextMenuItem',
+          'Blockly.test.cursor',
+          'Blockly.test.dropdown',
+          'Blockly.test.event',
+          'Blockly.test.extensions',
+          'Blockly.test.fieldAngle',
+          'Blockly.test.fieldCheckbox',
+          'Blockly.test.fieldColour',
+          'Blockly.test.fieldDropdown',
+          'Blockly.test.fieldImage',
+          'Blockly.test.fieldLabelSerialization',
+          'Blockly.test.fieldLabel',
+          'Blockly.test.fieldMultiline',
+          'Blockly.test.fieldNumber',
+          'Blockly.test.fieldRegistry',
+          'Blockly.test.fieldTest',
+          'Blockly.test.fieldTextInput',
+          'Blockly.test.fieldVariable',
+          'Blockly.test.flyout',
+          'Blockly.test.generator',
+          'Blockly.test.gesture',
+          'Blockly.test.input',
+          'Blockly.test.insertionMarker',
+          'Blockly.test.jsoDeserialization',
+          'Blockly.test.jsoSerialization',
+          'Blockly.test.json',
+          'Blockly.test.keydown',
+          'Blockly.test.lists',
+          'Blockly.test.logicTernary',
+          'Blockly.test.metrics',
+          'Blockly.test.mutator',
+          'Blockly.test.names',
+          'Blockly.test.procedures',
+          'Blockly.test.registry',
+          'Blockly.test.serialization',
+          'Blockly.test.shortcutRegistry',
+          'Blockly.test.touch',
+          'Blockly.test.theme',
+          'Blockly.test.toolbox',
+          'Blockly.test.tooltip',
+          'Blockly.test.trashcan',
+          'Blockly.test.utils',
+          'Blockly.test.variableMap',
+          'Blockly.test.variableModel',
+          'Blockly.test.variables',
+          'Blockly.test.widgetDiv',
+          'Blockly.test.workspaceComment',
+          'Blockly.test.workspaceSvg',
+          'Blockly.test.workspace',
+          'Blockly.test.xml',
+          'Blockly.test.zoomControls',
+        ],
+        additionalScripts: [
+          'msg/messages.js',
+          'tests/playgrounds/screenshot.js',
+          'node_modules/@blockly/dev-tools/dist/index.js',
+        ],
+      }
     </script>
-
-    <script src="test_helpers.js"></script>
-
-    <script src="astnode_test.js"></script>
-    <script src="block_test.js"></script>
-    <script src="comment_test.js"></script>
-    <script src="connection_db_test.js"></script>
-    <script src="connection_test.js"></script>
-    <script src="connection_db_test.js"></script>
-    <script src="cursor_test.js"></script>
-    <script src="dropdowndiv_test.js"></script>
-    <script src="event_test.js"></script>
-    <script src="field_test.js"></script>
-    <script src="field_angle_test.js"></script>
-    <script src="field_checkbox_test.js"></script>
-    <script src="field_colour_test.js"></script>
-    <script src="field_date_test.js"></script>
-    <script src="field_dropdown_test.js"></script>
-    <script src="field_image_test.js"></script>
-    <script src="field_label_test.js"></script>
-    <script src="field_label_serializable_test.js"></script>
-    <script src="field_number_test.js"></script>
-    <script src="field_registry_test.js"></script>
-    <script src="field_textinput_test.js"></script>
-    <script src="field_variable_test.js"></script>
-    <script src="gesture_test.js"></script>
-    <script src="input_test.js"></script>
-    <script src="key_map_test.js"></script>
-    <script src="metrics_test.js"></script>
-    <script src="names_test.js"></script>
-    <script src="navigation_modify_test.js"></script>
-    <script src="navigation_test.js"></script>
-    <script src="procedures_test.js"></script>
-    <script src="theme_test.js"></script>
-    <script src="trashcan_test.js"></script>
-    <script src="utils_test.js"></script>
-    <script src="xml_procedures_test.js"></script>
-    <script src="xml_test.js"></script>
+    <script src="../bootstrap.js"></script>
 
     <div id="blocklyDiv"></div>
-    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-minimal" style="display: none">
-      <block type="basic_block"></block>
+
+    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-simple" style="display: none">
+      <block type="logic_compare">
+        <field name="OP">NEQ</field>
+        <value name="A">
+          <shadow type="math_number">
+            <field name="NUM">1</field>
+          </shadow>
+        </value>
+        <value name="B">
+          <block type="math_number">
+            <field name="NUM">2</field>
+          </block>
+        </value>
+      </block>
+      <sep gap="20"></sep>
+      <button text="insert" callbackkey="insertConnectionRows"></button>
+      <label text="tooltips"></label>
     </xml>
 
     <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-categories" style="display: none">
-      <category name="First">
+      <category name="First" css-container="something">
         <block type="basic_block">
           <field name="TEXT">FirstCategory-FirstBlock</field>
         </block>
@@ -80,15 +157,42 @@
         </block>
       </category>
     </xml>
-    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-connections" style="display: none">
-      <block type="stack_block"></block>
-      <block type="row_block"></block>
+
+    <xml xmlns="https://developers.google.com/blockly/xml" id="toolbox-test" style="display: none">
+      <category name="First" expanded="true" categorystyle="logic_category">
+        <sep gap="-1"></sep>
+        <button text="insert" callbackkey="insertConnectionRows"></button>
+        <block type="stack_block"></block>
+        <block type="stack_block"></block>
+      </category>
+      <category name="Second">
+        <block type="stack_block"></block>
+      </category>
+      <sep toolboxitemid="separator" gap="-1"></sep>
+      <category name="Variables" custom="VARIABLE"></category>
+      <category name="NestedCategory" >
+        <category toolboxitemid="nestedCategory" name="NestedItemOne"></category>
+      </category>
+      <category name="lastItem"></category>
     </xml>
 
-    <script>
-      mocha.run(function(failures) {
+    <xml xmlns="https://developers.google.com/blockly/xml" id="gesture-test-toolbox" style="display: none">
+      <block type="test_field_block"></block>
+    </xml>
+
+    <script type=module>
+      // Wait for Blockly to finish loading before running tests.
+      import '../bootstrap_done.mjs';
+
+      let runner = mocha.run(function(failures) {
         var failureDiv = document.getElementById('failureCount');
         failureDiv.setAttribute('tests_failed', failures);
+      });
+      runner.on('fail', function(test, err) {
+        const msg = document.createElement('p');
+        msg.textContent = `"${test.fullTitle()}" failed: ${err.message}`;
+        const div = document.getElementById('failureMessages');
+        div.appendChild(msg);
       });
     </script>
   </body>

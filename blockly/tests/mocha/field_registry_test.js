@@ -4,70 +4,57 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/**
- * @fileoverview Tests for Blockly.fieldRegistry
- * @author bekawestberg@gmail.com (Beka Westberg)
- */
-'use strict';
+goog.declareModuleId('Blockly.test.fieldRegistry');
+
+import * as Blockly from '../../build/src/core/blockly.js';
+import {createDeprecationWarningStub} from './test_helpers/warnings.js';
+import {sharedTestSetup, sharedTestTeardown} from './test_helpers/setup_teardown.js';
+
 
 suite('Field Registry', function() {
-  function CustomFieldType(value) {
-    CustomFieldType.superClass_.constructor.call(this, value);
-  }
-  Blockly.utils.object.inherits(CustomFieldType, Blockly.Field);
-  CustomFieldType.fromJson = function(options) {
-    return new CustomFieldType(options['value']);
-  };
+  class CustomFieldType extends Blockly.Field {
+    constructor(value) {
+      super(value);
+    }
 
+    static fromJson(options) {
+      return new CustomFieldType(options['value']);
+    }
+  }
+
+  setup(function() {
+    sharedTestSetup.call(this);
+  });
   teardown(function() {
-    if (Blockly.fieldRegistry.typeMap_['field_custom_test']) {
-      delete Blockly.fieldRegistry.typeMap_['field_custom_test'];
+    sharedTestTeardown.call(this);
+    if (Blockly.registry.TEST_ONLY.typeMap['field']['field_custom_test']) {
+      delete Blockly.registry.TEST_ONLY.typeMap['field']['field_custom_test'];
     }
   });
+
   suite('Registration', function() {
     test('Simple', function() {
       Blockly.fieldRegistry.register('field_custom_test', CustomFieldType);
     });
-    test('Empty String Key', function() {
-      chai.assert.throws(function() {
-        Blockly.fieldRegistry.register('', CustomFieldType);
-      }, 'Invalid field type');
-    });
-    test('Class as Key', function() {
-      chai.assert.throws(function() {
-        Blockly.fieldRegistry.register(CustomFieldType, '');
-      }, 'Invalid field type');
-    });
     test('fromJson as Key', function() {
       chai.assert.throws(function() {
         Blockly.fieldRegistry.register(CustomFieldType.fromJson, '');
-      }, 'Invalid field type');
-    });
-    test('Overwrite a Key', function() {
-      Blockly.fieldRegistry.register('field_custom_test', CustomFieldType);
-      chai.assert.throws(function() {
-        Blockly.fieldRegistry.register('field_custom_test', CustomFieldType);
-      }, 'already registered');
-    });
-    test('Null Value', function() {
-      chai.assert.throws(function() {
-        Blockly.fieldRegistry.register('field_custom_test', null);
-      }, 'fromJson function');
+      }, 'Invalid name');
     });
     test('No fromJson', function() {
-      var fromJson = CustomFieldType.fromJson;
+      const fromJson = CustomFieldType.fromJson;
       delete CustomFieldType.fromJson;
       chai.assert.throws(function() {
         Blockly.fieldRegistry.register('field_custom_test', CustomFieldType);
-      }, 'fromJson function');
+      }, 'must have a fromJson function');
       CustomFieldType.fromJson = fromJson;
     });
     test('fromJson not a function', function() {
-      var fromJson = CustomFieldType.fromJson;
+      const fromJson = CustomFieldType.fromJson;
       CustomFieldType.fromJson = true;
       chai.assert.throws(function() {
         Blockly.fieldRegistry.register('field_custom_test', CustomFieldType);
-      }, 'fromJson function');
+      }, 'must have a fromJson function');
       CustomFieldType.fromJson = fromJson;
     });
   });
@@ -75,23 +62,24 @@ suite('Field Registry', function() {
     test('Simple', function() {
       Blockly.fieldRegistry.register('field_custom_test', CustomFieldType);
 
-      var json = {
+      const json = {
         type: 'field_custom_test',
-        value: 'ok'
+        value: 'ok',
       };
 
-      var field = Blockly.fieldRegistry.fromJson(json);
+      const field = Blockly.fieldRegistry.fromJson(json);
+
       chai.assert.isNotNull(field);
-      chai.assert.equal('ok', field.getValue());
+      chai.assert.equal(field.getValue(), 'ok');
     });
     test('Not Registered', function() {
-      var json = {
+      const json = {
         type: 'field_custom_test',
-        value: 'ok'
+        value: 'ok',
       };
 
-      var spy = sinon.stub(console, 'warn');
-      var field = Blockly.fieldRegistry.fromJson(json);
+      const spy = sinon.stub(console, 'warn');
+      const field = Blockly.fieldRegistry.fromJson(json);
       chai.assert.isNull(field);
       chai.assert.isTrue(spy.called);
       spy.restore();
@@ -99,14 +87,15 @@ suite('Field Registry', function() {
     test('Case Different', function() {
       Blockly.fieldRegistry.register('field_custom_test', CustomFieldType);
 
-      var json = {
+      const json = {
         type: 'FIELD_CUSTOM_TEST',
-        value: 'ok'
+        value: 'ok',
       };
 
-      var field = Blockly.fieldRegistry.fromJson(json);
+      const field = Blockly.fieldRegistry.fromJson(json);
+      
       chai.assert.isNotNull(field);
-      chai.assert.equal('ok', field.getValue());
+      chai.assert.equal(field.getValue(), 'ok');
     });
   });
 });

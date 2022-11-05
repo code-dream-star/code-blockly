@@ -5,19 +5,17 @@
     },
     "globals": {
         "chai": false,
-        "sinon": false,
-        "assertNull": true,
-        "assertNotNull": true,
-        "assertEquals": true,
-        "assertTrue": true,
-        "assertFalse": true,
-        "isEqualArrays": true,
-        "assertUndefined": true,
-        "assertNotUndefined": true,
-        "defineStackBlock": true,
-        "defineRowBlock": true,
-        "defineStatementBlock": true
-
+        "sinon": false
     },
-    "extends": "../../.eslintrc.json"
+    "rules": {
+        "no-unused-vars": ["off"],
+        // Allow uncommented helper functions in tests.
+        "require-jsdoc": ["off"],
+        "prefer-rest-params": ["off"],
+        "no-invalid-this": ["off"]
+    },
+    "extends": "../../.eslintrc.json",
+    "parserOptions": {
+      "sourceType": "module"
+    }
 }

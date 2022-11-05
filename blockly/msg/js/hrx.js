@@ -2,6 +2,8 @@
 
 'use strict';
 
+var Blockly = Blockly || { Msg: Object.create(null) };
+
 Blockly.Msg["ADD_COMMENT"] = "Kommentar hinzufüche";
 Blockly.Msg["CANNOT_DELETE_VARIABLE_PROCEDURE"] = "Can't delete the variable '%1' because it's part of the definition of the function '%2'";  // untranslated
 Blockly.Msg["CHANGE_VALUE_TITLE"] = "Neie Variable...";
@@ -63,6 +65,8 @@ Blockly.Msg["DELETE_BLOCK"] = "Block lösche";
 Blockly.Msg["DELETE_VARIABLE"] = "Delete the '%1' variable";  // untranslated
 Blockly.Msg["DELETE_VARIABLE_CONFIRMATION"] = "Delete %1 uses of the '%2' variable?";  // untranslated
 Blockly.Msg["DELETE_X_BLOCKS"] = "Block %1 lösche";
+Blockly.Msg["DIALOG_CANCEL"] = "Abbreche";
+Blockly.Msg["DIALOG_OK"] = "Okay";
 Blockly.Msg["DISABLE_BLOCK"] = "Block deaktivieren";
 Blockly.Msg["DUPLICATE_BLOCK"] = "Kopieren";
 Blockly.Msg["DUPLICATE_COMMENT"] = "Duplicate Comment";  // untranslated
@@ -72,19 +76,6 @@ Blockly.Msg["EXPAND_BLOCK"] = "Block entfalte";
 Blockly.Msg["EXTERNAL_INPUTS"] = "External Inputsexterne Ingänge";
 Blockly.Msg["HELP"] = "Hellef";
 Blockly.Msg["INLINE_INPUTS"] = "interne Ingänge";
-Blockly.Msg["IOS_CANCEL"] = "Cancel";  // untranslated
-Blockly.Msg["IOS_ERROR"] = "Error";  // untranslated
-Blockly.Msg["IOS_OK"] = "OK";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_ADD_INPUT"] = "+ Add Input";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_ALLOW_STATEMENTS"] = "Allow statements";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR"] = "This function has duplicate inputs.";  // untranslated
-Blockly.Msg["IOS_PROCEDURES_INPUTS"] = "INPUTS";  // untranslated
-Blockly.Msg["IOS_VARIABLES_ADD_BUTTON"] = "Add";  // untranslated
-Blockly.Msg["IOS_VARIABLES_ADD_VARIABLE"] = "+ Add Variable";  // untranslated
-Blockly.Msg["IOS_VARIABLES_DELETE_BUTTON"] = "Delete";  // untranslated
-Blockly.Msg["IOS_VARIABLES_EMPTY_NAME_ERROR"] = "You can't use an empty variable name.";  // untranslated
-Blockly.Msg["IOS_VARIABLES_RENAME_BUTTON"] = "Rename";  // untranslated
-Blockly.Msg["IOS_VARIABLES_VARIABLE_NAME"] = "Variable name";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_HELPURL"] = "https://github.com/google/blockly/wiki/Lists#create-empty-list";  // untranslated
 Blockly.Msg["LISTS_CREATE_EMPTY_TITLE"] = "Generier/erzeich en leear List";
 Blockly.Msg["LISTS_CREATE_EMPTY_TOOLTIP"] = "Generier/erzeich en leear List ohne Inhalt.";
@@ -291,9 +282,9 @@ Blockly.Msg["NEW_VARIABLE_TYPE_TITLE"] = "New variable type:";  // untranslated
 Blockly.Msg["ORDINAL_NUMBER_SUFFIX"] = "";  // untranslated
 Blockly.Msg["PROCEDURES_ALLOW_STATEMENTS"] = "allow statements";  // untranslated
 Blockly.Msg["PROCEDURES_BEFORE_PARAMS"] = "mit:";
-Blockly.Msg["PROCEDURES_CALLNORETURN_HELPURL"] = "https://hrx.wikipedia.org/wiki/Prozedur_%28Programmierung%29";
+Blockly.Msg["PROCEDURES_CALLNORETURN_HELPURL"] = "https://en.wikipedia.org/wiki/Subroutine";  // untranslated
 Blockly.Msg["PROCEDURES_CALLNORETURN_TOOLTIP"] = "Ruf en Funktionsblock ohne Rückgäweart uff.";
-Blockly.Msg["PROCEDURES_CALLRETURN_HELPURL"] = "https://hrx.wikipedia.org/wiki/Prozedur_%28Programmierung%29";
+Blockly.Msg["PROCEDURES_CALLRETURN_HELPURL"] = "https://en.wikipedia.org/wiki/Subroutine";  // untranslated
 Blockly.Msg["PROCEDURES_CALLRETURN_TOOLTIP"] = "Ruf en Funktionsblock mit Rückgäbweart uff.";
 Blockly.Msg["PROCEDURES_CALL_BEFORE_PARAMS"] = "mit:";
 Blockly.Msg["PROCEDURES_CREATE_DO"] = "Generier/erzeich \"Uffruf %1\"";

@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
+			"Les Meloures",
 			"Robby",
-			"Soued031",
-			"Les Meloures"
+			"Soued031"
 		]
 	},
 	"VARIABLES_DEFAULT_NAME": "Element",
@@ -51,15 +51,6 @@
 	"CONTROLS_FOREACH_TITLE": "fir all Element %1 an der Lëscht %2",
 	"CONTROLS_IF_MSG_IF": "wann",
 	"CONTROLS_IF_MSG_ELSE": "soss",
-	"IOS_OK": "OK",
-	"IOS_CANCEL": "Ofbriechen",
-	"IOS_ERROR": "Feeler",
-	"IOS_VARIABLES_ADD_VARIABLE": "+ Variabel derbäisetzen",
-	"IOS_VARIABLES_ADD_BUTTON": "Derbäisetzen",
-	"IOS_VARIABLES_RENAME_BUTTON": "Ëmbenennen",
-	"IOS_VARIABLES_DELETE_BUTTON": "Läschen",
-	"IOS_VARIABLES_VARIABLE_NAME": "Numm vun der Variabel",
-	"IOS_VARIABLES_EMPTY_NAME_ERROR": "Dir kënnt keen eidelen Numm fir eng Variabel benotzen.",
 	"LOGIC_OPERATION_AND": "an",
 	"LOGIC_OPERATION_OR": "oder",
 	"LOGIC_NEGATE_TITLE": "net %1",
@@ -67,7 +58,6 @@
 	"LOGIC_BOOLEAN_FALSE": "falsch",
 	"LOGIC_BOOLEAN_TOOLTIP": "Schéckt entweder richteg oder falsch zréck.",
 	"LOGIC_NULL": "null",
-	"LOGIC_TERNARY_HELPURL": "https://en.wikipedia.org/wiki/%3F:",
 	"LOGIC_TERNARY_CONDITION": "Test",
 	"LOGIC_TERNARY_IF_TRUE": "wa wouer",
 	"LOGIC_TERNARY_IF_FALSE": "wa falsch",
@@ -102,10 +92,9 @@
 	"TEXT_CHARAT_TITLE": "am Text %1 %2",
 	"TEXT_GET_SUBSTRING_INPUT_IN_TEXT": "am Text",
 	"TEXT_GET_SUBSTRING_END_FROM_START": "bis bei de Buschtaf #",
-	"TEXT_GET_SUBSTRING_END_LAST": "bis bei de leschte Buschtaw",
+	"TEXT_GET_SUBSTRING_END_LAST": "bis bei de leschte Buschtaf",
 	"TEXT_PRINT_TITLE": "%1 drécken",
 	"TEXT_PROMPT_TOOLTIP_TEXT": "Frot de Benotzer no engem Text.",
-	"TEXT_COUNT_HELPURL": "https://github.com/google/blockly/wiki/Text#counting-substrings",
 	"TEXT_REPLACE_MESSAGE0": "%1 duerch %2 a(n) %3 ersetzen",
 	"TEXT_REPLACE_TOOLTIP": "All Kéiers wou e bestëmmten Text do ass duerch en aneren Text ersetzen.",
 	"TEXT_REVERSE_TOOLTIP": "Dréint d'Reiefolleg vun den Zeechen am Text ëm.",
@@ -133,7 +122,6 @@
 	"LISTS_SORT_TITLE": "%1 %2 %3 zortéieren",
 	"LISTS_SORT_TYPE_NUMERIC": "numeresch",
 	"LISTS_SORT_TYPE_TEXT": "alphabetesch",
-	"LISTS_REVERSE_HELPURL": "https://github.com/google/blockly/wiki/Lists#reversing-a-list",
 	"LISTS_REVERSE_MESSAGE0": "%1 ëmdréinen",
 	"PROCEDURES_DEFNORETURN_PROCEDURE": "eppes maachen",
 	"PROCEDURES_BEFORE_PARAMS": "mat:",
@@ -141,5 +129,7 @@
 	"PROCEDURES_DEFNORETURN_COMMENT": "Dës Funktioun beschreiwen...",
 	"PROCEDURES_DEFRETURN_RETURN": "zréck",
 	"PROCEDURES_CREATE_DO": "'%1' uleeën",
-	"WORKSPACE_COMMENT_DEFAULT_TEXT": "Sot eppes..."
+	"WORKSPACE_COMMENT_DEFAULT_TEXT": "Sot eppes...",
+	"DIALOG_OK": "OK",
+	"DIALOG_CANCEL": "Ofbriechen"
 }

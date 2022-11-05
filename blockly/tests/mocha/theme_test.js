@@ -4,20 +4,29 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/**
- * @fileoverview Blockly Theme tests.
- * @author samelh@google.com (Sam El-Husseini)
- */
-'use strict';
+goog.declareModuleId('Blockly.test.theme');
+
+import {assertEventFired} from './test_helpers/events.js';
+import * as eventUtils from '../../build/src/core/events/utils.js';
+import {sharedTestSetup, sharedTestTeardown, workspaceTeardown} from './test_helpers/setup_teardown.js';
+
 
 suite('Theme', function() {
+  setup(function() {
+    sharedTestSetup.call(this);
+  });
+  teardown(function() {
+    sharedTestTeardown.call(this);
+    // Clear all registered themes.
+    Blockly.registry.TEST_ONLY.typeMap['theme'] = {};
+  });
 
   function defineThemeTestBlocks() {
     Blockly.defineBlocksWithJsonArray([{
       "type": "stack_block",
       "message0": "",
       "previousStatement": null,
-      "nextStatement": null
+      "nextStatement": null,
     },
     {
       "type": "row_block",
@@ -25,18 +34,12 @@ suite('Theme', function() {
       "args0": [
         {
           "type": "input_value",
-          "name": "INPUT"
-        }
+          "name": "INPUT",
+        },
       ],
-      "output": null
+      "output": null,
     }]);
   }
-
-  function undefineThemeTestBlocks() {
-    delete Blockly.Blocks['stack_block'];
-    delete Blockly.Blocks['row_block'];
-  }
-
 
   function createBlockStyles() {
     return {
@@ -44,8 +47,8 @@ suite('Theme', function() {
         "colourPrimary": "#aaaaaa",
         "colourSecondary": "#bbbbbb",
         "colourTertiary": "#cccccc",
-        "hat": 'cap'
-      }
+        "hat": 'cap',
+      },
     };
   }
 
@@ -55,49 +58,49 @@ suite('Theme', function() {
         "colourPrimary": "#aaaaaa",
         "colourSecondary": "#bbbbbb",
         "colourTertiary": "#cccccc",
-        "hat": 'cap'
+        "hat": 'cap',
       },
       "styleTwo": {
         "colourPrimary": "#000000",
         "colourSecondary": "#999999",
         "colourTertiary": "#4d4d4d",
-        "hat": ''
-      }
+        "hat": '',
+      },
     };
   }
 
   function stringifyAndCompare(val1, val2) {
-    var stringVal1 = JSON.stringify(val1);
-    var stringVal2 = JSON.stringify(val2);
-    assertEquals(stringVal1, stringVal2);
+    const stringVal1 = JSON.stringify(val1);
+    const stringVal2 = JSON.stringify(val2);
+    chai.assert.equal(stringVal1, stringVal2);
   }
 
   test('Set All BlockStyles', function() {
-    var theme = new Blockly.Theme('test', createBlockStyles());
+    const theme = new Blockly.Theme('test', createBlockStyles());
     stringifyAndCompare(createBlockStyles(), theme.blockStyles);
-    var blockStyles = createMultipleBlockStyles();
-    for (var key in blockStyles) {
+    const blockStyles = createMultipleBlockStyles();
+    for (const key in blockStyles) {
       theme.blockStyles[key] = blockStyles[key];
     }
     stringifyAndCompare(createMultipleBlockStyles(), theme.blockStyles);
   });
 
   test('Get All BlockStyles', function() {
-    var theme = new Blockly.Theme('test', createMultipleBlockStyles());
-    var allBlocks = theme.blockStyles;
+    const theme = new Blockly.Theme('test', createMultipleBlockStyles());
+    const allBlocks = theme.blockStyles;
     stringifyAndCompare(createMultipleBlockStyles(), allBlocks);
   });
 
   test('Get BlockStyles', function() {
-    var theme = new Blockly.Theme('test', createBlockStyles());
-    var blockStyle = theme.blockStyles['styleOne'];
+    const theme = new Blockly.Theme('test', createBlockStyles());
+    const blockStyle = theme.blockStyles['styleOne'];
 
     stringifyAndCompare(blockStyle, createBlockStyles().styleOne);
   });
 
   test('Set BlockStyle Update', function() {
-    var theme = new Blockly.Theme('test', createBlockStyles());
-    var blockStyle = createBlockStyles();
+    const theme = new Blockly.Theme('test', createBlockStyles());
+    const blockStyle = createBlockStyles();
     blockStyle.styleOne.colourPrimary = '#00ff00';
 
     theme.blockStyles['styleOne'] = blockStyle.styleOne;
@@ -106,8 +109,8 @@ suite('Theme', function() {
   });
 
   test('Set BlockStyle Add', function() {
-    var theme = new Blockly.Theme('test', createBlockStyles());
-    var blockStyle = createMultipleBlockStyles();
+    const theme = new Blockly.Theme('test', createBlockStyles());
+    const blockStyle = createMultipleBlockStyles();
 
     theme.blockStyles['styleTwo'] = blockStyle.styleTwo;
 
@@ -116,37 +119,35 @@ suite('Theme', function() {
 
   test('Set Theme', function() {
     defineThemeTestBlocks();
-    var blockStyles = createBlockStyles();
-    var workspace = new Blockly.WorkspaceSvg({});
-    var blockA = workspace.newBlock('stack_block');
+    let workspace;
+    try {
+      const blockStyles = createBlockStyles();
+      const theme = new Blockly.Theme('themeName', blockStyles);
+      workspace = new Blockly.WorkspaceSvg(new Blockly.Options({}));
+      const blockA = workspace.newBlock('stack_block');
 
-    blockA.setStyle = function() {this.styleName_ = 'styleTwo';};
-    var callCount = 1;
-    workspace.refreshToolboxSelection = function() {
-      return ++callCount;
-    };
-    blockA.styleName_ = 'styleOne';
+      blockA.setStyle = function() {this.styleName_ = 'styleTwo';};
+      const refreshToolboxSelectionStub =
+          sinon.stub(workspace, 'refreshToolboxSelection');
+      blockA.styleName_ = 'styleOne';
 
-    var stub = sinon.stub(Blockly, "getMainWorkspace").returns(workspace);
-    var hideStub = sinon.stub(Blockly, "hideChaff");
+      workspace.setTheme(theme);
 
-    workspace.setTheme(blockStyles);
+      // Checks that the theme was set correctly on Blockly namespace
+      stringifyAndCompare(workspace.getTheme(), theme);
 
-    // Checks that the theme was set correctly on Blockly namespace
-    stringifyAndCompare(workspace.getTheme(), blockStyles);
+      // Checks that the setTheme function was called on the block
+      chai.assert.equal(blockA.getStyleName(), 'styleTwo');
 
-    // Checks that the setTheme function was called on the block
-    assertEquals(blockA.getStyleName(), 'styleTwo');
+      // Checks that the toolbox refreshed method was called
+      sinon.assert.calledOnce(refreshToolboxSelectionStub);
 
-    // check that the toolbox refreshed method was called
-    assertEquals(workspace.refreshToolboxSelection(), 3);
-
-    assertEquals(Blockly.Events.FIRE_QUEUE_.pop().element, 'theme');
-
-    undefineThemeTestBlocks();
-
-    stub.restore();
-    hideStub.restore();
+      assertEventFired(
+          this.eventsFireStub, Blockly.Events.ThemeChange,
+          {themeName: 'themeName', type: eventUtils.THEME_CHANGE}, workspace.id);
+    } finally {
+      workspaceTeardown.call(this, workspace);
+    }
   });
 
   suite('Validate block styles', function() {
@@ -155,118 +156,125 @@ suite('Theme', function() {
     });
 
     test('Null', function() {
-      var inputStyle = null;
-      var expectedOutput = {
+      const inputStyle = null;
+      const expectedOutput = {
         "colourPrimary": "#000000",
         "colourSecondary": "#999999",
         "colourTertiary": "#4d4d4d",
-        "hat": ''
+        "hat": '',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
     });
 
     test('Empty', function() {
-      var inputStyle = {};
-      var expectedOutput = {
+      const inputStyle = {};
+      const expectedOutput = {
         "colourPrimary": "#000000",
         "colourSecondary": "#999999",
         "colourTertiary": "#4d4d4d",
-        "hat": ''
+        "hat": '',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
     });
 
     test('Incomplete hex', function() {
-      var inputStyle = {
-        "colourPrimary": "#012345"
+      const inputStyle = {
+        "colourPrimary": "#012345",
       };
-      var expectedOutput = {
+      const expectedOutput = {
         "colourPrimary": "#012345",
         "colourSecondary": "#99a7b5",
         "colourTertiary": "#4d657d",
-        "hat": ''
+        "hat": '',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
     });
 
     test('Complete hex', function() {
-      var inputStyle = {
+      const inputStyle = {
         "colourPrimary": "#aaaaaa",
         "colourSecondary": "#bbbbbb",
         "colourTertiary": "#cccccc",
-        "hat": 'cap'
+        "hat": 'cap',
       };
-      var expectedOutput = {
+      const expectedOutput = {
         "colourPrimary": "#aaaaaa",
         "colourSecondary": "#bbbbbb",
         "colourTertiary": "#cccccc",
-        "hat": 'cap'
+        "hat": 'cap',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
     });
 
     test('Complete hue', function() {
-      var inputStyle = {
+      const inputStyle = {
         "colourPrimary": "20",
         "colourSecondary": "40",
         "colourTertiary": "60",
       };
-      var expectedOutput = {
+      const expectedOutput = {
         "colourPrimary": "#a5745b",
         "colourSecondary": "#a58c5b",
         "colourTertiary": "#a5a55b",
-        "hat": ''
+        "hat": '',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
     });
 
     test('Incomplete hue', function() {
-      var inputStyle = {
+      const inputStyle = {
         "colourPrimary": "20",
       };
-      var expectedOutput = {
+      const expectedOutput = {
         "colourPrimary": "#a5745b",
         "colourSecondary": "#dbc7bd",
         "colourTertiary": "#c09e8c",
-        "hat": ''
+        "hat": '',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
     });
 
     test('Complete css colour name', function() {
-      var inputStyle = {
+      const inputStyle = {
         "colourPrimary": "red",
         "colourSecondary": "white",
-        "colourTertiary": "blue"
+        "colourTertiary": "blue",
       };
-      var expectedOutput = {
+      const expectedOutput = {
         "colourPrimary": "#ff0000",
         "colourSecondary": "#ffffff",
         "colourTertiary": "#0000ff",
-        "hat": ''
+        "hat": '',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
     });
 
     test('Incomplete css colour name', function() {
-      var inputStyle = {
+      const inputStyle = {
         "colourPrimary": "black",
       };
-      var expectedOutput = {
+      const expectedOutput = {
         "colourPrimary": "#000000",
         "colourSecondary": "#999999",
         "colourTertiary": "#4d4d4d",
-        "hat": ''
+        "hat": '',
       };
       stringifyAndCompare(
           this.constants.validatedBlockStyle_(inputStyle), expectedOutput);
+    });
+  });
+
+  suite('defineTheme', function() {
+    test('Normalizes to lowercase', function() {
+      const theme = Blockly.Theme.defineTheme('TEST', {});
+      chai.assert.equal(theme.name, 'test');
     });
   });
 });

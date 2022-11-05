@@ -8,10 +8,11 @@
  * @fileoverview Mocha tests that test Blockly in Node.
  */
 
-var assert = require('chai').assert;
-var Blockly = require('../../dist/');
+const assert = require('chai').assert;
+const Blockly = require('../../dist/');
+const {javascriptGenerator} = require('../../dist/javascript');
 
-var xmlText = '<xml xmlns="https://developers.google.com/blockly/xml">\n' +
+const xmlText = '<xml xmlns="https://developers.google.com/blockly/xml">\n' +
 '  <block type="text_print" x="37" y="63">\n' +
 '    <value name="TEXT">\n' +
 '      <shadow type="text">\n' +
@@ -23,33 +24,33 @@ var xmlText = '<xml xmlns="https://developers.google.com/blockly/xml">\n' +
 
 suite('Test Node.js', function() {
   test('Import XML', function() {
-    var xml = Blockly.Xml.textToDom(xmlText);
+    const xml = Blockly.Xml.textToDom(xmlText);
 
     // Create workspace and import the XML
-    var workspace = new Blockly.Workspace();
+    const workspace = new Blockly.Workspace();
     Blockly.Xml.domToWorkspace(xml, workspace);
   });
   test('Roundtrip XML', function() {
-    var xml = Blockly.Xml.textToDom(xmlText);
+    const xml = Blockly.Xml.textToDom(xmlText);
 
-    var workspace = new Blockly.Workspace();
+    const workspace = new Blockly.Workspace();
     Blockly.Xml.domToWorkspace(xml, workspace);
 
-    var headlessXml = Blockly.Xml.workspaceToDom(workspace, true);
-    var headlessText = Blockly.Xml.domToPrettyText(headlessXml);
+    const headlessXml = Blockly.Xml.workspaceToDom(workspace, true);
+    const headlessText = Blockly.Xml.domToPrettyText(headlessXml);
 
     assert.equal(headlessText, xmlText, 'equal');
   });
   test('Generate Code', function() {
-    var xml = Blockly.Xml.textToDom(xmlText);
+    const xml = Blockly.Xml.textToDom(xmlText);
 
     // Create workspace and import the XML
-    var workspace = new Blockly.Workspace();
+    const workspace = new Blockly.Workspace();
     Blockly.Xml.domToWorkspace(xml, workspace);
 
     // Convert code
-    var code = Blockly.JavaScript.workspaceToCode(workspace);
-    
+    const code = javascriptGenerator.workspaceToCode(workspace);
+
     // Check output
     assert.equal('window.alert(\'Hello from Blockly!\');', code.trim(), 'equal');
   });

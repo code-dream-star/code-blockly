@@ -8,56 +8,46 @@
  * @fileoverview Gulp script to build Blockly for Node & NPM.
  * Run this script by calling "npm install" in this directory.
  */
+/* eslint-env node */
 
-var gulp = require('gulp');
-var execSync = require('child_process').execSync;
+const gulp = require('gulp');
 
-var packageJson = require('./package.json');
-
-var typings = require('./scripts/gulpfiles/typings');
-var buildTasks = require('./scripts/gulpfiles/build_tasks');
-var packageTasks = require('./scripts/gulpfiles/package_tasks');
-var gitTasks = require('./scripts/gulpfiles/git_tasks');
-var licenseTasks = require('./scripts/gulpfiles/license_tasks');
-
-// See https://docs.npmjs.com/cli/version.
-const preversion = gulp.series(
-  gitTasks.syncMaster,
-  function(done) {
-    // Create a branch named bump_version for the bump and rebuild.
-    execSync('git checkout -b bump_version', { stdio: 'inherit' });
-    done();
-  },
-);
-
-// See https://docs.npmjs.com/cli/version
-function postversion(done) {
-  // Push both the branch and tag to google/blockly.
-  execSync('git push ' + upstream_url + ' bump_version',
-      { stdio: 'inherit' });
-  var tagName = 'v' + packageJson.version;
-  execSync('git push ' + upstream_url + ' ' + tagName,
-      { stdio: 'inherit' });
-  done();
-};
+const buildTasks = require('./scripts/gulpfiles/build_tasks');
+const packageTasks = require('./scripts/gulpfiles/package_tasks');
+const gitTasks = require('./scripts/gulpfiles/git_tasks');
+const licenseTasks = require('./scripts/gulpfiles/license_tasks');
+const appengineTasks = require('./scripts/gulpfiles/appengine_tasks');
+const releaseTasks = require('./scripts/gulpfiles/release_tasks');
+const cleanupTasks = require('./scripts/gulpfiles/cleanup_tasks');
 
 module.exports = {
+  deployDemos: appengineTasks.deployDemos,
+  deployDemosBeta: appengineTasks.deployDemosBeta,
   default: buildTasks.build,
+  generateLangfiles: buildTasks.generateLangfiles,
   build: buildTasks.build,
-  buildCore: buildTasks.core,
-  buildBlocks: buildTasks.blocks,
+  buildDeps: buildTasks.deps,
   buildLangfiles: buildTasks.langfiles,
-  buildUncompressed: buildTasks.uncompressed,
-  buildCompressed: buildTasks.compressed,
-  buildGenerators: buildTasks.generators,
-  preversion: preversion,
-  postversion: postversion,
+  buildCompiled: buildTasks.compiled,
+  buildAdvancedCompilationTest: buildTasks.advancedCompilationTest,
+  buildJavaScript: buildTasks.javaScript,
+  buildJavaScriptAndDeps: buildTasks.javaScriptAndDeps,
+  checkin: gulp.parallel(buildTasks.checkinBuilt),
+  checkinBuilt: buildTasks.checkinBuilt,
+  clangFormat: buildTasks.format,
+  clean: gulp.parallel(buildTasks.cleanBuildDir, packageTasks.cleanReleaseDir),
+  cleanBuildDir: buildTasks.cleanBuildDir,
+  cleanReleaseDir: packageTasks.cleanReleaseDir,
   gitSyncDevelop: gitTasks.syncDevelop,
   gitSyncMaster: gitTasks.syncMaster,
   gitCreateRC: gitTasks.createRC,
-  gitRecompile: gitTasks.recompile,
   gitUpdateGithubPages: gitTasks.updateGithubPages,
-  typings: typings.typings,
   package: packageTasks.package,
-  checkLicenses: licenseTasks.checkLicenses
+  prepare: buildTasks.prepare,
+  checkLicenses: licenseTasks.checkLicenses,
+  recompile: releaseTasks.recompile,
+  prepareDemos: appengineTasks.prepareDemos,
+  publish: releaseTasks.publish,
+  publishBeta: releaseTasks.publishBeta,
+  sortRequires: cleanupTasks.sortRequires,
 };

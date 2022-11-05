@@ -1,12 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Cérilew",
 			"Etrapani",
+			"Mirin",
 			"Ochilov",
 			"Orikrin1998",
 			"Robin van der Vliet",
-			"Cérilew",
-			"Mirin",
 			"Surfo"
 		]
 	},
@@ -87,19 +87,6 @@
 	"CONTROLS_IF_IF_TOOLTIP": "Aldoni, forigi aŭ reorganizi partojn por reagordi la 'se'-blokon.",
 	"CONTROLS_IF_ELSEIF_TOOLTIP": "Aldoni kondiĉon al la bloko 'se'",
 	"CONTROLS_IF_ELSE_TOOLTIP": "Aldoni 'aliokaze' kondiĉon al la 'se' bloko.",
-	"IOS_OK": "Bone",
-	"IOS_CANCEL": "Nuligi",
-	"IOS_ERROR": "Eraro",
-	"IOS_PROCEDURES_INPUTS": "ENIROJ",
-	"IOS_PROCEDURES_ADD_INPUT": "+ Aldoni eniron",
-	"IOS_PROCEDURES_ALLOW_STATEMENTS": "Permesi ordonojn",
-	"IOS_PROCEDURES_DUPLICATE_INPUTS_ERROR": "Ĉi tiu funkcio havas du samnomajn enirojn.",
-	"IOS_VARIABLES_ADD_VARIABLE": "+ Aldoni Variablon",
-	"IOS_VARIABLES_ADD_BUTTON": "Aldoni",
-	"IOS_VARIABLES_RENAME_BUTTON": "Alinomigi",
-	"IOS_VARIABLES_DELETE_BUTTON": "Forigi",
-	"IOS_VARIABLES_VARIABLE_NAME": "Nomo de variablo",
-	"IOS_VARIABLES_EMPTY_NAME_ERROR": "La nomo de la variablo devas esti ne malplena.",
 	"LOGIC_COMPARE_HELPURL": "https://eo.wikipedia.org/wiki/Neegala%C4%B5o_(pli_granda,_malpli_granda)",
 	"LOGIC_COMPARE_TOOLTIP_EQ": "Liveri veron, se la du eniroj egalas.",
 	"LOGIC_COMPARE_TOOLTIP_NEQ": "Liveri veron, se la du eniroj ne egalas.",
@@ -160,7 +147,6 @@
 	"MATH_CHANGE_HELPURL": "https://eo.wikipedia.org/wiki/Kremento",
 	"MATH_CHANGE_TITLE": "krementi %1 per %2",
 	"MATH_CHANGE_TOOLTIP": "Aldoni nombron al variablo '%1'.",
-	"MATH_ROUND_HELPURL": "https://en.wikipedia.org/wiki/Rounding",
 	"MATH_ROUND_TOOLTIP": "Rondigi nombroj, supren aŭ malsupren.",
 	"MATH_ROUND_OPERATOR_ROUND": "rondigi",
 	"MATH_ROUND_OPERATOR_ROUNDUP": "Rondigi supren",
@@ -186,7 +172,6 @@
 	"MATH_MODULO_TOOLTIP": "Liveri la reston de la divido de la du nombroj.",
 	"MATH_CONSTRAIN_TITLE": "limigi %1 inter %2 kaj %3",
 	"MATH_CONSTRAIN_TOOLTIP": "La nombro estos limigita tiel ke ĝi egalas la limojn aŭ troviĝas inter ili.",
-	"MATH_RANDOM_INT_HELPURL": "https://en.wikipedia.org/wiki/Random_number_generation",
 	"MATH_RANDOM_INT_TITLE": "hazarda entjero inter %1 kaj %2",
 	"MATH_RANDOM_INT_TOOLTIP": "Nombro estos hazarde liverita, tiel ke ĝi egalas la limojn aŭ troviĝas inter ili.",
 	"MATH_RANDOM_FLOAT_HELPURL": "https://eo.wikipedia.org/wiki/Hazardo",
@@ -303,7 +288,6 @@
 	"LISTS_GET_SUBLIST_END_FROM_END": "ĝis elemento de inversa numero",
 	"LISTS_GET_SUBLIST_END_LAST": "ĝis la lasta elemento",
 	"LISTS_GET_SUBLIST_TOOLTIP": "Kreas kopion de la specifita parto de listo.",
-	"LISTS_SORT_HELPURL": "https://github.com/google/blockly/wiki/Lists#sorting-a-list",
 	"LISTS_SORT_TITLE": "ordigi %1 %2 liston %3",
 	"LISTS_SORT_TOOLTIP": "Ordigas kopion de listo.",
 	"LISTS_SORT_ORDER_ASCENDING": "kreskante",
@@ -346,5 +330,8 @@
 	"PROCEDURES_IFRETURN_TOOLTIP": "Se valoro estas vero, do liveras duan valoron.",
 	"PROCEDURES_IFRETURN_WARNING": "Averto: Ĉi tiu bloko estas uzebla nur en difino de funkcio.",
 	"WORKSPACE_COMMENT_DEFAULT_TEXT": "Diru ion…",
-	"COLLAPSED_WARNINGS_WARNING": "Falditaj blokoj enhavas avertojn."
+	"WORKSPACE_ARIA_LABEL": "Laborspaco de Blockly",
+	"COLLAPSED_WARNINGS_WARNING": "Falditaj blokoj enhavas avertojn.",
+	"DIALOG_OK": "Bone",
+	"DIALOG_CANCEL": "Nuligi"
 }

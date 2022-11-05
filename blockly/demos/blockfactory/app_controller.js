@@ -8,8 +8,6 @@
  * @fileoverview The AppController Class brings together the Block
  * Factory, Block Library, and Block Exporter functionality into a single web
  * app.
- *
- * @author quachtina96 (Tina Quach)
  */
 
 /**
@@ -122,7 +120,7 @@ AppController.prototype.exportBlockLibraryToFile = function() {
         { format: BlocklyDevTools.Analytics.FORMAT_XML });
   } else {
     var msg = 'Could not export Block Library without file name under which ' +
-      'to save library.';
+        'to save library.';
     BlocklyDevTools.Analytics.onWarning(msg);
     alert(msg);
   }
@@ -201,7 +199,7 @@ AppController.prototype.getBlockTypeFromXml_ = function(xmlText) {
   var fields = factoryBaseBlockXml.getElementsByTagName('field');
   for (var i = 0; i < fields.length; i++) {
     // The field whose name is 'NAME' holds the block type as its value.
-    if (fields[i].getAttribute('name') == 'NAME') {
+    if (fields[i].getAttribute('name') === 'NAME') {
       return fields[i].childNodes[0].nodeValue;
     }
   }
@@ -258,8 +256,8 @@ AppController.prototype.onTab = function() {
   var workspaceFactoryTab = this.tabMap[AppController.WORKSPACE_FACTORY];
 
   // Warn user if they have unsaved changes when leaving Block Factory.
-  if (this.lastSelectedTab == AppController.BLOCK_FACTORY &&
-      this.selectedTab != AppController.BLOCK_FACTORY) {
+  if (this.lastSelectedTab === AppController.BLOCK_FACTORY &&
+      this.selectedTab !== AppController.BLOCK_FACTORY) {
 
     var hasUnsavedChanges =
         !FactoryUtils.savedBlockChanges(this.blockLibraryController);
@@ -280,12 +278,12 @@ AppController.prototype.onTab = function() {
   // Only enable key events in workspace factory if workspace factory tab is
   // selected.
   this.workspaceFactoryController.keyEventsEnabled =
-      this.selectedTab == AppController.WORKSPACE_FACTORY;
+      this.selectedTab === AppController.WORKSPACE_FACTORY;
 
   // Turn selected tab on and other tabs off.
   this.styleTabs_();
 
-  if (this.selectedTab == AppController.EXPORTER) {
+  if (this.selectedTab === AppController.EXPORTER) {
     BlocklyDevTools.Analytics.onNavigateTo('Exporter');
 
     // Hide other tabs.
@@ -308,7 +306,7 @@ AppController.prototype.onTab = function() {
     // Update the exporter's preview to reflect any changes made to the blocks.
     this.exporter.updatePreview();
 
-  } else if (this.selectedTab ==  AppController.BLOCK_FACTORY) {
+  } else if (this.selectedTab ===  AppController.BLOCK_FACTORY) {
     BlocklyDevTools.Analytics.onNavigateTo('BlockFactory');
 
     // Hide other tabs.
@@ -317,7 +315,7 @@ AppController.prototype.onTab = function() {
     // Show Block Factory.
     FactoryUtils.show('blockFactoryContent');
 
-  } else if (this.selectedTab == AppController.WORKSPACE_FACTORY) {
+  } else if (this.selectedTab === AppController.WORKSPACE_FACTORY) {
     // TODO: differentiate Workspace and Toolbox editor, based on the other tab state.
     BlocklyDevTools.Analytics.onNavigateTo('WorkspaceFactory');
 
@@ -343,7 +341,7 @@ AppController.prototype.onTab = function() {
  */
 AppController.prototype.styleTabs_ = function() {
   for (var tabName in this.tabMap) {
-    if (this.selectedTab == tabName) {
+    if (this.selectedTab === tabName) {
       this.tabMap[tabName].classList.replace('taboff', 'tabon');
     } else {
       this.tabMap[tabName].classList.replace('tabon', 'taboff');
@@ -432,7 +430,7 @@ AppController.prototype.assignExporterChangeListeners = function() {
 /**
  * If given checkbox is checked, enable the given elements.  Otherwise, disable.
  * @param {boolean} enabled True if enabled, false otherwise.
- * @param {!Array.<string>} idArray Array of element IDs to enable when
+ * @param {!Array<string>} idArray Array of element IDs to enable when
  *    checkbox is checked.
  */
 AppController.prototype.ifCheckedEnable = function(enabled, idArray) {
@@ -568,7 +566,7 @@ AppController.prototype.initializeBlocklyStorage = function() {
   BlocklyStorage.HTTPREQUEST_ERROR =
       'There was a problem with the request.\n';
   BlocklyStorage.LINK_ALERT =
-      'Share your blocks with this link:\n\n%1';
+      'Share your blocks with this public link. We\'ll delete them if not used for a year. They are not associated with your account and handled as per Google\'s Privacy Policy. Please be sure not to include any private information.:\n\n%1';
   BlocklyStorage.HASH_ERROR =
       'Sorry, "%1" doesn\'t correspond with any saved Blockly file.';
   BlocklyStorage.XML_ERROR = 'Could not load your saved file.\n' +
@@ -585,7 +583,7 @@ AppController.prototype.initializeBlocklyStorage = function() {
  * Handle resizing of elements.
  */
 AppController.prototype.onresize = function(event) {
-  if (this.selectedTab == AppController.BLOCK_FACTORY) {
+  if (this.selectedTab === AppController.BLOCK_FACTORY) {
     // Handle resizing of Block Factory elements.
     var expandList = [
       document.getElementById('blocklyPreviewContainer'),
@@ -600,7 +598,7 @@ AppController.prototype.onresize = function(event) {
       expand.style.width = (expand.parentNode.offsetWidth - 2) + 'px';
       expand.style.height = (expand.parentNode.offsetHeight - 2) + 'px';
     }
-  } else if (this.selectedTab == AppController.EXPORTER) {
+  } else if (this.selectedTab === AppController.EXPORTER) {
     // Handle resize of Exporter block options.
     this.exporter.view.centerPreviewBlocks();
   }
@@ -631,7 +629,7 @@ AppController.prototype.confirmLeavePage = function(e) {
  * @param {string} id ID of element to show.
  */
 AppController.prototype.openModal = function(id) {
-  Blockly.hideChaff();
+  Blockly.common.getMainWorkspace().hideChaff();
   this.modalName_ = id;
   document.getElementById(id).style.display = 'block';
   document.getElementById('modalShadow').style.display = 'block';

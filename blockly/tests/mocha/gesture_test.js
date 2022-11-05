@@ -4,84 +4,91 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-/**
- * @fileoverview Tests for gesture.
- * @author marisaleung@google.com (Marisa Leung)
- */
-'use strict';
+goog.declareModuleId('Blockly.test.gesture');
+
+import {assertEventFired, assertEventNotFired} from './test_helpers/events.js';
+import {defineBasicBlockWithField} from './test_helpers/block_definitions.js';
+import {dispatchPointerEvent} from './test_helpers/user_input.js';
+import * as eventUtils from '../../build/src/core/events/utils.js';
+import {sharedTestSetup, sharedTestTeardown} from './test_helpers/setup_teardown.js';
+
 
 suite('Gesture', function() {
+  function testGestureIsFieldClick(block, isFieldClick, eventsFireStub) {
+    const field = block.getField('NAME');
+    const eventTarget = field.getClickTarget_();
+    chai.assert.exists(eventTarget,
+        'Precondition: missing click target for field');
+
+    eventsFireStub.resetHistory();
+    dispatchPointerEvent(eventTarget, 'pointerdown');
+
+    const fieldWorkspace = field.sourceBlock_.workspace;
+    // Gestures triggered on flyouts are stored on targetWorkspace.
+    const gestureWorkspace = fieldWorkspace.targetWorkspace || fieldWorkspace;
+    const gesture = gestureWorkspace.currentGesture_;
+    chai.assert.exists(gesture, 'Gesture exists after pointerdown.');
+    const isFieldClickSpy = sinon.spy(gesture, 'isFieldClick_');
+
+    dispatchPointerEvent(eventTarget, 'pointerup');
+    dispatchPointerEvent(eventTarget, 'click');
+
+    sinon.assert.called(isFieldClickSpy);
+    chai.assert.isTrue(isFieldClickSpy.alwaysReturned(isFieldClick));
+
+
+    assertEventFired(eventsFireStub, Blockly.Events.Selected,
+        {newElementId: block.id, type: eventUtils.SELECTED}, fieldWorkspace.id);
+    assertEventNotFired(eventsFireStub, Blockly.Events.Click, {type: eventUtils.CLICK});
+  }
+
+  function getTopFlyoutBlock(flyout) {
+    return flyout.workspace_.topBlocks_[0];
+  }
 
   setup(function() {
-    this.workspace = new Blockly.Workspace();
-    this.e = {};
+    sharedTestSetup.call(this);
+    defineBasicBlockWithField();
+    const toolbox = document.getElementById('gesture-test-toolbox');
+    this.workspace = Blockly.inject('blocklyDiv', {toolbox: toolbox});
   });
 
   teardown(function() {
-    this.e = null;
-    this.workspace.dispose();
+    sharedTestTeardown.call(this);
   });
 
   test('Constructor', function() {
-    var gesture = new Blockly.Gesture(this.e, this.workspace);
-    assertEquals(gesture.mostRecentEvent_, this.e);
-    assertEquals(gesture.creatorWorkspace_, this.workspace);
+    const e = {id: 'dummy_test_event'};
+    const gesture = new Blockly.Gesture(e, this.workspace);
+    chai.assert.equal(gesture.mostRecentEvent_, e);
+    chai.assert.equal(gesture.creatorWorkspace, this.workspace);
   });
 
   test('Field click - Click in workspace', function() {
-    var block = new Blockly.Block(this.workspace);
-    var field = new Blockly.Field();
-    field.setSourceBlock(block);
-    field.showEditor_ = function() {};
-    var gesture = new Blockly.Gesture(this.e, this.workspace);
-    gesture.setStartField(field);
-  
-    var isFieldClick = gesture.isFieldClick_();
-    assertEquals(isFieldClick, true);
+    const block = this.workspace.newBlock('test_field_block');
+    block.initSvg();
+    block.render();
+
+    testGestureIsFieldClick(block, true, this.eventsFireStub);
   });
 
-  function gestureIsFieldClick_InFlyoutHelper(flyout, expectedResult){
-    // Assign workspace flyout
-    this.workspace.flyout_ = flyout;
-    // Create a Field inside of a Block
-    var block = new Blockly.Block(this.workspace);
-    var field = new Blockly.Field();
-    field.setSourceBlock(block);
-    field.showEditor_ = function() {};
-    // Create gesture from the flyout
-    var gesture = new Blockly.Gesture(this.e, this.workspace.flyout_);
-    // Populate gesture with click start information
-    gesture.setStartField(field);
-    gesture.setStartFlyout_(this.workspace.flyout_);
-  
-    var isFieldClick = gesture.isFieldClick_();
-    assertEquals(isFieldClick, expectedResult);
-  }
-
   test('Field click - Auto close flyout', function() {
-    var flyout = new Blockly.VerticalFlyout({});
-    flyout.autoClose = false;
-    gestureIsFieldClick_InFlyoutHelper.call(this, flyout, true);
+    const flyout = this.workspace.flyout_;
+    chai.assert.exists(this.workspace.flyout_,
+        'Precondition: missing flyout');
+    flyout.autoClose = true;
+
+    const block = getTopFlyoutBlock(flyout);
+    testGestureIsFieldClick(block, false, this.eventsFireStub);
   });
 
   test('Field click - Always open flyout', function() {
-    var flyout = new Blockly.VerticalFlyout({});
+    const flyout = this.workspace.flyout_;
+    chai.assert.exists(this.workspace.flyout_,
+        'Precondition: missing flyout');
     flyout.autoClose = false;
-    gestureIsFieldClick_InFlyoutHelper.call(this, flyout, true);
-  });
 
-  test('Workspace click - Shift click enters accessibility mode', function() {
-    var event = {
-      shiftKey : true,
-      clientX : 10,
-      clientY : 10,
-
-    };
-    var ws = Blockly.inject('blocklyDiv', {});
-    ws.keyboardAccessibilityMode = true;
-    var gesture = new Blockly.Gesture(event, ws);
-    gesture.doWorkspaceClick_(event);
-    var cursor = ws.getCursor();
-    assertEquals(cursor.getCurNode().getType(), Blockly.ASTNode.types.WORKSPACE);
+    const block = getTopFlyoutBlock(flyout);
+    testGestureIsFieldClick(block, true, this.eventsFireStub);
   });
 });
