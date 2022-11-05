@@ -543,14 +543,14 @@
 
             // 加载toolbox图标
             // load
-            workspace.toolbox_.tree_.children_.forEach((e) => {
-                console.log({ e: e.element_.children[0].children[0] });
-                $(
-                    `<iconpark-icon icon-id="${$(
-                        e.element_
-                    ).text()}"></iconpark-icon>`
-                ).appendTo(e.element_.children[0].children[0]);
-            });
+//             workspace.toolbox_.tree_.children_.forEach((e) => {
+//                 console.log({ e: e.element_.children[0].children[0] });
+//                 $(
+//                     `<iconpark-icon icon-id="${$(
+//                         e.element_
+//                     ).text()}"></iconpark-icon>`
+//                 ).appendTo(e.element_.children[0].children[0]);
+//             });
 
             // 事件
             workspace.addChangeListener(function (e) {
