@@ -14,6 +14,8 @@
 }
 
 .content-text {
+    font-family: Harmony OS Sans SC;
+    font-weight:lighter;
     font-size: 20px;
     margin: 30px;
 }
