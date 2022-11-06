@@ -1,507 +1,235 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="utf-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta
-            name="viewport"
-            content="width=device-width，initial-scale=1.0，maximum-scale=1.0，minimum-scale=1.e，user-scalable=no"
-        />
-        <title>Code Blockly - HTML - Beta</title>
-        <meta name="description" content="新一代图形化编辑器" />
-        <link
-            rel="shortcut icon"
-            href="../../static/logo/logo-beta.png"
-            type="image/x-icon"
-        />
-        <script>
-            window.onload = function () {
-                document.querySelector("html > body > span#loadtext").remove();
-            };
-            !(function () {
-                const date = new Date();
-                const list = [
-                    [12, 13],
-                    [2, 21],
-                    [3, 21],
-                ];
-                if (
-                    list
-                        .map((a) => {
-                            return JSON.stringify(a);
-                        })
-                        .includes(
-                            JSON.stringify([
-                                date.getMonth() + 1,
-                                date.getDate(),
-                            ])
-                        )
-                ) {
-                    document.querySelector("body").style.filter =
-                        "grayscale(100%)";
-                }
-            })();
-        </script>
-    </head>
 
-    <body>
-        <script>
-            var version = "V0.1.0(X003)-beta";
-            console.log(
-                `%c
-#####                           ######                                  #####                      
-#     #  ####  #####  ######    #     # #####  ######   ##   #    #    #     # #####   ##   #####  
-#       #    # #    # #         #     # #    # #       #  #  ##  ##    #         #    #  #  #    # 
-#       #    # #    # #####     #     # #    # #####  #    # # ## #     #####    #   #    # #    # 
-#       #    # #    # #         #     # #####  #      ###### #    #          #   #   ###### #####  
-#     # #    # #    # #         #     # #   #  #      #    # #    #    #     #   #   #    # #   #  
- #####   ####  #####  ######    ######  #    # ###### #    # #    #     #####    #   #    # #    # 
-`,
-                "font-size:12px;color:#0af"
-            );
-            console.log(
-                `%c
-#####                           ######                                           
-#     #  ####  #####  ######    #     # #       ####   ####  #    # #      #   # 
-#       #    # #    # #         #     # #      #    # #    # #   #  #       # #  
-#       #    # #    # #####     ######  #      #    # #      ####   #        #   
-#       #    # #    # #         #     # #      #    # #      #  #   #        #   
-#     # #    # #    # #         #     # #      #    # #    # #   #  #        #   
- #####   ####  #####  ######    ######  ######  ####   ####  #    # ######   #                                                                                   
- `,
-                "font-size:12px;color:#0af;"
-            );
-            console.log("你好，欢迎使用 Code Blockly！");
-            console.log(
-                "这是一款基于 Google Blockly 创作的图形化软件，由 Code Dream Star 团队制作"
-            );
-            console.log("特别鸣谢：小宏XeLa，木水屑，广安，凌cloud");
-            console.log(
-                "代码开源：https://github.com/code-dream-star/code-blockly/"
-            );
-            console.log(
-                version,
-                "Copyright © 2022 by code-dream-star",
-                "All rights reserved"
-            );
-        </script>
-        <span
-            id="loadtext"
-            style="position: fixed; top: 8px; left: 8px; z-index: -1"
-            >加载中</span
-        >
-        <!-- 导入GoogleBlockly -->
-        <script src="../../blockly/blockly_compressed.js"></script>
-        <script src="../../blockly/blocks_compressed.js"></script>
-        <script src="../../blockly/javascript_compressed.js"></script>
-        <script src="../../blockly/msg/js/zh-hans.js"></script>
-        <script src="./block.js"></script>
-        <!-- 导入hljs -->
-        <script src="../../hljs.js"></script>
-        <!-- 导入jq -->
-        <script src="../../jq.js"></script>
-        <!-- 导入MDUI -->
-        <link
-            rel="stylesheet"
-            href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css"
-        />
-        <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
-        <!-- 图标库  -->
-        <!-- 自制图标 利用IconPark上传使用 -->
-        <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_7.c2ab411af132527e9c768322b31504b7.js"></script>
-        <!-- 导入css -->
-        <link rel="stylesheet" href="../../css.css" />
-        <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
-        <svg
-            style="
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- <meta name="viewport"
+        content="width=device-width，initial-scale=1.0，maximum-scale=1.0，minimum-scale=1.e，user-scalable=no" /> -->
+    <title>Code Blockly - HTML - Beta</title>
+    <meta name="description" content="新一代图形化编辑器" />
+    <link rel="shortcut icon" href="../../static/logo/logo-beta.png" type="image/x-icon" />
+    <script>
+        window.onload = function () {
+            document.querySelector("html > body > span#loadtext").remove();
+        };
+        !(function () {
+            const date = new Date();
+            const list = [
+                [12, 13],
+                [2, 21],
+                [3, 21],
+            ];
+            if (
+                list
+                    .map((a) => {
+                        return JSON.stringify(a);
+                    })
+                    .includes(
+                        JSON.stringify([
+                            date.getMonth() + 1,
+                            date.getDate(),
+                        ])
+                    )
+            ) {
+                document.querySelector("body").style.filter =
+                    "grayscale(100%)";
+            }
+        })();
+    </script>
+</head>
+
+<body>
+    <span id="loadtext" style="position: fixed; top: 8px; left: 8px; z-index: -1">加载中</span>
+    <!-- 导入GoogleBlockly -->
+    <script src="../../blockly/blockly_compressed.js"></script>
+    <script src="../../blockly/blocks_compressed.js"></script>
+    <script src="../../blockly/javascript_compressed.js"></script>
+    <script src="../../blockly/msg/js/zh-hans.js"></script>
+    <!--导入积木-->
+    <script src="./block/structure.js"></script>
+    <script src="./block/head.js"></script>
+    <script src="./block/text.js"></script>
+    <script src="./block/form.js"></script>
+    <script src="./block/other.js"></script>
+    <script src="./block/video.js"></script>
+    <script src="./block/attribute.js"></script>
+    <script src="./block/css.js"></script>
+    <script src="./block/js/js_console.js"></script>
+    <script src="./block/js/object.js"></script>
+    <!--导入SweetAlert-->
+    <script src="../../sweetalert.js"></script>
+    <!-- 导入hljs -->
+    <script src="../../hljs.js"></script>
+    <!-- 导入jq -->
+    <script src="../../jq.js"></script>
+    <!-- 图标库  -->
+    <!-- 自制图标 利用IconPark上传使用 -->
+    <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_16.3c6ccb8fffec4c64f96f687fd9c65f05.js"></script>
+    <!--导入css -->
+    <link rel="stylesheet" href="../../css.css" />
+    <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
+    <svg style="
                 position: absolute;
                 width: 0px;
                 height: 0px;
                 overflow: hidden;
-            "
-            aria-hidden="true"
-        >
-            <symbol viewBox="0 0 48 48" id="icon-撤销" fill="none">
-                <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M44 40.8361C39.1069 34.8632 34.7617 31.4739 30.9644 30.6682C27.1671 29.8625 23.5517 29.7408 20.1182 30.303V41L4 23.5453L20.1182 7V17.167C26.4667 17.2172 31.8638 19.4948 36.3095 24C40.7553 28.5052 43.3187 34.1172 44 40.8361Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-重做" fill="none">
-                <path
-                    fill-rule="evenodd"
-                    clip-rule="evenodd"
-                    d="M44 40.8361C39.1069 34.8632 34.7617 31.4739 30.9644 30.6682C27.1671 29.8625 23.5517 29.7408 20.1182 30.303V41L4 23.5453L20.1182 7V17.167C26.4667 17.2172 31.8638 19.4948 36.3095 24C40.7553 28.5052 43.3187 34.1172 44 40.8361Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-放大" fill="none">
-                <path
-                    d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M21 15L21 27"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M15.0156 21.0156L27 21"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M33.2216 33.2217L41.7069 41.707"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-缩小" fill="none">
-                <path
-                    d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M15 21L27 21"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M33.2216 33.2217L41.7069 41.707"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-复制" fill="none">
-                <path
-                    d="M13 12.4316V7.8125C13 6.2592 14.2592 5 15.8125 5H40.1875C41.7408 5 43 6.2592 43 7.8125V32.1875C43 33.7408 41.7408 35 40.1875 35H35.5163"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M32.1875 13H7.8125C6.2592 13 5 14.2592 5 15.8125V40.1875C5 41.7408 6.2592 43 7.8125 43H32.1875C33.7408 43 35 41.7408 35 40.1875V15.8125C35 14.2592 33.7408 13 32.1875 13Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-复制-白" fill="none">
-                <path
-                    d="M13 12.4316V7.8125C13 6.2592 14.2592 5 15.8125 5H40.1875C41.7408 5 43 6.2592 43 7.8125V32.1875C43 33.7408 41.7408 35 40.1875 35H35.5163"
-                    stroke="#fff"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M32.1875 13H7.8125C6.2592 13 5 14.2592 5 15.8125V40.1875C5 41.7408 6.2592 43 7.8125 43H32.1875C33.7408 43 35 41.7408 35 40.1875V15.8125C35 14.2592 33.7408 13 32.1875 13Z"
-                    fill="none"
-                    stroke="#fff"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-代码" fill="none">
-                <path
-                    d="M16 13L4 25.4322L16 37"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M32 13L44 25.4322L32 37"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M28 4L21 44"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-预览" fill="none">
-                <rect
-                    x="4"
-                    y="8"
-                    width="40"
-                    height="32"
-                    rx="3"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M4 11C4 9.34315 5.34315 8 7 8H41C42.6569 8 44 9.34315 44 11V20H4V11Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                />
-                <circle
-                    r="2"
-                    transform="matrix(-1.31134e-07 -1 -1 1.31134e-07 10 14)"
-                    fill="#333"
-                />
-                <circle
-                    r="2"
-                    transform="matrix(-1.31134e-07 -1 -1 1.31134e-07 16 14)"
-                    fill="#333"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-关闭" fill="none">
-                <path
-                    d="M8 8L40 40"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M8 40L40 8"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-关闭-白" fill="none">
-                <path
-                    d="M8 8L40 40"
-                    stroke="#fff"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M8 40L40 8"
-                    stroke="#fff"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-            <symbol viewBox="0 0 48 48" id="icon-垃圾桶" fill="none">
-                <path
-                    d="M9 10V44H39V10H9Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M20 20V33"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M28 20V33"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M4 10H44"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                />
-                <path
-                    d="M16 10L19.289 4H28.7771L32 10H16Z"
-                    fill="none"
-                    stroke="#333"
-                    stroke-width="4"
-                    stroke-linejoin="round"
-                />
-            </symbol>
-        </svg>
-        <!--app -->
-        <div id="app">
-            <!-- 右下角导航栏 -->
-            <div class="right-bottom-navigation-bar">
-                <div class="right-bottom-navigation-bar-div" data-tip="撤销">
-                    <div class="right-bottom-navigation-bar-div-svg">
-                        <svg>
-                            <use xlink:href="#icon-撤销"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="right-bottom-navigation-bar-div" data-tip="重做">
-                    <div
-                        class="right-bottom-navigation-bar-div-svg"
-                        style="transform: rotate3d(0, 1, 0, 180deg)"
-                    >
-                        <svg>
-                            <use xlink:href="#icon-重做"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="right-bottom-navigation-bar-division"></div>
-                <div class="right-bottom-navigation-bar-div" data-tip="缩小">
-                    <div class="right-bottom-navigation-bar-div-svg">
-                        <svg>
-                            <use xlink:href="#icon-缩小"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div
-                    class="right-bottom-navigation-bar-text"
-                    data-tip="恢复回100%"
-                >
-                    100%
-                </div>
-                <div class="right-bottom-navigation-bar-div" data-tip="放大">
-                    <div class="right-bottom-navigation-bar-div-svg">
-                        <svg>
-                            <use xlink:href="#icon-放大"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="right-bottom-navigation-bar-division"></div>
-                <div class="right-bottom-navigation-bar-div" data-tip="代码">
-                    <div class="right-bottom-navigation-bar-div-svg">
-                        <svg>
-                            <use xlink:href="#icon-代码"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="right-bottom-navigation-bar-div" data-tip="预览">
-                    <div class="right-bottom-navigation-bar-div-svg">
-                        <svg>
-                            <use xlink:href="#icon-预览"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="right-bottom-navigation-bar-div" data-tip="回收站">
-                    <div class="right-bottom-navigation-bar-div-svg">
-                        <svg>
-                            <use xlink:href="#icon-垃圾桶"></use>
-                        </svg>
-                    </div>
+            " aria-hidden="true">
+        <symbol viewBox="0 0 48 48" id="icon-撤销" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M44 40.8361C39.1069 34.8632 34.7617 31.4739 30.9644 30.6682C27.1671 29.8625 23.5517 29.7408 20.1182 30.303V41L4 23.5453L20.1182 7V17.167C26.4667 17.2172 31.8638 19.4948 36.3095 24C40.7553 28.5052 43.3187 34.1172 44 40.8361Z"
+                fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-重做" fill="none">
+            <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M44 40.8361C39.1069 34.8632 34.7617 31.4739 30.9644 30.6682C27.1671 29.8625 23.5517 29.7408 20.1182 30.303V41L4 23.5453L20.1182 7V17.167C26.4667 17.2172 31.8638 19.4948 36.3095 24C40.7553 28.5052 43.3187 34.1172 44 40.8361Z"
+                fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-放大" fill="none">
+            <path
+                d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
+                fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+            <path d="M21 15L21 27" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M15.0156 21.0156L27 21" stroke="#333" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M33.2216 33.2217L41.7069 41.707" stroke="#333" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-缩小" fill="none">
+            <path
+                d="M21 38C30.3888 38 38 30.3888 38 21C38 11.6112 30.3888 4 21 4C11.6112 4 4 11.6112 4 21C4 30.3888 11.6112 38 21 38Z"
+                fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+            <path d="M15 21L27 21" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M33.2216 33.2217L41.7069 41.707" stroke="#333" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-复制" fill="none">
+            <path
+                d="M13 12.4316V7.8125C13 6.2592 14.2592 5 15.8125 5H40.1875C41.7408 5 43 6.2592 43 7.8125V32.1875C43 33.7408 41.7408 35 40.1875 35H35.5163"
+                stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+                d="M32.1875 13H7.8125C6.2592 13 5 14.2592 5 15.8125V40.1875C5 41.7408 6.2592 43 7.8125 43H32.1875C33.7408 43 35 41.7408 35 40.1875V15.8125C35 14.2592 33.7408 13 32.1875 13Z"
+                fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-复制-白" fill="none">
+            <path
+                d="M13 12.4316V7.8125C13 6.2592 14.2592 5 15.8125 5H40.1875C41.7408 5 43 6.2592 43 7.8125V32.1875C43 33.7408 41.7408 35 40.1875 35H35.5163"
+                stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path
+                d="M32.1875 13H7.8125C6.2592 13 5 14.2592 5 15.8125V40.1875C5 41.7408 6.2592 43 7.8125 43H32.1875C33.7408 43 35 41.7408 35 40.1875V15.8125C35 14.2592 33.7408 13 32.1875 13Z"
+                fill="none" stroke="#fff" stroke-width="4" stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-代码" fill="none">
+            <path d="M16 13L4 25.4322L16 37" stroke="#333" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M32 13L44 25.4322L32 37" stroke="#333" stroke-width="4" stroke-linecap="round"
+                stroke-linejoin="round" />
+            <path d="M28 4L21 44" stroke="#333" stroke-width="4" stroke-linecap="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-预览" fill="none">
+            <rect x="4" y="8" width="40" height="32" rx="3" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+            <path d="M4 11C4 9.34315 5.34315 8 7 8H41C42.6569 8 44 9.34315 44 11V20H4V11Z" fill="none" stroke="#333"
+                stroke-width="4" />
+            <circle r="2" transform="matrix(-1.31134e-07 -1 -1 1.31134e-07 10 14)" fill="#333" />
+            <circle r="2" transform="matrix(-1.31134e-07 -1 -1 1.31134e-07 16 14)" fill="#333" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-关闭" fill="none">
+            <path d="M8 8L40 40" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 40L40 8" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-关闭-白" fill="none">
+            <path d="M8 8L40 40" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M8 40L40 8" stroke="#fff" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+        </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-垃圾桶" fill="none">
+            <path d="M9 10V44H39V10H9Z" fill="none" stroke="#333" stroke-width="4" stroke-linejoin="round" />
+            <path d="M20 20V33" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M28 20V33" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M4 10H44" stroke="#333" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M16 10L19.289 4H28.7771L32 10H16Z" fill="none" stroke="#333" stroke-width="4"
+                stroke-linejoin="round" />
+        </symbol>
+    </svg>
+    <!--app -->
+    <div id="app">
+        <!-- 右下角导航栏 -->
+        <div class="right-bottom-navigation-bar">
+            <div class="right-bottom-navigation-bar-div" data-tip="撤销">
+                <div class="right-bottom-navigation-bar-div-svg">
+                    <svg>
+                        <use xlink:href="#icon-撤销"></use>
+                    </svg>
                 </div>
             </div>
-            <!-- 代码弹窗 -->
-            <div class="code-dialog">
-                <code>
+            <div class="right-bottom-navigation-bar-div" data-tip="重做">
+                <div class="right-bottom-navigation-bar-div-svg" style="transform: rotate3d(0, 1, 0, 180deg)">
+                    <svg>
+                        <use xlink:href="#icon-重做"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="right-bottom-navigation-bar-division"></div>
+            <div class="right-bottom-navigation-bar-div" data-tip="缩小">
+                <div class="right-bottom-navigation-bar-div-svg">
+                    <svg>
+                        <use xlink:href="#icon-缩小"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="right-bottom-navigation-bar-text" data-tip="恢复回100%">
+                100%
+            </div>
+            <div class="right-bottom-navigation-bar-div" data-tip="放大">
+                <div class="right-bottom-navigation-bar-div-svg">
+                    <svg>
+                        <use xlink:href="#icon-放大"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="right-bottom-navigation-bar-division"></div>
+            <div class="right-bottom-navigation-bar-div" data-tip="代码">
+                <div class="right-bottom-navigation-bar-div-svg">
+                    <svg>
+                        <use xlink:href="#icon-代码"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="right-bottom-navigation-bar-div" data-tip="预览">
+                <div class="right-bottom-navigation-bar-div-svg">
+                    <svg>
+                        <use xlink:href="#icon-预览"></use>
+                    </svg>
+                </div>
+            </div>
+            <div class="right-bottom-navigation-bar-div" data-tip="回收站">
+                <div class="right-bottom-navigation-bar-div-svg">
+                    <svg>
+                        <use xlink:href="#icon-垃圾桶"></use>
+                    </svg>
+                </div>
+            </div>
+        </div>
+        <!-- 代码弹窗 -->
+        <div class="code-dialog">
+            <code>
                     <a class="hljs-comment"></a>
                 </code>
-                <div class="code-dialog-button" left data-tip="复制代码">
-                    <div class="code-dialog-button-svg">
-                        <svg>
-                            <use xlink:href="#icon-复制-白"></use>
-                        </svg>
-                    </div>
-                </div>
-                <div class="code-dialog-button" right data-tip="关闭预览">
-                    <div class="code-dialog-button-svg">
-                        <svg>
-                            <use xlink:href="#icon-关闭-白"></use>
-                        </svg>
-                    </div>
+            <div class="code-dialog-button" left data-tip="复制代码">
+                <div class="code-dialog-button-svg">
+                    <svg>
+                        <use xlink:href="#icon-复制-白"></use>
+                    </svg>
                 </div>
             </div>
-            <!-- 工作区 -->
-            <div class="workzone">
-                <div id="blocklyDiv"></div>
+            <div class="code-dialog-button" right data-tip="关闭预览">
+                <div class="code-dialog-button-svg">
+                    <svg>
+                        <use xlink:href="#icon-关闭-白"></use>
+                    </svg>
+                </div>
             </div>
-            <!-- 积木定义xml -->
-            <xml id="toolbox" style="display: none">
-                <category name="模板" colour="%c template">
-                    <block type="define_web_pages">
-                        <statement name="blocks">
-                            <block type="define_web_pages_head">
-                                <statement name="blocks">
-                                    <block type="head_title">
-                                        <field name="title">Document</field>
-                                    </block>
-                                </statement>
-                                <statement name="blocks">
-                                    <block type="head_charset"></block>
-                                </statement>
-                                <next>
-                                    <block type="define_web_pages_body"></block>
-                                </next>
-                            </block>
-                        </statement>
-                    </block>
-                </category>
-                <category name="构造" colour="%c 构造">
-                    <block type="define_web_pages"></block>
-                    <block type="define_web_pages_head"></block>
-                    <block type="define_web_pages_body"></block>
-                </category>
-                <category name="头部配置" colour="%c head">
-                    <block type="head_charset"></block>
-                    <block type="head_title"></block>
-                    <block type="head_link"></block>
-                </category>
-                <category name="嵌入标签" colour="%c other">
-                    <block type="script"></block>
-                    <block type="style"></block>
-                </category>
-                <category name="文本" colour="%c text">
-                    <block type="body_p"></block>
-                    <block type="body_title"></block>
-                    <block type="body_a"></block>
-                    <block type="body_br"></block>
-                    <block type="body_annotation"></block>
-                </category>
-                <category name="表单" colour="%c form">
-                    <block type="create_a_form"></block>
-                    <block type="form_submit_button"></block>
-                    <block type="form_radio_button"></block>
-                    <block type="form_check_box"></block>
-                    <block type="form_password_box"></block>
-                    <block type="form_text_box"></block>
-                    <block type="form_bounding_box"></block>
-                    <!-- <block type="form_drop_down_list"></block> -->
-                </category>
-                <category name="媒体" colour="%c image">
-                    <block type="video_image"></block>
-                </category>
-                <category name="css" colour="%c css"></category>
-                <sep></sep>
-                <category name="控制台" colour="%c js_console">
-                    <block type="js_console_clear"></block>
-                    <block type="js_console_log"></block>
-                    <block type="js_console_warn"></block>
-                    <block type="js_console_error"></block>
-                </category>
-            </xml>
         </div>
+<<<<<<< Updated upstream
         <!--加载blockly!-->
         <script>
             !(function () {
@@ -668,4 +396,365 @@
             }, 16);
         </script>
     </body>
+=======
+        <!-- 工作区 -->
+        <div class="workzone">
+            <div id="blocklyDiv"></div>
+        </div>
+        <!-- 积木定义xml -->
+        <xml id="toolbox" style="display: none">
+            <category name="模板" colour="%color template" expanded="true">
+                <block type="define_web_pages">
+                    <statement name="blocks">
+                        <block type="define_web_pages_head">
+                            <statement name="blocks">
+                                <block type="head_title">
+                                    <field name="title">Document</field>
+                                </block>
+                            </statement>
+                            <statement name="blocks">
+                                <block type="head_charset"></block>
+                            </statement>
+                            <next>
+                                <block type="define_web_pages_body"></block>
+                            </next>
+                        </block>
+                    </statement>
+                </block>
+            </category>
+            <category name="构造" colour="%color structure">
+                <block type="define_web_pages"></block>
+                <block type="define_web_pages_head"></block>
+                <block type="define_web_pages_body"></block>
+            </category>
+            <category name="头部配置" colour="%color head">
+                <block type="head_charset"></block>
+                <block type="head_title"></block>
+                <block type="head_link"></block>
+            </category>
+            <category name="嵌入标签" colour="%color embed">
+                <block type="script"></block>
+                <block type="style"></block>
+            </category>
+            <category name="属性标签" colour="%color attribute">
+                <block type="body_id"></block>
+            </category>
+            <category name="文本" colour="%color text">
+                <block type="body_chuntext"></block>
+                <block type="body_p"></block>
+                <block type="body_title"></block>
+                <block type="body_a"></block>
+                <block type="body_br"></block>
+                <block type="body_annotation"></block>
+            </category>
+            <category name="表单" colour="%color form">
+                <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+                <block type="create_a_form"></block>
+                <block type="form_submit_button"></block>
+                <block type="form_select_box"></block>
+                <block type="form_text_box"></block>
+                <block type="form_bounding_box"></block>
+                <!-- <block type="form_drop_down_list"></block> -->
+            </category>
+            <category name="媒体" colour="%color image">
+                <block type="video_image"></block>
+            </category>
+            <category name="css" colour="%color css"></category>
+            <sep></sep>
+            <category name="控制" colour="%color control">
+                <block type="controls_if"></block>
+                <block type="controls_repeat_ext" colour="#8ca6c0">
+                    <value name="TIMES">
+                        <shadow type="math_number">
+                            <field name="NUM">10</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="controls_whileUntil" colour="#8ca6c0"></block>
+                <block type="controls_for" colour="#8ca6c0">
+                    <field name="VAR" id="57g(4![Bc(~B67SRUvvd">i</field>
+                    <value name="FROM">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="TO">
+                        <shadow type="math_number">
+                            <field name="NUM">10</field>
+                        </shadow>
+                    </value>
+                    <value name="BY">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="controls_forEach" colour="#8ca6c0">
+                    <field name="VAR" id="=ea2SQ,8Dye^#~zQHfJV">j</field>
+                </block>
+                <block type="controls_flow_statements" colour="#8ca6c0"></block>
+            </category>
+            <category name="控制台" colour="%color console">
+                <block type="js_console_clear"></block>
+                <block type="js_console_log"></block>
+                <block type="js_console_warn"></block>
+                <block type="js_console_error"></block>
+            </category>
+            <category name="运算" colour="%color math">
+                <label text="数学"></label>
+                <block type="math_number"></block>
+                <block type="math_arithmetic">
+                    <value name="A">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="B">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_random_int">
+                    <value name="FROM">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="TO">
+                        <shadow type="math_number">
+                            <field name="NUM">100</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_random_float"></block>
+                <block type="math_number_property">
+                    <value name="NUMBER_TO_CHECK">
+                        <shadow type="math_number">
+                            <field name="NUM">0</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_single">
+                    <field name="OP">ROOT</field>
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">9</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_trig">
+                    <field name="OP">SIN</field>
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">45</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_constant"></block>
+                <block type="math_round">
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">3.1</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_on_list"></block>
+                <block type="math_modulo">
+                    <value name="DIVIDEND">
+                        <shadow type="math_number">
+                            <field name="NUM">64</field>
+                        </shadow>
+                    </value>
+                    <value name="DIVISOR">
+                        <shadow type="math_number">
+                            <field name="NUM">10</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="math_constrain">
+                    <value name="VALUE">
+                        <shadow type="math_number">
+                            <field name="NUM">50</field>
+                        </shadow>
+                    </value>
+                    <value name="LOW">
+                        <shadow type="math_number">
+                            <field name="NUM">1</field>
+                        </shadow>
+                    </value>
+                    <value name="HIGH">
+                        <shadow type="math_number">
+                            <field name="NUM">100</field>
+                        </shadow>
+                    </value>
+                </block>
+                <label text="逻辑"></label>
+                <block type="logic_compare"></block>
+                <block type="logic_operation"></block>
+                <block type="logic_boolean"></block>
+                <block type="logic_ternary"></block>
+                <block type="logic_null"></block>
+                <label text="字符串"></label>
+                <block type="text"></block>
+                <block type="text_join">
+                    <mutation items="2">
+                </block>
+                <block type="text_append">
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT" />
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_length">
+                    <value name="MESSAGE">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_isEmpty">
+                    <value name="MESSAGE">
+                        <shadow type="text">
+                            <field name="TEXT"></field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_indexOf">
+                    <field name="END">FIRST</field>
+                    <value name="VALUE">
+                        <shadow type="variables_get">
+                            <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                        </shadow>
+                    </value>
+                    <value name="FIND">
+                        <block type="text">
+                            <field name="TEXT">abc</field>
+                        </block>
+                    </value>
+                </block>
+                <block type="text_charAt">
+                    <mutation at="true" />
+                    <field name="WHERE">FROM_START</field>
+                    <value name="VALUE">
+                        <shadow type="variables_get">
+                            <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_getSubstring">
+                    <mutation at1="true" at2="true" />
+                    <field name="WHERE1">FROM_START</field>
+                    <field name="WHERE2">FROM_START</field>
+                    <value name="STRING">
+                        <shadow type="variables_get">
+                            <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_changeCase">
+                    <field name="CASE">UPPERCASE</field>
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="text_trim">
+                    <field name="MODE">BOTH</field>
+                    <value name="TEXT">
+                        <shadow type="text">
+                            <field name="TEXT">abc</field>
+                        </shadow>
+                    </value>
+                </block>
+            </category>
+            <category name="变量" colour="%color varible" custom="VARIABLE"></category>
+            <category name="列表" colour="%color list">
+                <block type="lists_create_with">
+                    <mutation items="1">
+                </block>
+                <block type="lists_create_with">
+                    <mutation items="3">
+                </block>
+                <block type="lists_repeat">
+                    <value name="NUM">
+                        <shadow type="math_number">
+                            <field name="NUM">5</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="lists_length"></block>
+                <block type="lists_isEmpty"></block>
+                <block type="lists_indexOf">
+                    <field name="END">FIRST</field>
+                    <value name="VALUE">
+                        <shadow type="variables_get">
+                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="lists_getIndex">
+                    <mutation statement="false" at="true" />
+                    <field name="MODE">GET</field>
+                    <field name="WHERE">FROM_START</field>
+                    <value name="VALUE">
+                        <shadow type="variables_get">
+                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="lists_setIndex">
+                    <mutation at="true" />
+                    <field name="MODE">SET</field>
+                    <field name="WHERE">FROM_START</field>
+                    <value name="LIST">
+                        <shadow type="variables_get">
+                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="lists_getSublist">
+                    <mutation at1="true" at2="true" />
+                    <field name="WHERE1">FROM_START</field>
+                    <field name="WHERE2">FROM_START</field>
+                    <value name="LIST">
+                        <shadow type="variables_get">
+                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                </block>
+                </shadow>
+                </block>
+                <block type="lists_split">
+                    <mutation mode="SPLIT" />
+                    <field name="MODE">SPLIT</field>
+                    <value name="DELIM">
+                        <shadow type="text">
+                            <field name="TEXT">,</field>
+                        </shadow>
+                    </value>
+                </block>
+                <block type="lists_sort">
+                    <field name="TYPE">NUMERIC</field>
+                    <field name="DIRECTION">1</field>
+                </block>
+            </category>
+            <category name="对象" colour="%color object">
+                <block type="object_null"></block>
+                <block type="object_set"></block>
+                <block type="object_get"></block>
+                <block type="object_delete"></block>
+                <block type="object_inc"></block>
+                <block type="object_geto"></block>
+                <block type="object_copy"></block>
+                <block type="object_freeze"></block>
+                <block type="object_isfreeze"></block>
+            </category>
+            <category name="函数" colour="%color function" custom="PROCEDURE"></category>
+        </xml>
+    </div>
+    <!-- 加载blockly -->
+    <script src="./index.js"></script>
+</body>
+>>>>>>> Stashed changes
 </html>
