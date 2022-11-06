@@ -43,11 +43,11 @@ p {
 }
 
 .blocklyFlyoutButton {
-    fill: var(--theme-color);
+    fill: #0af;
 }
 
 .blocklyFlyoutButton:hover {
-    fill: var(--theme-button-hover);
+    fill: rgb(0, 154, 231);
 }
 
 .blocklyFlyoutButtonShadow {
@@ -380,7 +380,6 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
     right: 540px;
 }
 
-
 .app-blue-button {
     display: inline-block;
     border-radius: 4px;
@@ -411,7 +410,7 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
 }
 
 .app-blue-button span:after {
-    content: '»';
+    content: "»";
     position: absolute;
     opacity: 0;
     transform: scale(1.5);
@@ -433,7 +432,6 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
     opacity: 1;
     right: 0;
 }
-
 
 .blue-button {
     display: inline-block;
@@ -478,4 +476,54 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
     margin: 5px;
     box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
     -webkit-box-shadow: 0 4px 14px 0 rgb(0 118 255 / 39%);
+}
+
+.blocklyTreeIcon {
+    background: 0;
+    width: 24px;
+    height: 24px;
+    vertical-align: middle;
+    visibility: visible;
+}
+
+.blocklyTreeRowContentContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.blocklyTreeRow {
+    border: none !important;
+    background-color: #0000 !important;
+    padding: 8px 10px !important;
+    margin: 0px;
+    border-radius: 10px;
+}
+
+.blocklyTreeIcon {
+    margin-bottom: 5px;
+}
+
+.blocklyTreeLabel{
+    padding: 0;
+}
+
+.blocklyTreeRowContentContainer {
+    max-width: 60px;
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+    color:#000;
+}
+
+.blocklyTreeSelected {
+    background: rgba(0, 0, 0, .2)!important
+}
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+    background-color: rgba(0, 0, 0, .1)!important;
+}
+
+.blocklyToolboxDiv, .blocklyFlyout {
+    box-shadow: 0px 0px 10px #aaa;
 }
