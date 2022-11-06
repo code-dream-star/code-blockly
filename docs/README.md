@@ -1,15 +1,13 @@
-# Code Blockly
+ <center><a href="https://github.com/code-dream-star/code-blockly/"><img src="../../static/logo/logo_docs lite.svg" width="128"></a> <h1>Code Blockly</h1></center> 
 
- <p>
+<center>
     <a href="https://github.com/code-dream-star/code-blockly/blob/main/licence"><img src="https://img.shields.io/github/license/code-dream-star/code-blockly"></a>
     <a href="https://github.com/code-dream-star/code-blockly/"><img src="https://img.shields.io/github/stars/code-dream-star/code-blockly"></a>
     <a href="https://github.com/code-dream-star/code-blockly/"><img src="https://img.shields.io/github/forks/code-dream-star/code-blockly"></a>
     <a href="https://github.com/code-dream-star/code-blockly/issues"><img src="https://img.shields.io/github/issues/code-dream-star/code-blockly"></a>
     <a href="https://github.com/code-dream-star/code-blockly/pulls"><img src="https://img.shields.io/github/issues-pr/code-dream-star/code-blockly"></a></br>
  <img src=https://img.shields.io/badge/author-1086_loves_programming-blue />
- <img src=https://img.shields.io/badge/version-v0.1.0(X000)--release-orange />
- <img src=https://img.shields.io/badge/version-v0.1.1(X029)--beta-orange />
-</p>
+</center>
 
 Code Blockly基于开源的谷歌的Blockly开发，其含有多种语言的图形化界面非常利于新手快速上手编程，体验编程的乐趣。
 
@@ -19,3 +17,10 @@ Code Blockly基于开源的谷歌的Blockly开发，其含有多种语言的图�
 - [小宏XeLa](https://github.com/xiaohong2022)
 - [木水屑](https://github.com/123213123123)
 - [广安awa](https://github.com/guanganawa)
+
+## 特别鸣谢
+> IconPark</br>
+> Waddle编辑器</br>
+> SweetAlert</br>
+> docsify</br>
+> README.md设计样式：Ant Design</br>

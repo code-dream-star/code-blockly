@@ -73,9 +73,9 @@ Blockly.JavaScript["head_link"] = function (block) {
     var dropdown_link_type = block.getFieldValue("LINK_TYPE");
     var text_link = block.getFieldValue("LINK");
     if (dropdown_link_type == "icon") {
-        var code = `<link rel="shortcut icon" href="${text_link}" type="image/x-icon" />`;
+        var code = `<link rel="shortcut icon" href="${text_link}" />`;
     } else if (dropdown_link_type == "css") {
-        var code = `<link rel="stylesheet" href="${text_link}" type="text/css">`;
+        var code = `<link rel="stylesheet" href="${text_link}" type="text/css" />`;
     } else {
         var code = `<script src="${text_link}"></script>`;
     }

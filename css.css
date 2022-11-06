@@ -15,7 +15,7 @@
 
 .content-text {
     font-family: Harmony OS Sans SC;
-    font-weight:lighter;
+    font-weight: lighter;
     font-size: 20px;
     margin: 30px;
 }
@@ -101,10 +101,6 @@ p {
 
 .blocklyTreeRow:not(.blocklyTreeSelected):hover {
     background: #ddd !important;
-}
-
-.blocklyToolboxContents > div.blocklyToolboxCategory:last-child {
-    display: none;
 }
 
 * {
@@ -437,7 +433,7 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
 
 .blue-button {
     font-family: Harmony OS Sans SC;
-    font-weight:normal;
+    font-weight: normal;
     display: inline-block;
     border-radius: 6px;
     -webkit-border-radius: 6px;
@@ -490,6 +486,10 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
     visibility: visible;
 }
 
+.blocklyTreeLabel {
+    font-size: 16px;
+}
+
 .blocklyTreeRowContentContainer {
     display: flex;
     flex-direction: column;
@@ -501,14 +501,14 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
     background-color: #0000 !important;
     padding: 8px 10px !important;
     margin: 0px;
-    border-radius: 10px;
+    /* border-radius: 10px; */
 }
 
 .blocklyTreeIcon {
     margin-bottom: 5px;
 }
 
-.blocklyTreeLabel{
+.blocklyTreeLabel {
     padding: 0;
 }
 
@@ -517,17 +517,127 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
 }
 
 .blocklyTreeSelected .blocklyTreeLabel {
-    color:#000;
+    color: #000;
 }
 
 .blocklyTreeSelected {
-    background: rgba(0, 0, 0, .2)!important
+    background: rgba(0, 0, 0, 0.2) !important;
 }
 
 .blocklyTreeRow:not(.blocklyTreeSelected):hover {
-    background-color: rgba(0, 0, 0, .1)!important;
+    background-color: rgba(0, 0, 0, 0.1) !important;
 }
 
-.blocklyToolboxDiv, .blocklyFlyout {
-    box-shadow: 0px 0px 10px #aaa;
+.blocklyToolboxDiv,
+.blocklyFlyout {
+    box-shadow: 0px 0px 20px #aaa;
+}
+
+.blocklyToolboxDiv::-webkit-scrollbar {
+    display: none;
+}
+
+.app-top-icon {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99999;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    justify-content: center;
+    align-content: center;
+    cursor: pointer;
+    background-color: #fff;
+}
+
+.app-top-icon:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.app-top-icon.open {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.app-top-icon:hover > img {
+    filter: brightness(0.9);
+}
+
+
+.app-top-icon.open > img {
+    filter: brightness(0.8);
+}
+
+.blocklyScrollbarVertical .blocklyScrollbarHandle {
+    width: 5px;
+    x: 5;
+}
+.blocklyFlyoutScrollbar .blocklyScrollbarHandle {
+    x: 8;
+}
+
+.blocklyScrollbarVertical .blocklyScrollbarBackground {
+    width: 10px;
+}
+
+.blocklyScrollbarHorizontal .blocklyScrollbarHandle {
+    height: 5px;
+    y: 5;
+}
+
+.blocklyScrollbarHorizontal .blocklyScrollbarBackground {
+    height: 10px;
+}
+
+
+.swal-overlay {
+    z-index:999999999999999999999999999999999999999999999999999;
+}
+
+.app-top-menu {
+    position: fixed;
+    top: 15px;
+    left: 80px;
+    z-index: 9999999999;
+    background: #fff;
+    user-select: none;
+    border-radius: 10px;
+    padding: 0px;
+    box-shadow: 5px 5px 10px #aaa;
+    display: none;
+    flex-direction: column;
+}
+
+a.app-top-menu-div {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+a.app-top-menu-div:first-child {
+    border-radius: 10px 10px 0px 0px;
+}
+
+a.app-top-menu-div:last-child {
+    border-radius: 0px 0px 10px 10px;
+}
+
+a.app-top-menu-div:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+
+a.app-top-menu-div:active {
+    background-color: rgba(0, 0, 0, 0.2);
+}
+
+.app-top-menu hr {
+    margin: 5px 0px;
+}
+
+.app-top-menu.show{
+    display: flex;
+}
+
+.mdui-tab-indicator{
+    display: none;
 }

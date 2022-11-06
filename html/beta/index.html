@@ -8,38 +8,15 @@
         content="width=device-width，initial-scale=1.0，maximum-scale=1.0，minimum-scale=1.e，user-scalable=no" /> -->
     <title>Code Blockly - HTML - Beta</title>
     <meta name="description" content="新一代图形化编辑器" />
-    <link rel="shortcut icon" href="../../static/logo/logo-beta.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../../static/logo/logo_beta lite.svg" type="image/x-icon" />
     <script>
         window.onload = function () {
             document.querySelector("html > body > span#loadtext").remove();
         };
-        !(function () {
-            const date = new Date();
-            const list = [
-                [12, 13],
-                [2, 21],
-                [3, 21],
-            ];
-            if (
-                list
-                    .map((a) => {
-                        return JSON.stringify(a);
-                    })
-                    .includes(
-                        JSON.stringify([
-                            date.getMonth() + 1,
-                            date.getDate(),
-                        ])
-                    )
-            ) {
-                document.querySelector("body").style.filter =
-                    "grayscale(100%)";
-            }
-        })();
     </script>
 </head>
 
-<body>
+<body class="mdui-appbar-with-toolbar">
     <span id="loadtext" style="position: fixed; top: 8px; left: 8px; z-index: -1">加载中</span>
     <!-- 导入GoogleBlockly -->
     <script src="../../blockly/blockly_compressed.js"></script>
@@ -59,13 +36,17 @@
     <script src="./block/js/object.js"></script>
     <!--导入SweetAlert-->
     <script src="../../sweetalert.js"></script>
+    <!--导入mdui-->
+    <link rel="stylesheet" href="../../mdui/css/mdui.min.css" />
+    <script src="../../mdui/js/mdui.min.js"></script>
     <!-- 导入hljs -->
     <script src="../../hljs.js"></script>
     <!-- 导入jq -->
     <script src="../../jq.js"></script>
     <!-- 图标库  -->
     <!-- 自制图标 利用IconPark上传使用 -->
-    <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_16.3c6ccb8fffec4c64f96f687fd9c65f05.js"></script>
+    <script
+        src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_16.60bee145f22bae1365c491b7afd16a28.js"></script>
     <!--导入css -->
     <link rel="stylesheet" href="../../css.css" />
     <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
@@ -229,7 +210,27 @@
                 </div>
             </div>
         </div>
-    </body>
+        <!-- 顶部icon -->
+        <!--div class="app-top-icon"><img></div-->
+        <div class="mdui-appbar mdui-appbar-fixed">
+            <div class="mdui-toolbar mdui-color-indigo-0 " mdui-tab="">
+                <h1 href="javascript:;">Code Blockly</h1>
+                <a class="mdui-typo-title" mdui-menu="{target: '#top-menu1'}">文件</a>
+                <a class="mdui-typo-title" mdui-menu="{target: '#top-menu2'}">更多</a>
+                <ul class="mdui-menu" id="top-menu1">
+                    <li class="mdui-menu-item" d="1"><a d="1">新建</a></li>
+                    <li class="mdui-menu-item" d="2"><a d="2">保存作品</a></li>
+                    <li class="mdui-menu-item" d="3"><a d="3">保存作品到本地</a></li>
+                    <li class="mdui-menu-item" d="4"><a d="4">打开本地作品</a></li>
+                    <li class="mdui-menu-item" d="5"><a d="5">保存为html文件</a></li>
+                    <li class="mdui-menu-item" d="6"><a d="6">打开html文件</a></li>
+                </ul>
+                <ul class="mdui-menu" id="top-menu2">
+                    <li class="mdui-menu-item" d="7"><a d="7">文档</a></li>
+                    <li class="mdui-menu-item" d="8"><a d="8">设置</a></li>
+                </ul>
+            </div>
+        </div>
         <!-- 工作区 -->
         <div class="workzone">
             <div id="blocklyDiv"></div>
@@ -260,16 +261,16 @@
                 <block type="define_web_pages_head"></block>
                 <block type="define_web_pages_body"></block>
             </category>
-            <category name="头部配置" colour="%color head">
+            <category name="头部" colour="%color head">
                 <block type="head_charset"></block>
                 <block type="head_title"></block>
                 <block type="head_link"></block>
             </category>
-            <category name="嵌入标签" colour="%color embed">
+            <category name="嵌入" colour="%color embed">
                 <block type="script"></block>
                 <block type="style"></block>
             </category>
-            <category name="属性标签" colour="%color attribute">
+            <category name="属性" colour="%color attribute">
                 <block type="body_id"></block>
             </category>
             <category name="文本" colour="%color text">
@@ -280,7 +281,7 @@
                 <block type="body_br"></block>
                 <block type="body_annotation"></block>
             </category>
-            <category name="表单" colour="%color form">
+            <category name="表单" colour="%color form" style="filter:blur(20px)">
                 <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
                 <block type="create_a_form"></block>
                 <block type="form_submit_button"></block>
@@ -589,4 +590,5 @@
     <!-- 加载blockly -->
     <script src="./index.js"></script>
 </body>
+
 </html>

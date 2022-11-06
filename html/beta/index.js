@@ -34,6 +34,25 @@ console.log(
     "Copyright © 2022 by code-dream-star",
     "All rights reserved"
 );
+
+document.body.style.overflow = "hidden"; //禁止页面滑动
+
+// !(function () {
+//     let s = "../../static/logo/logo.svg";
+//     if (window.location.pathname.includes("beta")) {
+//         s = "../../static/logo/logo_beta lite.svg";
+//     }
+//     $(".app-top-icon > img")[0].setAttribute("src", s);
+//     setInterval(() => {
+//         $(".app-top-icon > img").height($(".blocklyToolboxDiv").width() / 1.2);
+//         $(".app-top-icon").height($(".blocklyToolboxDiv").width());
+//         $(".app-top-icon").width($(".blocklyToolboxDiv").width());
+//         $(".blocklyToolboxContents").css(
+//             "paddingTop",
+//             $(".blocklyToolboxDiv").width() + "px"
+//         );
+//     });
+// })();
 // 积木颜色
 const color = {
     head: "#51b6d6",
@@ -138,13 +157,23 @@ workspace.addChangeListener(function (e) {
         .value.split("\n")
         .join("<br>")
         .split("  ")
-        .join("&nbsp;&nbsp;");
+        .join("&nbsp;");
     $(".code-dialog > code").html(html);
-    // 导航栏
-    $(`.right-bottom-navigation-bar > div[data-tip="恢复回100%"]`).text(
-        ~~(workspace.scale * 100) + "%"
-    );
+    // 自动保存
+    saveWorks();
 });
+
+!(function () {
+    let x = 0;
+    setInterval(() => {
+        if (x != workspace.scale) {
+            $(`.right-bottom-navigation-bar > div[data-tip="恢复回100%"]`).text(
+                ~~(workspace.scale * 100) + "%"
+            );
+            x = workspace.scale;
+        }
+    });
+})();
 
 // code事件
 function hideCodeDialog() {
@@ -205,22 +234,21 @@ $(".code-dialog-button[right]")[0].addEventListener("click", () => {
 
 $(".code-dialog-button[left]")[0].addEventListener("click", () => {
     try {
+        swal("", "代码复制成功！", "success");
         this.navigator.clipboard.writeText($(".code-dialog > code").text());
     } catch (e) {
         swal(
-            `复制出错或您的浏览器不支持剪切板API（this.navigator.clipboard）！\n请尝试升级浏览器或手动复制！\nError Log：\n${e}`
+            "",
+            `复制出错或您的浏览器不支持剪切板API（this.navigator.clipboard）！\n请尝试升级浏览器或手动复制！`,
+            "error"
         );
     }
-    $(".code-dialog-button[left]")[0].setAttribute("data-tip", "复制成功！");
-    setTimeout(() => {
-        $(".code-dialog-button[left]")[0].setAttribute("data-tip", "复制代码");
-    }, 1000);
 });
 
 // 加载结束后，进行适配化这个适配可能有些Bug
 setInterval(() => {
     document.querySelectorAll(".workzone > div").forEach((e) => {
-        e.style.height = document.documentElement.clientHeight + "px";
+        e.style.height = document.documentElement.clientHeight - 64 + "px";
     });
 }, 16);
 setInterval(() => {
@@ -254,42 +282,27 @@ BlocklyTheme = Blockly.Theme.defineTheme("BlocklyTheme", {
 workspace.setTheme(BlocklyTheme);
 
 // 弹窗
-
 !(function () {
     const o = {
         async alert(w = "", f = () => {}) {
-            const a = await swal("系统", w, { confirmButtonText: "确认" });
+            const a = await swal("系统", w);
             f();
             return;
         },
         async confirm(w = "", f = () => {}) {
             const a = await swal("系统", w, {
-                confirmButtonText: "确认",
-                showCancelButton: true,
+                buttons: true,
             });
             f(a);
             return a;
         },
         async prompt(w = "", p = "", f = () => {}) {
-            let i = null;
-            const a = mdui.prompt(
-                w,
-                "系统",
-                (r) => {
-                    i = r;
-                },
-                () => {},
-                {
-                    confirmText: htmlblockly.msg.confirm,
-                    cancelText: htmlblockly.msg.cancel,
-                }
-            );
-            a.$element.find(".mdui-textfield-input").value = p;
-            while (a.isOpen()) {
-                await new Promise(requestAnimationFrame);
-            }
-            f(i);
-            return i;
+            const a = await swal("系统", w, {
+                buttons: true,
+                content: "input",
+            });
+            f(a);
+            return a;
         },
     };
     for (const v in Blockly.dialog) {
@@ -306,3 +319,156 @@ workspace.setTheme(BlocklyTheme);
         }
     }
 })();
+
+//
+!(function () {
+    const date = new Date();
+    const list = [
+        [12, 13],
+        [2, 21],
+        [3, 21],
+    ];
+    if (
+        list
+            .map((a) => {
+                return JSON.stringify(a);
+            })
+            .includes(JSON.stringify([date.getMonth() + 1, date.getDate()]))
+    ) {
+        document.querySelector("body").style.filter = "grayscale(100%)";
+    }
+})();
+
+// 菜单功能
+var morenxml =
+    '<xml><block type="define_web_pages" id="YGvzo%a|Kgnf{OdU93)X" x="-4" y="239"><statement name="blocks"><block type="define_web_pages_head" id="Sgrz8+r1?1HEE{4bo:+T"><statement name="blocks"><block type="head_charset" id="5Okb}^6by~5nHsLW;n_K"><field name="CODE">utf-8</field><next><block type="head_title" id="**qXHE4L`THVMM,(.a2E"><field name="title">Document</field></block></next></block></statement><next><block type="define_web_pages_body" id="`Vi/Ryq-;t^qYRxSfG)6"></block></next></block></statement></block></xml>';
+
+const addhtml = (position, localName, data, html) => {
+    var newHtml = document.createElement(localName);
+    for (var name in data) {
+        newHtml.setAttribute(name, data[name]);
+    }
+    newHtml.innerHTML = html;
+    var newElement = position.appendChild(newHtml);
+    return newElement;
+};
+
+const openfile = () => {
+    if (document.getElementById("OpenFileSetting")) {
+        document.getElementById("OpenFileSetting").remove();
+    }
+    var input = addhtml(
+        document.body,
+        "input",
+        {
+            type: "file",
+            id: "OpenFileSetting",
+            style: "display:none",
+            accept: ".cbhtml",
+        },
+        ""
+    );
+    input.click();
+    var data = "";
+    input.onchange = () => {
+        data = input.files;
+        var file = input.files[0];
+        var fileread = new FileReader();
+        fileread.onload = () => {
+            var v = fileread.result;
+            try {
+                if (v) {
+                    Blockly.Xml.domToWorkspace(
+                        Blockly.Xml.textToDom(!v ? morenxml : v),
+                        workspace
+                    );
+                } else {
+                    swal(
+                        "",
+                        "打开作品失败！\n注意只能打开类型为cbhtml的作品哦",
+                        "error"
+                    );
+                }
+            } catch (e) {
+                swal(
+                    "",
+                    "打开作品失败！\n注意只能打开类型为cbhtml的作品哦",
+                    "error"
+                );
+            }
+        };
+        fileread.readAsText(file, "UTF-8");
+    };
+};
+
+function showWorks() {
+    var v = localStorage.getItem("UserBlocklyWorksXML");
+    Blockly.Xml.domToWorkspace(
+        Blockly.Xml.textToDom(!v ? morenxml : v),
+        workspace
+    );
+}
+
+function saveWorks(t) {
+    localStorage.setItem(
+        "UserBlocklyWorksXML",
+        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
+    ); //保存作品
+    if (t) swal("", "作品保存成功！", "success");
+}
+
+function saveFile(name, data) {
+    var urlObject = window.URL || window.webkitURL || window;
+    var export_blob = new Blob([data]);
+    var save_link = document.createElementNS(
+        "http://www.w3.org/1999/xhtml",
+        "a"
+    );
+    save_link.href = urlObject.createObjectURL(export_blob);
+    save_link.download = name;
+    save_link.click();
+}
+
+// 菜单
+$("body")[0].addEventListener("click", (e) => {
+    if (e.target) {
+        if (e.target.getAttribute("d")) {
+            try {
+                console.log(e.target.getAttribute("d"));
+                [
+                    null,
+                    () => {
+                        saveWorks(1);
+                    },
+                    () => {
+                        saveFile(
+                            "MyWeb.cbhtml",
+                            Blockly.Xml.domToText(
+                                Blockly.Xml.workspaceToDom(workspace)
+                            )
+                        );
+                    },
+                    openfile,
+                    () => {
+                        saveFile(
+                            "MyWeb.html",
+                            "<!-- 代码由 " +
+                                window.location.href +
+                                " 生成，感谢您对我们的支持。-->\n" +
+                                Blockly.JavaScript.workspaceToCode(workspace)
+                        );
+                    },
+                    null,
+                    () => {
+                        window.open("../../docs");
+                    },
+                    null,
+                ][Number(e.target.getAttribute("d")) - 1]();
+            } catch (e) {
+                swal("", "未开发");
+            }
+        }
+    }
+});
+
+showWorks();
