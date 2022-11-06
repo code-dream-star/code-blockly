@@ -20,19 +20,19 @@
 
 p {
     text-align: center;
-    font-family: Harmony OS Sans;
+    font-family: Harmony OS Sans SC;
     margin: 20px;
 }
 
 .h1 {
-    font-family: Harmony OS Sans;
+    font-family: Harmony OS Sans SC;
     font-weight: bold;
     font-size: 50px;
     margin: 20px;
 }
 
 .h2 {
-    font-family: Harmony OS Sans;
+    font-family: Harmony OS Sans SC;
     font-weight: bold;
     font-size: 30px;
     margin: 20px;
@@ -434,6 +434,8 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
 }
 
 .blue-button {
+    font-family: Harmony OS Sans SC;
+    font-weight: bold;
     display: inline-block;
     border-radius: 6px;
     -webkit-border-radius: 6px;
