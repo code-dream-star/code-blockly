@@ -435,8 +435,8 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
 
 .blue-button {
     display: inline-block;
-    border-radius: 4px;
-    -webkit-border-radius: 4px;
+    border-radius: 6px;
+    -webkit-border-radius: 6px;
     background-color: #0070f3;
     border: none;
     color: #ffffff;
