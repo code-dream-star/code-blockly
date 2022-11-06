@@ -437,7 +437,7 @@ body.code-dialog-show-body .right-bottom-navigation-bar {
 
 .blue-button {
     font-family: Harmony OS Sans SC;
-    font-weight: bold;
+    font-weight:normal;
     display: inline-block;
     border-radius: 6px;
     -webkit-border-radius: 6px;
