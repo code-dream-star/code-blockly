@@ -1,4 +1,4 @@
-var version = "html-V0.1.0(X003)-dev(11025)";
+var version = "html-V0.1.2-dev(11025)";
 console.log(
     `%c 
 #####                           ######                                  #####                      
