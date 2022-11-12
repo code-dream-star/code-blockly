@@ -18,7 +18,7 @@ import * as Css from './css.js';
 import * as dropDownDiv from './dropdowndiv.js';
 import {Field, UnattachedFieldError} from './field.js';
 import * as fieldRegistry from './field_registry.js';
-import {FieldTextInputConfig, FieldTextInput} from './field_textinput.js';
+import {FieldInput, FieldInputConfig, FieldInputValidator} from './field_input.js';
 import * as dom from './utils/dom.js';
 import {KeyCodes} from './utils/keycodes.js';
 import * as math from './utils/math.js';
@@ -27,16 +27,14 @@ import {Svg} from './utils/svg.js';
 import * as userAgent from './utils/useragent.js';
 import * as WidgetDiv from './widgetdiv.js';
 
+export type FieldAngleValidator = FieldInputValidator<number>;
 
 /**
  * Class for an editable angle field.
  *
  * @alias Blockly.FieldAngle
  */
-export class FieldAngle extends FieldTextInput {
-  /** The default value for this field. */
-  // protected override DEFAULT_VALUE = 0;
-
+export class FieldAngle extends FieldInput<number> {
   /**
    * The default amount to round angles to when using a mouse or keyboard nav
    * input. Must be a positive integer to support keyboard navigation.
@@ -70,19 +68,36 @@ export class FieldAngle extends FieldTextInput {
    * otherwise SVG crops off half the border at the edges.
    */
   static readonly RADIUS: number = FieldAngle.HALF - 1;
-  private clockwise_: boolean;
-  private offset_: number;
-  private wrap_: number;
-  private round_: number;
+
+  /**
+   * Whether the angle should increase as the angle picker is moved clockwise
+   * (true) or counterclockwise (false).
+   */
+  private clockwise_ = FieldAngle.CLOCKWISE;
+
+  /**
+   * The offset of zero degrees (and all other angles).
+   */
+  private offset_ = FieldAngle.OFFSET;
+
+  /**
+   * The maximum angle to allow before wrapping.
+   */
+  private wrap_ = FieldAngle.WRAP;
+
+  /**
+   * The amount to round angles to when using a mouse or keyboard nav input.
+   */
+  private round_ = FieldAngle.ROUND;
 
   /** The angle picker's SVG element. */
-  private editor_: SVGElement|null = null;
+  private editor_: SVGSVGElement|null = null;
 
   /** The angle picker's gauge path depending on the value. */
-  gauge_: SVGElement|null = null;
+  gauge_: SVGPathElement|null = null;
 
   /** The angle picker's line drawn representing the value's angle. */
-  line_: SVGElement|null = null;
+  line_: SVGLineElement|null = null;
 
   /** The degree symbol for this field. */
   // AnyDuringMigration because:  Type 'null' is not assignable to type
@@ -118,38 +133,9 @@ export class FieldAngle extends FieldTextInput {
    * for a list of properties this parameter supports.
    */
   constructor(
-      opt_value?: string|number|Sentinel, opt_validator?: Function,
+      opt_value?: string|number|Sentinel, opt_validator?: FieldAngleValidator,
       opt_config?: FieldAngleConfig) {
     super(Field.SKIP_SETUP);
-
-    /**
-     * Should the angle increase as the angle picker is moved clockwise (true)
-     * or counterclockwise (false)
-     *
-     * @see FieldAngle.CLOCKWISE
-     */
-    this.clockwise_ = FieldAngle.CLOCKWISE;
-
-    /**
-     * The offset of zero degrees (and all other angles).
-     *
-     * @see FieldAngle.OFFSET
-     */
-    this.offset_ = FieldAngle.OFFSET;
-
-    /**
-     * The maximum angle to allow before wrapping.
-     *
-     * @see FieldAngle.WRAP
-     */
-    this.wrap_ = FieldAngle.WRAP;
-
-    /**
-     * The amount to round angles to when using a mouse or keyboard nav input.
-     *
-     * @see FieldAngle.ROUND
-     */
-    this.round_ = FieldAngle.ROUND;
 
     if (opt_value === Field.SKIP_SETUP) {
       return;
@@ -223,15 +209,9 @@ export class FieldAngle extends FieldTextInput {
     super.showEditor_(opt_e, noFocus);
 
     this.dropdownCreate_();
-    // AnyDuringMigration because:  Argument of type 'SVGElement | null' is not
-    // assignable to parameter of type 'Node'.
-    dropDownDiv.getContentDiv().appendChild(this.editor_ as AnyDuringMigration);
+    dropDownDiv.getContentDiv().appendChild(this.editor_!);
 
     if (this.sourceBlock_ instanceof BlockSvg) {
-      if (!this.sourceBlock_.style.colourTertiary) {
-        throw new Error(
-            'The renderer did not properly initialize the block style');
-      }
       dropDownDiv.setColour(
           this.sourceBlock_.style.colourPrimary,
           this.sourceBlock_.style.colourTertiary);
@@ -435,25 +415,18 @@ export class FieldAngle extends FieldTextInput {
       throw new UnattachedFieldError();
     }
 
+    const keyboardEvent = e as KeyboardEvent;
     let multiplier;
-    // AnyDuringMigration because:  Property 'keyCode' does not exist on type
-    // 'Event'.
-    if ((e as AnyDuringMigration).keyCode === KeyCodes.LEFT) {
+    if (keyboardEvent.keyCode === KeyCodes.LEFT) {
       // decrement (increment in RTL)
       multiplier = block.RTL ? 1 : -1;
-      // AnyDuringMigration because:  Property 'keyCode' does not exist on type
-      // 'Event'.
-    } else if ((e as AnyDuringMigration).keyCode === KeyCodes.RIGHT) {
+    } else if (keyboardEvent.keyCode === KeyCodes.RIGHT) {
       // increment (decrement in RTL)
       multiplier = block.RTL ? -1 : 1;
-      // AnyDuringMigration because:  Property 'keyCode' does not exist on type
-      // 'Event'.
-    } else if ((e as AnyDuringMigration).keyCode === KeyCodes.DOWN) {
+    } else if (keyboardEvent.keyCode === KeyCodes.DOWN) {
       // decrement
       multiplier = -1;
-      // AnyDuringMigration because:  Property 'keyCode' does not exist on type
-      // 'Event'.
-    } else if ((e as AnyDuringMigration).keyCode === KeyCodes.UP) {
+    } else if (keyboardEvent.keyCode === KeyCodes.UP) {
       // increment
       multiplier = 1;
     }
@@ -505,7 +478,7 @@ export class FieldAngle extends FieldTextInput {
    * @nocollapse
    * @internal
    */
-  static override fromJson(options: FieldAngleFromJsonConfig): FieldAngle {
+  static fromJson(options: FieldAngleFromJsonConfig): FieldAngle {
     // `this` might be a subclass of FieldAngle if that class doesn't override
     // the static fromJson method.
     return new this(options.angle, undefined, options);
@@ -542,7 +515,7 @@ Css.register(`
 
 fieldRegistry.register('field_angle', FieldAngle);
 
-(FieldAngle.prototype as AnyDuringMigration).DEFAULT_VALUE = 0;
+FieldAngle.prototype.DEFAULT_VALUE = 0;
 
 /**
  * The two main modes of the angle field.
@@ -566,7 +539,7 @@ export enum Mode {
 /**
  * Extra configuration options for the angle field.
  */
-export interface FieldAngleConfig extends FieldTextInputConfig {
+export interface FieldAngleConfig extends FieldInputConfig {
   mode?: Mode;
   clockwise?: boolean;
   offset?: number;
