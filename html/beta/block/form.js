@@ -116,7 +116,7 @@ Blockly.Blocks["form_text_box"] = {
         this.setTooltip("");
         this.setHelpUrl("");
     },
-}; 
+};
 
 Blockly.JavaScript["form_text_box"] = function (block) {
     var dropdown_drop_down_menu = block.getFieldValue("drop-down menu");
@@ -171,7 +171,7 @@ Blockly.Blocks["form_select_box"] = {
                         new Blockly.FieldTextInput("radioid"),
                         "classification"
                     );
-                    this.appendStatementInput("attribute").setCheck(null).appendField("配置");
+                this.appendStatementInput("attribute").setCheck(null).appendField("配置");
             }
         } else {
             if (this.getInput("name")) {
@@ -190,6 +190,108 @@ Blockly.JavaScript["form_select_box"] = function (block) {
         "attribute"
     );
     // TODO: Assemble JavaScript into code variable.
-    var code = `<input type="${dropdown_drop_down_menu}" value="${text_value}" ${dropdown_drop_down_menu=="radio"?`name="${text_classification}" `:""}${statements_attribute}>\n`;
+    var code = `<input type="${dropdown_drop_down_menu}" value="${text_value}" ${dropdown_drop_down_menu == "radio" ? `name="${text_classification}" ` : ""}${statements_attribute}>\n`;
+    return code;
+};
+
+
+Blockly.Blocks['form_select_down_menu'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("[表单功能]")
+            .appendField("创建下拉选择框");
+        this.appendDummyInput()
+            .appendField("可多选")
+            .appendField(new Blockly.FieldCheckbox("FLASE"), "multiple")
+            .appendField("显示个数")
+            .appendField(new Blockly.FieldNumber(1, 1, Infinity, 1), "size");
+        this.appendDummyInput()
+            .appendField("禁用")
+            .appendField(new Blockly.FieldCheckbox("FLASE"), "disabled")
+        this.appendStatementInput("attribute")
+            .setCheck(null)
+            .appendField("配置");
+        this.appendStatementInput("content")
+            .setCheck(null)
+            .appendField("选项内容");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.form);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['form_select_down_menu'] = function (block) {
+    var checkbox_multiple = block.getFieldValue('multiple') == 'TRUE';
+    var number_size = block.getFieldValue('size');
+    var checkbox_disabled = block.getFieldValue('disabled') == 'TRUE';
+    var statements_attribute = Blockly.JavaScript.statementToCode(block, 'attribute');
+    var statements_content = Blockly.JavaScript.statementToCode(block, 'content');
+    // TODO: Assemble JavaScript into code variable.
+    var code =
+        `<select${checkbox_multiple ? " multiple" : ""}${checkbox_disabled ? " disabled" : ""} size="${number_size}"${statements_attribute}>\n${statements_content}</select>\n`;
+    return code;
+};
+
+
+Blockly.Blocks['form_select_down_menu_optgroup'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("[下拉选择框功能]")
+            .appendField("建造分组");
+        this.appendDummyInput()
+            .appendField("分组名")
+            .appendField(new Blockly.FieldTextInput("群组"), "name");
+        this.appendStatementInput("insertion")
+            .setCheck(null)
+            .appendField("内容");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.form);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['form_select_down_menu_optgroup'] = function (block) {
+    var text_name = block.getFieldValue('name');
+    var statements_insertion = Blockly.JavaScript.statementToCode(block, 'insertion');
+    // TODO: Assemble JavaScript into code variable.
+    var code = `<optgroup label="${text_name}">\n${statements_insertion}</optgroup>\n`;
+    return code;
+};
+
+Blockly.Blocks['form_select_down_menu_option'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("[下拉选择框功能]")
+            .appendField("建造选项");
+        this.appendDummyInput()
+            .appendField("内容")
+            .appendField(new Blockly.FieldTextInput("文本"), "text")
+            .appendField("默认选择")
+            .appendField(new Blockly.FieldCheckbox("TRUE"), "selected");
+        this.appendDummyInput()
+            .appendField("对应值")
+            .appendField(new Blockly.FieldTextInput("text"), "value")
+            .appendField("禁用")
+            .appendField(new Blockly.FieldCheckbox("FLASE"), "disabled");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.form);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['form_select_down_menu_option'] = function (block) {
+    var text_text = block.getFieldValue('text');
+    var checkbox_selected = block.getFieldValue('selected') == 'TRUE';
+    var text_value = block.getFieldValue('value');
+    var checkbox_disabled = block.getFieldValue('disabled') == 'TRUE';
+    var text_font_family_ = block.getFieldValue('font-family ');
+    // TODO: Assemble JavaScript into code variable.
+    var code = `<option${checkbox_selected ? " selected" : ""}${checkbox_disabled ? " disabled" : ""} value="${text_value}">${text_text}</option>\n`;
     return code;
 };

@@ -8,7 +8,7 @@ Blockly.defineBlocksWithJsonArray([{
     "helpUrl": ""
   },{
     "type": "object_set",
-    "message0": "设置对象 %1 %2 里的 %3 键为 %4 %5",
+    "message0": "设置对象 %1 %2 里的 %3 属性为 %4 %5",
     "args0": [
       {
         "type": "input_dummy"
@@ -35,11 +35,11 @@ Blockly.defineBlocksWithJsonArray([{
     "previousStatement": null,
     "nextStatement": null,
     "colour": "#a073ff",
-    "tooltip": "设置键。",
+    "tooltip": "设置属性。",
     "helpUrl": ""
   },{
     "type": "object_get",
-    "message0": "获取对象 %1 %2 里 %3 键的值",
+    "message0": "获取对象 %1 %2 里 %3 属性的值",
     "args0": [
       {
         "type": "input_dummy"
@@ -58,7 +58,7 @@ Blockly.defineBlocksWithJsonArray([{
     "inputsInline": true,
     "output": null,
     "colour": "#a073ff",
-    "tooltip": "获取键值。",
+    "tooltip": "获取属性的值。",
     "helpUrl": ""
   },{
   "type": "object_copy",
@@ -85,11 +85,11 @@ Blockly.defineBlocksWithJsonArray([{
   "previousStatement": null,
   "nextStatement": null,
   "colour": "#a073ff",
-  "tooltip": "复制对象里的所有键到另外一个对象里。",
+  "tooltip": "复制对象里的所有属性到另外一个对象里。",
   "helpUrl": ""
 },{
   "type": "object_inc",
-  "message0": "对象 %1 %2 里是否存在 %3 键",
+  "message0": "对象 %1 %2 里是否存在 %3 属性",
   "args0": [
     {
       "type": "input_dummy"
@@ -108,7 +108,7 @@ Blockly.defineBlocksWithJsonArray([{
   "inputsInline": true,
   "output": "Boolean",
   "colour": "#a073ff",
-  "tooltip": "判断某个对象是否存在某个键。",
+  "tooltip": "判断某个对象是否存在某个属性。",
   "helpUrl": ""
 },{
   "type": "object_geto",
@@ -131,7 +131,7 @@ Blockly.defineBlocksWithJsonArray([{
           "length"
         ],
         [
-          "所有键（列表）",
+          "所有属性（列表）",
           "keys"
         ],
         [
@@ -151,7 +151,7 @@ Blockly.defineBlocksWithJsonArray([{
   "helpUrl": ""
 },{
   "type": "object_delete",
-  "message0": "删除对象 %1 %2 中的 %3 键",
+  "message0": "删除对象 %1 %2 中的 %3 属性",
   "args0": [
     {
       "type": "input_dummy"
@@ -171,7 +171,7 @@ Blockly.defineBlocksWithJsonArray([{
   "previousStatement": null,
   "nextStatement": null,
   "colour": "#a073ff",
-  "tooltip": "删除对象的某个键值",
+  "tooltip": "删除对象的某个属性值",
   "helpUrl": ""
 },{
   "type": "object_freeze",
@@ -187,7 +187,7 @@ Blockly.defineBlocksWithJsonArray([{
   "previousStatement": null,
   "nextStatement": null,
   "colour": "#a073ff",
-  "tooltip": "冻结某个对象，冻结后不可以用代码修改，建造，删除它的键值，只能读取。",
+  "tooltip": "冻结某个对象，冻结后不可以用代码修改，建造，删除它的属性值，只能读取。",
   "helpUrl": ""
 },{
   "type": "object_isfreeze",

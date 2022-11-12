@@ -1,4 +1,4 @@
-var version = "html-V0.1.0(X003)-beta";
+var version = "html-V0.1.0(X003)-dev(11025)";
 console.log(
     `%c 
 #####                           ######                                  #####                      
@@ -7,7 +7,7 @@ console.log(
 #       #    # #    # #####     #     # #    # #####  #    # # ## #     #####    #   #    # #    # 
 #       #    # #    # #         #     # #####  #      ###### #    #          #   #   ###### #####  
 #     # #    # #    # #         #     # #   #  #      #    # #    #    #     #   #   #    # #   #  
-#####   ####  #####  ######    ######  #    # ###### #    # #    #     #####    #   #    # #    # 
+ #####   ####  #####  ######    ######  #    # ###### #    # #    #     #####    #   #    # #    # 
 `,
     "font-size:12px;color:#0af"
 );
@@ -19,7 +19,7 @@ console.log(
 #       #    # #    # #####     ######  #      #    # #      ####   #        #   
 #       #    # #    # #         #     # #      #    # #      #  #   #        #   
 #     # #    # #    # #         #     # #      #    # #    # #   #  #        #   
-#####   ####  #####  ######    ######  ######  ####   ####  #    # ######   #                                                                                   
+ #####   ####  #####  ######    ######  ######  ####   ####  #    # ######   #                                                                                   
 `,
     "font-size:12px;color:#0af;"
 );
@@ -31,28 +31,45 @@ console.log("特别鸣谢：小宏XeLa，木水屑，广安，凌cloud");
 console.log("代码开源：https://github.com/code-dream-star/code-blockly/");
 console.log(
     version,
-    "Copyright © 2022 by code-dream-star",
+    "Copyright © 2022 by Code Dream Star",
     "All rights reserved"
 );
+;
+(async function main() {
+    "use strict";
+    var a = {
+        sleep: async function (ms) {
+            return new Promise((resolve) => {
+                setTimeout(() => {
+                    resolve();
+                }, ms);
+            });
+        },
+        readCopy: async function () {
+            return await navigator.clipboard.readText()
+        },
+        copy: async function copy(text) {
+            return await navigator.clipboard.writeText(text)
+        },
+        setv: ((html, name, value) => { html.setAttribute(name, value) }),
+        setn: ((html, value) => { html.setAttribute(value, "") }),
+        seth: ((html, html5) => { html.innerHTML = html5 }),
+        sett: ((html, text) => { html.innerText = text }),
+        addhtml: ((position, localName, data, html) => { var newHtml = document.createElement(localName); for (var name in data) { newHtml.setAttribute(name, data[name]) }; newHtml.innerHTML = html; var newElement = position.appendChild(newHtml); return (newElement) }),
+        addanot: ((position, value) => { var newHtml = document.createComment(value); var newElement = position.appendChild(newHtml); return (newElement) }),
+        getParameters: ((name) => { return window.location.search.substring(1).split("&").find((a) => a.split("=")[0] == name).split("=")[1]; }),
+        saveFile: (name, data) => { var urlObject = window.URL || window.webkitURL || window; var export_blob = new Blob([data]); var save_link = document.createElement("a"); save_link.href = urlObject.createObjectURL(export_blob); save_link.download = name; save_link.click(); }
+    };
+    Object.assign(window, a);
+})();
+
+// Config! Dev use! Don't delect this line of code!
+window.$toolboxicondata = [];
+window.$settingsloaddata = [];
+window.$settingsitem = {};
 
 document.body.style.overflow = "hidden"; //禁止页面滑动
 
-// !(function () {
-//     let s = "../../static/logo/logo.svg";
-//     if (window.location.pathname.includes("beta")) {
-//         s = "../../static/logo/logo_beta lite.svg";
-//     }
-//     $(".app-top-icon > img")[0].setAttribute("src", s);
-//     setInterval(() => {
-//         $(".app-top-icon > img").height($(".blocklyToolboxDiv").width() / 1.2);
-//         $(".app-top-icon").height($(".blocklyToolboxDiv").width());
-//         $(".app-top-icon").width($(".blocklyToolboxDiv").width());
-//         $(".blocklyToolboxContents").css(
-//             "paddingTop",
-//             $(".blocklyToolboxDiv").width() + "px"
-//         );
-//     });
-// })();
 // 积木颜色
 const color = {
     head: "#51b6d6",
@@ -118,40 +135,42 @@ var workspace = Blockly.inject("blocklyDiv", {
 });
 
 // 加载toolbox图标
-
-window.$toolboxicondata = [];
-
-workspace.toolbox_.contents_.forEach((e) => {
-    let ss = "";
-    for (const o in color) {
-        if (color[o] == e.colour_) {
-            ss = o;
+function loadicon() {
+    workspace.toolbox_.contents_.forEach((e) => {
+        let ss = "";
+        for (const o in color) {
+            if (color[o] == e.colour_) {
+                ss = o;
+            }
         }
-    } //                                                                              ↓ 大小 ↓
-    const ww = $(`<iconpark-icon name="${ss}" size="1.5em"></iconpark-icon>`);
-    ww.appendTo(e.iconDom_);
-    window.$toolboxicondata.push({
-        e: ww,
-        target: ss,
-        other: e,
-        id: e.id_,
-        name: e.name_,
-        color: e.colour_,
+        const ww = $(`<iconpark-icon name="${ss}" size="1.5em"></iconpark-icon>`);
+        ww.appendTo(e.iconDom_);
+        window.$toolboxicondata.push({
+            e: ww,
+            target: ss,
+            other: e,
+            id: e.id_,
+            name: e.name_,
+            color: e.colour_,
+        });
     });
-});
+}
+
+loadicon()
 
 // 事件
 workspace.addChangeListener(function (e) {
     // 输出（test use）
     console.log(e);
+
     // 生成代码
     var code = Blockly.JavaScript.workspaceToCode(workspace);
     var html = hljs
         .highlight(
             "<!-- 代码由 " +
-                window.location.href +
-                " 生成，感谢您对我们的支持。-->\n" +
-                code,
+            window.location.href +
+            " 生成，感谢您对我们的支持。-->\n" +
+            code,
             { language: "HTML" }
         )
         .value.split("\n")
@@ -159,8 +178,53 @@ workspace.addChangeListener(function (e) {
         .split("  ")
         .join("&nbsp;");
     $(".code-dialog > code").html(html);
+
     // 自动保存
     saveWorks();
+
+    // 积木盒开/关特效
+    if (e.type == "toolbox_item_select") {
+        const s = $($(".blocklyFlyout")[1]); // Flyout元素
+        if (e.newItem != null && e.oldItem == null) { // 如果是打开
+            console.log("open");
+            s.css("display", "block");
+            s.css("transform", "translate(68px, 0px)");
+        } else if (e.newItem == null && e.oldItem != null) { // 如果是关闭
+            s.css("display", "block");
+            s.css("transform", `translate(-${s.width() + 1}px, 0px)`);
+            console.log("close");
+        }
+    }
+
+    // 当有积木开始拖动
+    if (e.type == "drag" && !!e.isStart) {
+        // 显示“删除垃圾桶”
+        $(".delect-block-zone").addClass("delect-block-zone-show");
+    }
+
+    // 当有积木结束拖动
+    if (e.type == "drag" && !e.isStart) {
+        // 隐藏“删除垃圾桶”
+        $(".delect-block-zone")[0].classList.remove("delect-block-zone-show")
+    }
+
+    // 当有积木删除时
+    if (e.type == "delete") {
+        setv($(`#toolbox > category[name="历史"] > label[text]`)[0], "text", "提示：重新加载后将清空！");
+        // 做一些历史积木配置
+        setv(e.oldXml, "disabled", 0);
+        setv(e.oldXml, "x", 0);
+        setv(e.oldXml, "y", 0);
+        setv(e.oldXml, "id", 0);
+        $(e.oldXml).find("*[id]").each((_, a) => { setv(a, "id", 0); setv(a, "disabled", 0); });
+        // 如果已经历史，则不再保存
+        if ($(`#toolbox > category[name="历史"] > *:not(label[text],button[text])`).map((_, a) => { return a.outerHTML }).toArray().join("").includes(e.oldXml.outerHTML)) return;
+        // 将积木xml添加到toolbox的“历史”模块里
+        $(e.oldXml.outerHTML).appendTo($(`#toolbox > category[name="历史"]`)[0]);
+        // 刷新toolbox
+        workspace.updateToolbox($("#toolbox")[0]);
+        loadicon()
+    }
 });
 
 !(function () {
@@ -187,7 +251,7 @@ function showCodeDialog() {
 
 // 特殊处理
 workspace.registerButtonCallback("beta", function () {
-    swal("这个功能正在内测中，将来可能会频繁改动，若有Bug请向开发者反馈！");
+    Blockly.alert("这个功能正在内测中，将来可能会频繁改动，若有Bug请向开发者反馈！");
 });
 
 // 右下角导航
@@ -222,7 +286,12 @@ $(".right-bottom-navigation-bar > div").each((_, a) => {
                 break;
             case "预览":
                 const d = window.open();
-                d.document.write($(".code-dialog > code").text());
+                var code = Blockly.JavaScript.workspaceToCode(workspace);
+                var html = code.split("\n")
+                    .join("")
+                    .split("  ")
+                    .join("");
+                d.document.write(html);
                 break;
         }
     });
@@ -273,7 +342,7 @@ BlocklyTheme = Blockly.Theme.defineTheme("BlocklyTheme", {
     componentStyles: {
         workspaceBackgroundColour: "#fafafa",
         toolboxBackgroundColour: "#fff",
-        flyoutBackgroundColour: "#f2f2f2cc",
+        flyoutBackgroundColour: "#fff",
         toolboxForegroundColour: "#000",
         scrollbarColour: "#ccc",
     },
@@ -284,22 +353,34 @@ workspace.setTheme(BlocklyTheme);
 // 弹窗
 !(function () {
     const o = {
-        async alert(w = "", f = () => {}) {
-            const a = await swal("系统", w);
+        async alert(w = "", f = () => { }) {
+            await swal("", w, {
+                buttons: {
+                    text: "好！",
+                },
+            });
             f();
             return;
         },
-        async confirm(w = "", f = () => {}) {
-            const a = await swal("系统", w, {
-                buttons: true,
+        async confirm(w = "", f = () => { }) {
+            const a = await swal("", w, {
+                buttons: ["取消", "确认"]
             });
             f(a);
             return a;
         },
-        async prompt(w = "", p = "", f = () => {}) {
-            const a = await swal("系统", w, {
+        async prompt(w = "", p = "", f = () => { }) {
+            const a = await swal("", w, {
                 buttons: true,
-                content: "input",
+                content: {
+                    element: "input",
+                    attributes: {
+                        placeholder: "请输入",
+                        type: "text",
+                        value: p
+                    },
+                },
+                buttons: ["取消", "确认"]
             });
             f(a);
             return a;
@@ -309,11 +390,11 @@ workspace.setTheme(BlocklyTheme);
         if (v.startsWith("set")) {
             Blockly.dialog[v](
                 o[
-                    v
-                        .replace(/[A-Z]/, (r) => {
-                            return r.toLocaleLowerCase();
-                        })
-                        .slice(3)
+                v
+                    .replace(/[A-Z]/, (r) => {
+                        return r.toLocaleLowerCase();
+                    })
+                    .slice(3)
                 ]
             );
         }
@@ -339,136 +420,47 @@ workspace.setTheme(BlocklyTheme);
     }
 })();
 
-// 菜单功能
-var morenxml =
-    '<xml><block type="define_web_pages" id="YGvzo%a|Kgnf{OdU93)X" x="-4" y="239"><statement name="blocks"><block type="define_web_pages_head" id="Sgrz8+r1?1HEE{4bo:+T"><statement name="blocks"><block type="head_charset" id="5Okb}^6by~5nHsLW;n_K"><field name="CODE">utf-8</field><next><block type="head_title" id="**qXHE4L`THVMM,(.a2E"><field name="title">Document</field></block></next></block></statement><next><block type="define_web_pages_body" id="`Vi/Ryq-;t^qYRxSfG)6"></block></next></block></statement></block></xml>';
 
-const addhtml = (position, localName, data, html) => {
-    var newHtml = document.createElement(localName);
-    for (var name in data) {
-        newHtml.setAttribute(name, data[name]);
-    }
-    newHtml.innerHTML = html;
-    var newElement = position.appendChild(newHtml);
-    return newElement;
-};
-
-const openfile = () => {
-    if (document.getElementById("OpenFileSetting")) {
-        document.getElementById("OpenFileSetting").remove();
-    }
-    var input = addhtml(
-        document.body,
-        "input",
-        {
-            type: "file",
-            id: "OpenFileSetting",
-            style: "display:none",
-            accept: ".cbhtml",
-        },
-        ""
-    );
-    input.click();
-    var data = "";
-    input.onchange = () => {
-        data = input.files;
-        var file = input.files[0];
-        var fileread = new FileReader();
-        fileread.onload = () => {
-            var v = fileread.result;
-            try {
-                if (v) {
-                    Blockly.Xml.domToWorkspace(
-                        Blockly.Xml.textToDom(!v ? morenxml : v),
-                        workspace
-                    );
-                } else {
-                    swal(
-                        "",
-                        "打开作品失败！\n注意只能打开类型为cbhtml的作品哦",
-                        "error"
-                    );
+!function () {
+    Object.assign($settingsitem, {
+        get(ss) {
+            for (const s in this) {
+                if (s.startsWith("CodeblocklySettingsdialogId")) {
+                    const s1 = s.replace("CodeblocklySettingsdialogId", "");
+                    if (ss == s1) {
+                        return this[s]
+                    }
                 }
-            } catch (e) {
-                swal(
-                    "",
-                    "打开作品失败！\n注意只能打开类型为cbhtml的作品哦",
-                    "error"
-                );
-            }
-        };
-        fileread.readAsText(file, "UTF-8");
-    };
-};
-
-function showWorks() {
-    var v = localStorage.getItem("UserBlocklyWorksXML");
-    Blockly.Xml.domToWorkspace(
-        Blockly.Xml.textToDom(!v ? morenxml : v),
-        workspace
-    );
-}
-
-function saveWorks(t) {
-    localStorage.setItem(
-        "UserBlocklyWorksXML",
-        Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
-    ); //保存作品
-    if (t) swal("", "作品保存成功！", "success");
-}
-
-function saveFile(name, data) {
-    var urlObject = window.URL || window.webkitURL || window;
-    var export_blob = new Blob([data]);
-    var save_link = document.createElementNS(
-        "http://www.w3.org/1999/xhtml",
-        "a"
-    );
-    save_link.href = urlObject.createObjectURL(export_blob);
-    save_link.download = name;
-    save_link.click();
-}
-
-// 菜单
-$("body")[0].addEventListener("click", (e) => {
-    if (e.target) {
-        if (e.target.getAttribute("d")) {
-            try {
-                console.log(e.target.getAttribute("d"));
-                [
-                    null,
-                    () => {
-                        saveWorks(1);
-                    },
-                    () => {
-                        saveFile(
-                            "MyWeb.cbhtml",
-                            Blockly.Xml.domToText(
-                                Blockly.Xml.workspaceToDom(workspace)
-                            )
-                        );
-                    },
-                    openfile,
-                    () => {
-                        saveFile(
-                            "MyWeb.html",
-                            "<!-- 代码由 " +
-                                window.location.href +
-                                " 生成，感谢您对我们的支持。-->\n" +
-                                Blockly.JavaScript.workspaceToCode(workspace)
-                        );
-                    },
-                    null,
-                    () => {
-                        window.open("../../docs");
-                    },
-                    null,
-                ][Number(e.target.getAttribute("d")) - 1]();
-            } catch (e) {
-                swal("", "未开发");
             }
         }
-    }
+    })
+}()
+
+setInterval(() => {
+    $(".delect-block-zone").css("width", $(".injectionDiv > .blocklyToolboxDiv").width())
+    $(".delect-block-zone").css("top", $(".injectionDiv > .blocklyToolboxDiv").position().top)
 });
 
-showWorks();
+// 历史
+workspace.registerButtonCallback("Clear history", function () {
+    Blockly.confirm("确认清空历史？", function (e) {
+        if (!e) return
+        // 删掉所有历史
+        $(`#toolbox > category[name="历史"] > *:not(label[text],button[text])`).each((_, a) => { a.remove(); });
+        setv($(`#toolbox > category[name="历史"] > label[text]`)[0], "text", "空空如也");
+        // 刷新toolbox
+        workspace.updateToolbox($("#toolbox1")[0]);
+        // 刷新“历史”模块
+        $(".blocklyToolboxContents > div.blocklyToolboxCategory:last-child > .blocklyTreeRow")[0].click();
+        loadicon()
+    });
+});
+
+$(".history-trash-btn")[0].addEventListener("click", () => {
+    $(".blocklyToolboxContents > div.blocklyToolboxCategory:last-child > .blocklyTreeRow")[0].click();
+})
+
+setInterval(() => {
+    const s = $(".injectionDiv > .blocklyToolboxDiv").width() / 2 - $(".history-trash-btn").width() / 2;
+    $(".history-trash-btn")[0].style.padding = `5px ${s}px`;
+});

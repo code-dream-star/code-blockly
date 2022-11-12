@@ -13,8 +13,6 @@ Blockly.Blocks["video_image"] = {
         .appendField("宽")
         .appendField(new Blockly.FieldTextInput("100"), "height");
       this.appendDummyInput()
-        .appendField("ID:")
-        .appendField(new Blockly.FieldTextInput("id"), "ID")
         .appendField("图片描述:")
         .appendField(new Blockly.FieldTextInput("alt"), "alt");
       this.appendStatementInput("statements")
@@ -30,7 +28,6 @@ Blockly.Blocks["video_image"] = {
   
   Blockly.JavaScript["video_image"] = function (block) {
     var alt = block.getFieldValue("alt");
-    var text_id = block.getFieldValue("ID");
     var text_link = block.getFieldValue("link");
     var width = block.getFieldValue("width");
     var height = block.getFieldValue("height");
@@ -38,6 +35,6 @@ Blockly.Blocks["video_image"] = {
       block,
       "statements"
     );
-    var code = `<img src="${text_link}" alt="${alt}" width="${width}" height="${height}" id="${text_id}">\n`;
+    var code = `<img src="${text_link}" alt="${alt}" width="${width}" height="${height}" ${statements}>\n`;
     return code;
   };
