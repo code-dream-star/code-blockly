@@ -2,6 +2,9 @@ contact_links:
   - name: CodeBlockly
     url: https://code-dream-star.github.io/code-blockly
     about: 体验链接
+  - name: 论坛
+    url: https://code-dream-star.github.io/forum
+    about: 在论坛反馈
   - name: Discussion
     url: https://github.com/code-dream-star/code-blockly/discussions
     about: 讨论区
