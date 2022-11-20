@@ -6,9 +6,4 @@
     * [提交信息规范](dev/update.md)
     * [版本号规范](dev/vers.md)
     * [Blockly 块定义 开发规范](dev/block.md)
-
-* 测试2
-    * [测试2-1]()
-
-* 测试3
-    * [测试3-1]()
+    * [Blockly 开发者工具](dev/blockly-developer-tools.md)
