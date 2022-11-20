@@ -6,9 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <!-- <meta name="viewport"
         content="width=device-width，initial-scale=1.0，maximum-scale=1.0，minimum-scale=1.e，user-scalable=no" /> -->
-    <title>Code Blockly - HTML - Dev</title>
+    <title>Code Blockly - HTML - DEV</title>
     <meta name="description" content="新一代图形化编辑器" />
-    <link rel="shortcut icon" href="../../static/logo/logo_dev lite.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="../../static/logo/logo_dev_lite.svg" type="image/x-icon" />
     <script>
         window.onload = function () {
             document.querySelector("html > body > span#loadtext").remove();
@@ -28,7 +28,7 @@
     <script src="./block/head.js"></script>
     <script src="./block/text.js"></script>
     <script src="./block/form.js"></script>
-    <script src="./block/other.js"></script>
+    <script src="./block/embed.js"></script>
     <script src="./block/video.js"></script>
     <script src="./block/attribute.js"></script>
     <script src="./block/css.js"></script>
@@ -45,10 +45,9 @@
     <script src="../../static/js/jq.js"></script>
     <!-- 图标库  -->
     <!-- 自制图标 利用IconPark上传使用 -->
-    <script
-        src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_16.60bee145f22bae1365c491b7afd16a28.js"></script>
+    <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_16.b6b7d14538bccb19e232bd6b137000ce.js"></script>
     <!--导入css -->
-    <link rel="stylesheet" href="../../css.css" />
+    <link rel="stylesheet" href="../../static/css/index.css" />
     <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
     <svg style="
                 position: absolute;
@@ -205,7 +204,7 @@
         </div>
         <div class="mdui-appbar mdui-appbar-fixed">
             <div class="mdui-toolbar mdui-color-indigo-0 ">
-                <img src="../../static/logo/logo_dev lite.svg" height="60">
+                <img src="../../static/logo/logo_dev_lite.svg" height="60">
                 <a class="mdui-typo-title" mdui-menu="{target: '#top-menu1'}">文件</a>
                 <a class="mdui-typo-title" mdui-menu="{target: '#top-menu2'}">更多</a>
                 <ul class="mdui-menu" id="top-menu1">
@@ -279,8 +278,8 @@
                         d="M17,0C13.6863,0,11,2.68629,11,6L11,8L4,8C1.79086,8,0,9.79086,0,12C0,14.2091,1.79086,16,4,16L60,16C62.2091,16,64,14.2091,64,12C64,9.79086,62.2091,8,60,8L53,8L53,6C53,2.68629,50.3137,0,47,0L17,0Z"
                         fill-rule="evenodd" fill="#FFFFFF" fill-opacity="1"></path>
                 </g>
-            </svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1"
-                width="52" id="delete-svg-down" class="delete-svg" height="45" viewBox="0 0 52 45">
+            </svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none"
+                version="1.1" width="52" id="delete-svg-down" class="delete-svg" height="45" viewBox="0 0 52 45">
                 <g style="mix-blend-mode:passthrough">
                     <path
                         d="M0,3C0,1.34315,1.34315,0,3,0L49,0C50.6569,0,52,1.34315,52,3L52,36C52,40.9706,47.9706,45,43,45L9,45C4.02944,45,0,40.9706,0,36L0,3ZM11,12.5C11,10.0147,13.0147,8,15.5,8C17.9853,8,20,10.0147,20,12.5L20,32.5C20,34.9853,17.9853,37,15.5,37C13.0147,37,11,34.9853,11,32.5L11,12.5ZM35.5,8C33.0147,8,31,10.0147,31,12.5L31,32.5C31,34.9853,33.0147,37,35.5,37C37.9853,37,40,34.9853,40,32.5L40,12.5C40,10.0147,37.9853,8,35.5,8Z"
@@ -288,15 +287,16 @@
                 </g>
             </svg></div>
         <!-- 历史垃圾桶 -->
-        <div class="history-trash-btn"><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-                fill="none" version="1.1" width="64" id="delete-svg-up" height="16" viewBox="0 0 64 16">
+        <div class="history-trash-btn"><svg xmlns="http://www.w3.org/2000/svg"
+                xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="64" id="delete-svg-up"
+                height="16" viewBox="0 0 64 16">
                 <g style="mix-blend-mode:passthrough">
                     <path
                         d="M17,0C13.6863,0,11,2.68629,11,6L11,8L4,8C1.79086,8,0,9.79086,0,12C0,14.2091,1.79086,16,4,16L60,16C62.2091,16,64,14.2091,64,12C64,9.79086,62.2091,8,60,8L53,8L53,6C53,2.68629,50.3137,0,47,0L17,0Z"
                         fill-rule="evenodd" fill="#FFFFFF" fill-opacity="1"></path>
                 </g>
-            </svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1"
-                width="52" id="delete-svg-down" height="45" viewBox="0 0 52 45">
+            </svg><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" fill="none"
+                version="1.1" width="52" id="delete-svg-down" height="45" viewBox="0 0 52 45">
                 <g style="mix-blend-mode:passthrough">
                     <path
                         d="M0,3C0,1.34315,1.34315,0,3,0L49,0C50.6569,0,52,1.34315,52,3L52,36C52,40.9706,47.9706,45,43,45L9,45C4.02944,45,0,40.9706,0,36L0,3ZM11,12.5C11,10.0147,13.0147,8,15.5,8C17.9853,8,20,10.0147,20,12.5L20,32.5C20,34.9853,17.9853,37,15.5,37C13.0147,37,11,34.9853,11,32.5L11,12.5ZM35.5,8C33.0147,8,31,10.0147,31,12.5L31,32.5C31,34.9853,33.0147,37,35.5,37C37.9853,37,40,34.9853,40,32.5L40,12.5C40,10.0147,37.9853,8,35.5,8Z"
@@ -309,364 +309,377 @@
             <div id="blocklyDiv"></div>
         </div>
         <!-- 积木定义xml -->
-        <xml id="toolbox" style="display: none">
-            <category name="模板" colour="%color template" expanded="true">
-                <block type="define_web_pages">
-                    <statement name="blocks">
-                        <block type="define_web_pages_head">
-                            <statement name="blocks">
-                                <block type="head_title">
-                                    <field name="title">Document</field>
-                                </block>
-                            </statement>
-                            <statement name="blocks">
-                                <block type="head_charset"></block>
-                            </statement>
-                            <next>
-                                <block type="define_web_pages_body"></block>
-                            </next>
-                        </block>
-                    </statement>
-                </block>
-            </category>
-            <category name="构造" colour="%color structure">
-                <block type="define_web_pages"></block>
-                <block type="define_web_pages_head"></block>
-                <block type="define_web_pages_body"></block>
-            </category>
-            <category name="头部" colour="%color head">
-                <block type="head_charset"></block>
-                <block type="head_title"></block>
-                <block type="head_link"></block>
-            </category>
-            <category name="嵌入" colour="%color embed">
-                <block type="script"></block>
-                <block type="style"></block>
-            </category>
-            <category name="属性" colour="%color attribute">
-                <block type="body_id"></block>
-            </category>
-            <category name="文本" colour="%color text">
-                <block type="body_chuntext"></block>
-                <block type="body_p"></block>
-                <block type="body_title"></block>
-                <block type="body_a"></block>
-                <block type="body_br"></block>
-                <block type="body_annotation"></block>
-            </category>
-            <category name="表单" colour="%color form" style="filter:blur(20px)">
-                <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
-                <block type="create_a_form"></block>
-                <block type="form_submit_button"></block>
-                <block type="form_select_box"></block>
-                <block type="form_text_box"></block>
-                <block type="form_bounding_box"></block>
-                <block type="form_select_down_menu"></block>
-                <block type="form_select_down_menu_optgroup"></block>
-                <block type="form_select_down_menu_option"></block>
-                <block type="form_bounding_box"></block>
-            </category>
-            <category name="媒体" colour="%color image">
-                <block type="video_image"></block>
-            </category>
-            <category name="css" colour="%color css"></category>
-            <sep></sep>
-            <category name="控制" colour="%color control">
-                <block type="controls_if"></block>
-                <block type="controls_repeat_ext" colour="#8ca6c0">
-                    <value name="TIMES">
-                        <shadow type="math_number">
-                            <field name="NUM">10</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="controls_whileUntil" colour="#8ca6c0"></block>
-                <block type="controls_for" colour="#8ca6c0">
-                    <field name="VAR" id="57g(4![Bc(~B67SRUvvd">i</field>
-                    <value name="FROM">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                    </value>
-                    <value name="TO">
-                        <shadow type="math_number">
-                            <field name="NUM">10</field>
-                        </shadow>
-                    </value>
-                    <value name="BY">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="controls_forEach" colour="#8ca6c0">
-                    <field name="VAR" id="=ea2SQ,8Dye^#~zQHfJV">j</field>
-                </block>
-                <block type="controls_flow_statements" colour="#8ca6c0"></block>
-            </category>
-            <category name="控制台" colour="%color console">
-                <block type="js_console_clear"></block>
-                <block type="js_console_log"></block>
-                <block type="js_console_warn"></block>
-                <block type="js_console_error"></block>
-            </category>
-            <category name="运算" colour="%color math">
-                <label text="数学"></label>
-                <block type="math_number"></block>
-                <block type="math_arithmetic">
-                    <value name="A">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                    </value>
-                    <value name="B">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="math_random_int">
-                    <value name="FROM">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                    </value>
-                    <value name="TO">
-                        <shadow type="math_number">
-                            <field name="NUM">100</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="math_random_float"></block>
-                <block type="math_number_property">
-                    <value name="NUMBER_TO_CHECK">
-                        <shadow type="math_number">
-                            <field name="NUM">0</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="math_single">
-                    <field name="OP">ROOT</field>
-                    <value name="NUM">
-                        <shadow type="math_number">
-                            <field name="NUM">9</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="math_trig">
-                    <field name="OP">SIN</field>
-                    <value name="NUM">
-                        <shadow type="math_number">
-                            <field name="NUM">45</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="math_constant"></block>
-                <block type="math_round">
-                    <value name="NUM">
-                        <shadow type="math_number">
-                            <field name="NUM">3.1</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="math_on_list"></block>
-                <block type="math_modulo">
-                    <value name="DIVIDEND">
-                        <shadow type="math_number">
-                            <field name="NUM">64</field>
-                        </shadow>
-                    </value>
-                    <value name="DIVISOR">
-                        <shadow type="math_number">
-                            <field name="NUM">10</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="math_constrain">
-                    <value name="VALUE">
-                        <shadow type="math_number">
-                            <field name="NUM">50</field>
-                        </shadow>
-                    </value>
-                    <value name="LOW">
-                        <shadow type="math_number">
-                            <field name="NUM">1</field>
-                        </shadow>
-                    </value>
-                    <value name="HIGH">
-                        <shadow type="math_number">
-                            <field name="NUM">100</field>
-                        </shadow>
-                    </value>
-                </block>
-                <label text="逻辑"></label>
-                <block type="logic_compare"></block>
-                <block type="logic_operation"></block>
-                <block type="logic_boolean"></block>
-                <block type="logic_ternary"></block>
-                <block type="logic_null"></block>
-                <label text="字符串"></label>
-                <block type="text"></block>
-                <block type="text_join">
-                    <mutation items="2">
-                </block>
-                <block type="text_append">
-                    <value name="TEXT">
-                        <shadow type="text">
-                            <field name="TEXT" />
-                        </shadow>
-                    </value>
-                </block>
-                <block type="text_length">
-                    <value name="MESSAGE">
-                        <shadow type="text">
-                            <field name="TEXT">abc</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="text_isEmpty">
-                    <value name="MESSAGE">
-                        <shadow type="text">
-                            <field name="TEXT"></field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="text_indexOf">
-                    <field name="END">FIRST</field>
-                    <value name="VALUE">
-                        <shadow type="variables_get">
-                            <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
-                        </shadow>
-                    </value>
-                    <value name="FIND">
-                        <block type="text">
-                            <field name="TEXT">abc</field>
-                        </block>
-                    </value>
-                </block>
-                <block type="text_charAt">
-                    <mutation at="true" />
-                    <field name="WHERE">FROM_START</field>
-                    <value name="VALUE">
-                        <shadow type="variables_get">
-                            <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="text_getSubstring">
-                    <mutation at1="true" at2="true" />
-                    <field name="WHERE1">FROM_START</field>
-                    <field name="WHERE2">FROM_START</field>
-                    <value name="STRING">
-                        <shadow type="variables_get">
-                            <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="text_changeCase">
-                    <field name="CASE">UPPERCASE</field>
-                    <value name="TEXT">
-                        <shadow type="text">
-                            <field name="TEXT">abc</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="text_trim">
-                    <field name="MODE">BOTH</field>
-                    <value name="TEXT">
-                        <shadow type="text">
-                            <field name="TEXT">abc</field>
-                        </shadow>
-                    </value>
-                </block>
-            </category>
-            <category name="变量" colour="%color varible" custom="VARIABLE"></category>
-            <category name="列表" colour="%color list">
-                <block type="lists_create_with">
-                    <mutation items="1">
-                </block>
-                <block type="lists_create_with">
-                    <mutation items="3">
-                </block>
-                <block type="lists_repeat">
-                    <value name="NUM">
-                        <shadow type="math_number">
-                            <field name="NUM">5</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="lists_length"></block>
-                <block type="lists_isEmpty"></block>
-                <block type="lists_indexOf">
-                    <field name="END">FIRST</field>
-                    <value name="VALUE">
-                        <shadow type="variables_get">
-                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="lists_getIndex">
-                    <mutation statement="false" at="true" />
-                    <field name="MODE">GET</field>
-                    <field name="WHERE">FROM_START</field>
-                    <value name="VALUE">
-                        <shadow type="variables_get">
-                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="lists_setIndex">
-                    <mutation at="true" />
-                    <field name="MODE">SET</field>
-                    <field name="WHERE">FROM_START</field>
-                    <value name="LIST">
-                        <shadow type="variables_get">
-                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="lists_getSublist">
-                    <mutation at1="true" at2="true" />
-                    <field name="WHERE1">FROM_START</field>
-                    <field name="WHERE2">FROM_START</field>
-                    <value name="LIST">
-                        <shadow type="variables_get">
-                            <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
-                </block>
-                </shadow>
-                </block>
-                <block type="lists_split">
-                    <mutation mode="SPLIT" />
-                    <field name="MODE">SPLIT</field>
-                    <value name="DELIM">
-                        <shadow type="text">
-                            <field name="TEXT">,</field>
-                        </shadow>
-                    </value>
-                </block>
-                <block type="lists_sort">
-                    <field name="TYPE">NUMERIC</field>
-                    <field name="DIRECTION">1</field>
-                </block>
-            </category>
-            <category name="对象" colour="%color object">
-                <block type="object_null"></block>
-                <block type="object_set"></block>
-                <block type="object_get"></block>
-                <block type="object_delete"></block>
-                <block type="object_inc"></block>
-                <block type="object_geto"></block>
-                <block type="object_copy"></block>
-                <block type="object_freeze"></block>
-                <block type="object_isfreeze"></block>
-            </category>
-            <category name="函数" colour="%color function" custom="PROCEDURE"></category>
-            <category name="历史" expanded="true" colour="#aaa">
-                <button text="点我清空" callbackkey="Clear history"></button>
-                <label text="空空如也"></label>
-            </category>
-        </xml>
     </div>
+    <xml id="toolbox" style="display: none">
+        <category name="模板" colour="%color template" expanded="true">
+            <block type="define_web_pages">
+                <statement name="blocks">
+                    <block type="define_web_pages_head">
+                        <statement name="blocks">
+                            <block type="head_title">
+                                <field name="title">Document</field>
+                            </block>
+                        </statement>
+                        <statement name="blocks">
+                            <block type="head_charset"></block>
+                        </statement>
+                        <next>
+                            <block type="define_web_pages_body"></block>
+                        </next>
+                    </block>
+                </statement>
+            </block>
+        </category>
+        <category name="构造" colour="%color structure">
+            <block type="define_web_pages"></block>
+            <block type="define_web_pages_head"></block>
+            <block type="define_web_pages_body"></block>
+        </category>
+        <category name="头部" colour="%color head">
+            <block type="head_charset"></block>
+            <block type="head_title"></block>
+            <block type="head_link"></block>
+        </category>
+        <category name="嵌入" colour="%color embed">
+            <block type="script"></block>
+            <block type="style"></block>
+            <block type="iframe"></block>
+        </category>
+        <category name="属性" colour="%color attribute">
+            <block type="body_id"></block>
+            <block type="body_width"></block>
+            <block type="body_height"></block>
+        </category>
+        <category name="文本" colour="%color text">
+            <block type="body_chuntext"></block>
+            <block type="body_p"></block>
+            <block type="body_title"></block>
+            <block type="body_a"></block>
+            <block type="body_br"></block>
+            <block type="body_annotation"></block>
+        </category>
+        <category name="表单" colour="%color form" style="filter:blur(20px)">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="create_a_form"></block>
+            <block type="form_submit_button"></block>
+            <block type="form_select_box"></block>
+            <block type="form_text_box"></block>
+            <block type="form_bounding_box"></block>
+            <block type="form_select_down_menu"></block>
+            <block type="form_select_down_menu_optgroup"></block>
+            <block type="form_select_down_menu_option"></block>
+            <block type="form_bounding_box"></block>
+        </category>
+        <category name="媒体" colour="%color image">
+            <block type="video_image"></block>
+        </category>
+        <category name="css" colour="%color css">
+            <block type="css_create"></block>
+            <block type="css_color"></block>
+            <block type="css_color_rgb"></block>
+            <block type="css_background_color"></block>
+            <block type="css_background_image"></block>
+            <block type="css_Background_Image_Style"></block>
+            <block type="css_Text_alignment"></block>
+            <block type="css_Setting_Text_Embellishments"></block>
+            <block type="css_Setting_Text_rientation"></block>
+        </category>
+        <sep></sep>
+        <category name="控制" colour="%color control">
+            <block type="controls_if"></block>
+            <block type="controls_repeat_ext" colour="#8ca6c0">
+                <value name="TIMES">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="controls_whileUntil" colour="#8ca6c0"></block>
+            <block type="controls_for" colour="#8ca6c0">
+                <field name="VAR" id="57g(4![Bc(~B67SRUvvd">i</field>
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+                <value name="BY">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="controls_forEach" colour="#8ca6c0">
+                <field name="VAR" id="=ea2SQ,8Dye^#~zQHfJV">j</field>
+            </block>
+            <block type="controls_flow_statements" colour="#8ca6c0"></block>
+        </category>
+        <category name="控制台" colour="%color console">
+            <block type="js_console_clear"></block>
+            <block type="js_console_log"></block>
+            <block type="js_console_warn"></block>
+            <block type="js_console_error"></block>
+        </category>
+        <category name="运算" colour="%color math">
+            <label text="数学"></label>
+            <block type="math_number"></block>
+            <block type="math_arithmetic">
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_random_int">
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_random_float"></block>
+            <block type="math_number_property">
+                <value name="NUMBER_TO_CHECK">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_single">
+                <field name="OP">ROOT</field>
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">9</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_trig">
+                <field name="OP">SIN</field>
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">45</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_constant"></block>
+            <block type="math_round">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">3.1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_on_list"></block>
+            <block type="math_modulo">
+                <value name="DIVIDEND">
+                    <shadow type="math_number">
+                        <field name="NUM">64</field>
+                    </shadow>
+                </value>
+                <value name="DIVISOR">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_constrain">
+                <value name="VALUE">
+                    <shadow type="math_number">
+                        <field name="NUM">50</field>
+                    </shadow>
+                </value>
+                <value name="LOW">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="HIGH">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <label text="逻辑"></label>
+            <block type="logic_compare"></block>
+            <block type="logic_operation"></block>
+            <block type="logic_boolean"></block>
+            <block type="logic_ternary"></block>
+            <block type="logic_null"></block>
+            <label text="字符串"></label>
+            <block type="text"></block>
+            <block type="text_join">
+                <mutation items="2">
+            </block>
+            <block type="text_append">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT" />
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_length">
+                <value name="MESSAGE">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_isEmpty">
+                <value name="MESSAGE">
+                    <shadow type="text">
+                        <field name="TEXT"></field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_indexOf">
+                <field name="END">FIRST</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                    </shadow>
+                </value>
+                <value name="FIND">
+                    <block type="text">
+                        <field name="TEXT">abc</field>
+                    </block>
+                </value>
+            </block>
+            <block type="text_charAt">
+                <mutation at="true" />
+                <field name="WHERE">FROM_START</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_getSubstring">
+                <mutation at1="true" at2="true" />
+                <field name="WHERE1">FROM_START</field>
+                <field name="WHERE2">FROM_START</field>
+                <value name="STRING">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_changeCase">
+                <field name="CASE">UPPERCASE</field>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_trim">
+                <field name="MODE">BOTH</field>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <category name="变量" colour="%color varible" custom="VARIABLE"></category>
+        <category name="列表" colour="%color list">
+            <block type="lists_create_with">
+                <mutation items="1">
+            </block>
+            <block type="lists_create_with">
+                <mutation items="3">
+            </block>
+            <block type="lists_repeat">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_length"></block>
+            <block type="lists_isEmpty"></block>
+            <block type="lists_indexOf">
+                <field name="END">FIRST</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_getIndex">
+                <mutation statement="false" at="true" />
+                <field name="MODE">GET</field>
+                <field name="WHERE">FROM_START</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_setIndex">
+                <mutation at="true" />
+                <field name="MODE">SET</field>
+                <field name="WHERE">FROM_START</field>
+                <value name="LIST">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_getSublist">
+                <mutation at1="true" at2="true" />
+                <field name="WHERE1">FROM_START</field>
+                <field name="WHERE2">FROM_START</field>
+                <value name="LIST">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+            </block>
+            </shadow>
+            </block>
+            <block type="lists_split">
+                <mutation mode="SPLIT" />
+                <field name="MODE">SPLIT</field>
+                <value name="DELIM">
+                    <shadow type="text">
+                        <field name="TEXT">,</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="lists_sort">
+                <field name="TYPE">NUMERIC</field>
+                <field name="DIRECTION">1</field>
+            </block>
+        </category>
+        <category name="对象" colour="%color object">
+            <block type="object_null"></block>
+            <block type="object_set"></block>
+            <block type="object_get"></block>
+            <block type="object_delete"></block>
+            <block type="object_inc"></block>
+            <block type="object_geto"></block>
+            <block type="object_copy"></block>
+            <block type="object_freeze"></block>
+            <block type="object_isfreeze"></block>
+        </category>
+        <category name="函数" colour="%color function" custom="PROCEDURE"></category>
+        <category name="历史" expanded="true" colour="#aaa">
+            <button text="点我清空" callbackkey="Clear history"></button>
+            <label text="空空如也"></label>
+        </category>
+    </xml>
     <!-- 加载blockly -->
     <script src="./script/index.js"></script>
     <script src="./script/files.js"></script>

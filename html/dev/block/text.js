@@ -18,7 +18,7 @@ Blockly.Blocks["body_p"] = {
 };
 
 Blockly.JavaScript["body_p"] = function (block) {
-  var statements_statements = Blockly.JavaScript.statementToCode(
+  var statements = Blockly.JavaScript.statementToCode(
     block,
     "statements"
   );
@@ -26,7 +26,7 @@ Blockly.JavaScript["body_p"] = function (block) {
     block,
     "content"
   );
-  var code = `<p${statements_statements}>\n${text_content}</p$>\n`;
+  var code = `<p${statements}>\n${text_content}</p>\n`;
   return code;
 };
 
@@ -37,12 +37,12 @@ Blockly.Blocks["body_title"] = {
       .appendField("创建")
       .appendField(
         new Blockly.FieldDropdown([
-          ["一号", "1"],
-          ["二号", "2"],
-          ["三号", "3"],
-          ["四号", "4"],
-          ["五号", "5"],
-          ["六号", "6"],
+          ["一级", "1"],
+          ["二级", "2"],
+          ["三级", "3"],
+          ["四级", "4"],
+          ["五级", "5"],
+          ["六级", "6"],
         ]),
         "title_desc"
       )
@@ -106,11 +106,11 @@ Blockly.JavaScript["body_a"] = function (block) {
     "content"
   );;
   var text_link = block.getFieldValue("link");
-  var statements_statements = Blockly.JavaScript.statementToCode(
+  var statements = Blockly.JavaScript.statementToCode(
     block,
     "statements"
   );
-  var code = `<a href="${text_link}"${statements_statements}>\n${text_content}</a>\n`;
+  var code = `<a href="${text_link}"${statements}>\n${text_content}</a>\n`;
   return code;
 };
 
@@ -171,4 +171,24 @@ Blockly.Blocks['body_chuntext'] = {
 Blockly.JavaScript['body_chuntext'] = function (block) {
   var text_text = block.getFieldValue('text');
   return text_text+"\n";
+};
+
+
+
+Blockly.Blocks['text_hr'] = {
+  init: function() {
+    this.appendDummyInput()
+        .appendField("分割线");
+    this.setPreviousStatement(true, null);
+    this.setNextStatement(true, null);
+    this.setColour(color.text);
+ this.setTooltip("");
+ this.setHelpUrl("");
+  }
+};
+
+
+Blockly.JavaScript['text_hr'] = function(block) {
+  var code = '<hr>\n';
+  return code;
 };

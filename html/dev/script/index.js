@@ -1,4 +1,4 @@
-var version = "html-V0.2.0-dev(11030)";
+var version = "html-V0.2.0-dev(11050)";
 console.log(
     `%c 
 #####                           ######                                  #####                      
@@ -27,7 +27,7 @@ console.log("你好，欢迎使用 Code Blockly！");
 console.log(
     "这是一款基于 Google Blockly 创作的图形化软件，由 Code Dream Star 团队制作"
 );
-console.log("特别鸣谢：小宏XeLa，木水屑，广安，凌cloud");
+console.log("特别鸣谢：小宏XeLa，木水屑，广安，Tafi，凌cloud");
 console.log("代码开源：https://github.com/code-dream-star/code-blockly/");
 console.log(
     version,
@@ -88,9 +88,9 @@ const color = {
     list: "#f9cc37",
     colour: "#2bc9a7",
     //-----
-    css: "#0053fc",
+    css: "#2ec7e7",
     image: "#9933ff",
-    text: "#ef9b43",
+    text: "#f7c862",
     template: "#19c6f5",
     structure: "#6dacff",
     object: "#a073ff",
@@ -356,7 +356,7 @@ workspace.setTheme(BlocklyTheme);
         async alert(w = "", f = () => { }) {
             await swal("", w, {
                 buttons: {
-                    text: "好！",
+                    text: "收到！",
                 },
             });
             f();
@@ -440,7 +440,6 @@ setInterval(() => {
     $(".delect-block-zone").css("width", $(".injectionDiv > .blocklyToolboxDiv").width())
     $(".delect-block-zone").css("top", $(".injectionDiv > .blocklyToolboxDiv").position().top)
 });
-
 // 历史
 workspace.registerButtonCallback("Clear history", function () {
     Blockly.confirm("确认清空历史？", function (e) {
@@ -464,3 +463,4 @@ setInterval(() => {
     const s = $(".injectionDiv > .blocklyToolboxDiv").width() / 2 - $(".history-trash-btn").width() / 2;
     $(".history-trash-btn")[0].style.padding = `5px ${s}px`;
 });
+
