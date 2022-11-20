@@ -18,7 +18,7 @@ Blockly.JavaScript["script"] = function (block) {
 
 Blockly.Blocks["style"] = {
     init: function () {
-        this.appendDummyInput().appendField("嵌入css代码");
+        this.appendDummyInput().appendField("嵌入css样式");
         this.appendStatementInput("CODE").setCheck(null);
         this.setPreviousStatement(true, null);
         this.setNextStatement(true, null);
