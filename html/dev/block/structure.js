@@ -5,7 +5,7 @@ Blockly.Blocks["define_web_pages"] = {
       this.appendDummyInput().appendField("定义网页");
       this.appendStatementInput("blocks").setCheck(null);
       this.setColour(color.structure);
-      this.setTooltip("头部配置");
+      this.setTooltip("头部框架");
       this.setHelpUrl("");
     },
   };
@@ -18,12 +18,12 @@ Blockly.Blocks["define_web_pages"] = {
   
   Blockly.Blocks["define_web_pages_head"] = {
     init: function () {
-      this.appendDummyInput().appendField("头部配置");
+      this.appendDummyInput().appendField("头部框架");
       this.appendStatementInput("blocks").setCheck(null);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(color.structure);
-      this.setTooltip("头部配置");
+      this.setTooltip("头部框架");
       this.setHelpUrl("");
     },
   };
@@ -37,12 +37,12 @@ Blockly.Blocks["define_web_pages"] = {
   
   Blockly.Blocks["define_web_pages_body"] = {
     init: function () {
-      this.appendDummyInput().appendField("身体配置");
+      this.appendDummyInput().appendField("身体框架");
       this.appendStatementInput("blocks").setCheck(null);
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(color.structure);
-      this.setTooltip("身体配置");
+      this.setTooltip("身体框架");
       this.setHelpUrl("");
     },
   };
