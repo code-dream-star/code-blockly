@@ -1,4 +1,4 @@
- <center><a href="https://github.com/code-dream-star/code-blockly/"><img src="../static/logo/logo_docs lite.svg" width="128"></a> <h1>Code Blockly</h1></center> 
+ <center><a href="https://github.com/code-dream-star/code-blockly/"><img src="../static/logo/logo_docs_lite.svg" width="128"></a> <h1>Code Blockly</h1></center> 
 
 <center>
     <a href="https://github.com/code-dream-star/code-blockly/blob/main/licence"><img src="https://img.shields.io/github/license/code-dream-star/code-blockly"></a>
@@ -17,6 +17,7 @@ Code Blockly基于开源的谷歌的Blockly开发，其含有多种语言的图�
 - [小宏XeLa](https://github.com/xiaohong2022)
 - [木水屑](https://github.com/123213123123)
 - [广安awa](https://github.com/guanganawa)
+- Tafi
 
 ## 特别鸣谢
 
