@@ -83,7 +83,7 @@ Blockly.Blocks["body_a"] = {
       .appendField("创建超链接文本")
       .appendField("链接")
       .appendField(
-        new Blockly.FieldTextInput("https://github.com"),
+        new Blockly.FieldTextInput("https://code-dream-star.github.io"),
         "link"
       );
     this.appendStatementInput("statements")
