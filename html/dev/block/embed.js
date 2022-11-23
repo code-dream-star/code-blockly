@@ -39,7 +39,7 @@ Blockly.Blocks["iframe"] = {
         this.appendDummyInput()
             .appendField("嵌入网页 链接：")
             .appendField(
-                new Blockly.FieldTextInput("https://github.com"),
+                new Blockly.FieldTextInput("https://code-dream-star.github.io"),
                 "url"
             );
         this.appendDummyInput()
