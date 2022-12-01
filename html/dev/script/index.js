@@ -401,6 +401,7 @@ workspace.setTheme(BlocklyTheme);
     }
 })();
 
+//强制灰色默哀页面
 document.querySelector("html").style.filter = "grayscale(1)";
 !(function () {
     const date = new Date();
