@@ -34,7 +34,7 @@ console.log(
     "Copyright © 2022 by Code Dream Star",
     "All rights reserved"
 );
-;
+
 (async function main() {
     "use strict";
     var a = {
@@ -401,8 +401,6 @@ workspace.setTheme(BlocklyTheme);
     }
 })();
 
-//强制灰色默哀页面
-document.querySelector("html").style.filter = "grayscale(1)";
 !(function () {
     const date = new Date();
     const list = [
