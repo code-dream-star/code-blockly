@@ -1,4 +1,9 @@
-// head
+/**
+ * 头部(head)标签
+ * 5个
+ * 文档✓
+ */
+
 Blockly.Blocks["head_title"] = {
     init: function () {
         this.appendDummyInput()
@@ -24,9 +29,9 @@ Blockly.Blocks["head_charset"] = {
             .appendField("使用字符编码")
             .appendField(
                 new Blockly.FieldDropdown([
-                  ["UTF-8", "utf-8"],
-                  ["中文简体", "GBK"],
-                  ["中文繁体", "Big5"],
+                    ["UTF-8（默认）", "utf-8"],
+                    ["GBK（中文简体）", "GBK"],
+                    ["Big5（中文繁体）", "Big5"],
                 ]),
                 "CODE"
             );
@@ -70,8 +75,8 @@ Blockly.Blocks["head_link"] = {
 };
 
 Blockly.JavaScript["head_link"] = function (block) {
-    var dropdown_link_type = block.getFieldValue("LINK_TYPE");
-    var text_link = block.getFieldValue("LINK");
+    var D = block.getFieldValue("LINK_TYPE");
+    var T = block.getFieldValue("LINK");
     if (dropdown_link_type == "icon") {
         var code = `<link rel="shortcut icon" href="${text_link}" />`;
     } else if (dropdown_link_type == "css") {
@@ -79,5 +84,46 @@ Blockly.JavaScript["head_link"] = function (block) {
     } else {
         var code = `<script src="${text_link}"></script>`;
     }
+    var code = `<${D == "js" ? "script" : `link ref="${D == "css" ? "stylesheet" : "shortcut"}"`} ${D == "js" ? "src" : "href"}="${T}"></${D == "js" ? "script" : `link`}>`
     return code + "\n";
 };
+
+
+Blockly.Blocks['head_keywords'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("设置网站关键词")
+            .appendField(new Blockly.FieldTextInput("default"), "keywords");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.head);
+        this.setTooltip("用,隔开");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['head_keywords'] = function (block) {
+    var keywords = block.getFieldValue('keywords');
+    var code = `<meta name="Keywords" content="${keywords}"/>\n`;
+    return code;
+};
+
+
+Blockly.Blocks['head_description'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("设置网站简介")
+          .appendField(new Blockly.FieldTextInput("这是一个网页"), "description");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(color.head);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['head_description'] = function(block) {
+    var description = block.getFieldValue('description');
+    var code = `<meta name="description" content="${description}">`;
+    return code;
+  };

@@ -1,5 +1,9 @@
+/**
+ * 构造(define)标签
+ * 3个
+ * 文档✓
+ */
 
-// 构造
 Blockly.Blocks["define_web_pages"] = {
     init: function () {
       this.appendDummyInput().appendField("定义网页");

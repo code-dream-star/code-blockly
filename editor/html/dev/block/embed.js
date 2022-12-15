@@ -1,3 +1,9 @@
+/**
+ * 嵌入(embed)标签
+ * 3个
+ * 文档✓
+ */
+
 Blockly.Blocks["script"] = {
     init: function () {
         this.appendDummyInput().appendField("嵌入javascript代码");
@@ -44,9 +50,9 @@ Blockly.Blocks["iframe"] = {
             );
         this.appendDummyInput()
             .appendField("长")
-            .appendField(new Blockly.FieldTextInput("200"), "width")
+            .appendField(new Blockly.FieldTextInput("200px"), "width")
             .appendField("宽")
-            .appendField(new Blockly.FieldTextInput("300"), "height");
+            .appendField(new Blockly.FieldTextInput("300px"), "height");
         this.appendStatementInput("statements")
             .setCheck(null)
             .appendField("配置：");

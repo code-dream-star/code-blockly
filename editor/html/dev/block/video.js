@@ -1,3 +1,9 @@
+/**
+ * 媒体(video)标签
+ * 1个
+ * 文档✓
+ */
+
 Blockly.Blocks["video_image"] = {
     init: function () {
       this.appendDummyInput().appendField("创建图片");
@@ -9,9 +15,9 @@ Blockly.Blocks["video_image"] = {
         );
       this.appendDummyInput()
         .appendField("长")
-        .appendField(new Blockly.FieldTextInput("100"), "width")
+        .appendField(new Blockly.FieldTextInput("100px"), "width")
         .appendField("宽")
-        .appendField(new Blockly.FieldTextInput("100"), "height");
+        .appendField(new Blockly.FieldTextInput("100px"), "height");
       this.appendDummyInput()
         .appendField("图片描述:")
         .appendField(new Blockly.FieldTextInput("alt"), "alt");

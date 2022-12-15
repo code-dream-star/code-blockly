@@ -1,4 +1,8 @@
-//form表单
+/**
+ * 文本(text)标签
+ * ？个
+ * 文档×
+ */
 Blockly.Blocks["create_a_form"] = {
     init: function () {
         this.appendDummyInput().appendField("创建表单");

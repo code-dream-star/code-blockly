@@ -1,6 +1,6 @@
 {
-    "name": "CodeBlockly",
-    "short_name": "CodeBlockly",
+    "name": "Code Blockly",
+    "short_name": "Code Blockly",
     "start_url": "/index.html",
     "id": "/index.html",
     "display": "standalone",
@@ -8,11 +8,11 @@
     "theme_color": "#0af",
     "mode": "standalone",
     "scope": "/",
-    "description": "Code Blockly基于开源的谷歌的Blockly开发，其含有多种语言的图形化界面非常利于新手快速上手编程，体验编程的乐趣。",
+    "description": "新一代图形化编辑器",
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "./static/logo/logo.ong",
+            "src": "./static/logo/logo.png",
             "type": "image/png",
             "sizes": "512x512",
             "purpose": "any"

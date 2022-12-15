@@ -1,4 +1,10 @@
-Blockly.Blocks['body_id'] = {
+/**
+ * 属性(attribute)标签
+ * 3个
+ * 文档✓
+ */
+
+Blockly.Blocks['attribute_id'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("设置ID为：")
@@ -11,14 +17,14 @@ Blockly.Blocks['body_id'] = {
     }
   };
 
-  Blockly.JavaScript['body_id'] = function(block) {
+  Blockly.JavaScript['attribute_id'] = function(block) {
     var text_id = block.getFieldValue('ID');
     var code = ` id="${text_id}"`;
     return code;
   };
 
 
-  Blockly.Blocks['body_width'] = {
+  Blockly.Blocks['attribute_width'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("设置宽度为：")
@@ -31,14 +37,14 @@ Blockly.Blocks['body_id'] = {
     }
   };
 
-  Blockly.JavaScript['body_width'] = function(block) {
+  Blockly.JavaScript['attribute_width'] = function(block) {
     var text_num = block.getFieldValue('num');
     var code = ` width="${text_num}"`;
     return code;
   };
 
 
-  Blockly.Blocks['body_height'] = {
+  Blockly.Blocks['attribute_height'] = {
     init: function() {
       this.appendDummyInput()
           .appendField("设置高度为：")
@@ -51,7 +57,7 @@ Blockly.Blocks['body_id'] = {
     }
   };
 
-  Blockly.JavaScript['body_height'] = function(block) {
+  Blockly.JavaScript['attribute_height'] = function(block) {
     var text_num = block.getFieldValue('num');
     var code = ` height="${text_num}"`;
     return code;

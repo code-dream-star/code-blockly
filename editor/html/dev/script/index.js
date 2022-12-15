@@ -407,7 +407,7 @@ workspace.setTheme(BlocklyTheme);
         [12, 13],
         [2, 21],
         [3, 21],
-        [11,30],
+        [9,18]
     ];
     if (
         list

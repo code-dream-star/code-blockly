@@ -1,5 +1,5 @@
 // 文本
-Blockly.Blocks["body_p"] = {
+Blockly.Blocks["text_p"] = {
   init: function () {
     this.appendDummyInput()
       .appendField("创建段落文本  ")
@@ -17,7 +17,7 @@ Blockly.Blocks["body_p"] = {
   },
 };
 
-Blockly.JavaScript["body_p"] = function (block) {
+Blockly.JavaScript["text_p"] = function (block) {
   var statements = Blockly.JavaScript.statementToCode(
     block,
     "statements"
@@ -30,8 +30,13 @@ Blockly.JavaScript["body_p"] = function (block) {
   return code;
 };
 
+/**
+ * 文本(text)标签
+ * 6个
+ * 文档✓
+ */
 
-Blockly.Blocks["body_title"] = {
+Blockly.Blocks["text_title"] = {
   init: function () {
     this.appendDummyInput()
       .appendField("创建")
@@ -61,7 +66,7 @@ Blockly.Blocks["body_title"] = {
   },
 };
 
-Blockly.JavaScript["body_title"] = function (block) {
+Blockly.JavaScript["text_title"] = function (block) {
   var text_id = block.getFieldValue("ID");
   var dropdown_title_desc = block.getFieldValue("title_desc");
   var text_title_more = Blockly.JavaScript.statementToCode(
@@ -77,7 +82,7 @@ Blockly.JavaScript["body_title"] = function (block) {
 };
 
 
-Blockly.Blocks["body_a"] = {
+Blockly.Blocks["text_a"] = {
   init: function () {
     this.appendDummyInput()
       .appendField("创建超链接文本")
@@ -100,7 +105,7 @@ Blockly.Blocks["body_a"] = {
   },
 };
 
-Blockly.JavaScript["body_a"] = function (block) {
+Blockly.JavaScript["text_a"] = function (block) {
   var text_content = Blockly.JavaScript.statementToCode(
     block,
     "content"
@@ -115,7 +120,7 @@ Blockly.JavaScript["body_a"] = function (block) {
 };
 
 
-Blockly.Blocks["body_br"] = {
+Blockly.Blocks["text_br"] = {
   init: function () {
     this.appendDummyInput().appendField("换行");
     this.setPreviousStatement(true, null);
@@ -126,13 +131,13 @@ Blockly.Blocks["body_br"] = {
   },
 };
 
-Blockly.JavaScript["body_br"] = function (block) {
+Blockly.JavaScript["text_br"] = function (block) {
   var code = "<br>\n";
   return code;
 };
 
 
-Blockly.Blocks["body_annotation"] = {
+Blockly.Blocks["text_annotation"] = {
   init: function () {
     this.appendDummyInput()
       .appendField("注释")
@@ -148,13 +153,13 @@ Blockly.Blocks["body_annotation"] = {
   },
 };
 
-Blockly.JavaScript["body_annotation"] = function (block) {
+Blockly.JavaScript["text_annotation"] = function (block) {
   var text_annotation = block.getFieldValue("annotation");
   var code = `<!-- ${text_annotation} -->\n`;
   return code;
 };
 
-Blockly.Blocks['body_chuntext'] = {
+Blockly.Blocks['text_chuntext'] = {
   init: function () {
     this.appendDummyInput()
       .appendField("纯文本")
@@ -168,7 +173,7 @@ Blockly.Blocks['body_chuntext'] = {
 };
 
 
-Blockly.JavaScript['body_chuntext'] = function (block) {
+Blockly.JavaScript['text_chuntext'] = function (block) {
   var text_text = block.getFieldValue('text');
   return text_text+"\n";
 };

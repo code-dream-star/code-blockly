@@ -1,4 +1,9 @@
-//css积木
+/**
+ * 层叠样式表(css)标签
+ * ？个
+ * 文档×
+ */
+
 Blockly.Blocks["css_create"] = {
     init: function () {
         this.appendDummyInput()

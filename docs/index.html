@@ -3,6 +3,7 @@
     <head>
         <meta charset="UTF-8" />
         <title>Code Blockly文档</title>
+        <link rel="manifest" href="../manifest.json" />
         <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
         <link
             rel="shortcut icon"
@@ -114,6 +115,32 @@
                 background-color: #ddd;
             }
         </style>
+        <script>
+            !(function () {
+                const date = new Date();
+                const list = [
+                    [12, 13],
+                    [2, 21],
+                    [3, 21],
+                    [11, 30],
+                ];
+                if (
+                    list
+                        .map((a) => {
+                            return JSON.stringify(a);
+                        })
+                        .includes(
+                            JSON.stringify([
+                                date.getMonth() + 1,
+                                date.getDate(),
+                            ])
+                        )
+                ) {
+                    document.querySelector("html").style.filter =
+                        "grayscale(1)";
+                }
+            })();
+        </script>
     </head>
     <body>
         <div id="app">加载中...</div>
@@ -128,9 +155,11 @@
                 loadNavbar: true, // 加载自定义导航栏
                 mergeNavbar: true, // 小屏设备下合并导航栏到侧边栏
                 themeColor: "#0af", // 主题色
+                notFoundPage: true, // 启用404页面
                 maxLevel: 4,
                 subMaxLevel: 4,
                 nameLink: "#/", // 点击文档标题后跳转的链接地址
+                disqus: "shortname", // disqus评论配置
                 search: {
                     // 搜索
                     maxAge: 86400000, // 过期时间，单位毫秒，默认一天
@@ -139,6 +168,13 @@
                     placeholder: "搜索", // 搜索框的提示语
                     depth: 4, // 搜索标题的最大层级, 1 - 6
                 },
+                pagination: {
+                    // 分页配置
+                    previousText: "上一章节",
+                    nextText: "下一章节",
+                    crossChapter: true,
+                    crossChapterText: true,
+                }
             };
         </script>
         <!-- 引入Docsify -->
@@ -153,6 +189,10 @@
         <script src="https://unpkg.com/docsify-copy-code/dist/docsify-copy-code.min.js"></script>
         <!-- 引入边侧栏分类折叠 -->
         <script src="https://unpkg.com/docsify-sidebar-collapse/dist/docsify-sidebar-collapse.min.js"></script>
+        <!-- 引入分页 -->
+        <script src="https://unpkg.com/docsify-pagination/dist/docsify-pagination.min.js"></script>
+        <!-- 引入评论 -->
+        <script src="https://cdn.jsdelivr.net/npm/docsify/lib/plugins/disqus.min.js"></script>
         <!-- 引入代码高亮 -->
         <script>
             `bash，clojure，cpp，css，diff，erlang，go，gradle，groovy，haskell，java，javascript，json，julia，kotlin，lisp，lua，makefile，markdown，matlab，objectivec，perl，php，python，r，ruby，rust，scala，sql，swift，typescript，verilog，vhdl，yaml`
