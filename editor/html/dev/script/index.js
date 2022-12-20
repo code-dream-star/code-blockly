@@ -1,4 +1,4 @@
-var version = "html-V0.2.0-dev(12000)";
+var version = "html-V0.2.0-dev(12022)";
 console.log(
     `%c 
 #####                           ######                                  #####                      
@@ -89,6 +89,7 @@ const color = {
     colour: "#2bc9a7",
     //-----
     css: "#2ec7e7",
+    //
     image: "#9933ff",
     text: "#f7c862",
     template: "#19c6f5",
@@ -129,8 +130,8 @@ var workspace = Blockly.inject("blocklyDiv", {
     comments: true, // 允许注释块
     sounds: true, // 有音效
     trashcan: true, // 显示垃圾桶
-    media: "../../blockly/media/", // 资源文件链接
-    theme: "../../blockly/core/theme/zelos.ts",
+    media: "../../../blockly/media/", // 资源文件链接
+    theme: "../../../blockly/core/theme/zelos.ts",
     renderer: "zelos", // 主题风格
 });
 
