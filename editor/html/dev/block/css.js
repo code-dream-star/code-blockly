@@ -3,120 +3,115 @@
  * ？个
  * 文档×
  */
-
 Blockly.Blocks["css_create"] = {
-     init: function () {
-          this.appendDummyInput()
-               .appendField("创建css样式：")
-               .appendField(new Blockly.FieldTextInput("css"), "NAME");
-          this.appendStatementInput("statements").setCheck(null);
-          this.setPreviousStatement(true, null);
-          this.setNextStatement(true, null);
-          this.setColour(color.css);
-          this.setTooltip("");
-          this.setHelpUrl("");
-     },
+    init: function () {
+        this.appendDummyInput()
+            .appendField("创建css样式：")
+            .appendField(new Blockly.FieldTextInput("css"), "NAME");
+        this.appendStatementInput("statements").setCheck(null);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.css);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    },
 };
 
 Blockly.JavaScript["css_create"] = function (block) {
-     var text_name = block.getFieldValue("NAME");
-     var statements = Blockly.JavaScript.statementToCode(block, "statements");
-     var code = `.${text_name} {
+    let text_name = block.getFieldValue("NAME");
+    let statements = Blockly.JavaScript.statementToCode(block, "statements");
+    let code = `.${text_name} {
     ${statements}
   }\n`;
-     return code;
+    return code;
 };
 
+
 Blockly.Blocks["css_color"] = {
-     init: function () {
-          this.appendDummyInput().appendField(
-               new Blockly.FieldColour("#2ec7e7"),
-               "color"
-          );
-          this.setOutput(true, null);
-          this.setColour(color.css);
-          this.setTooltip("");
-          this.setHelpUrl("");
-     },
+    init: function () {
+        this.appendDummyInput().appendField(
+            new Blockly.FieldColour("#2ec7e7"),
+            "color"
+        );
+        this.setOutput(true, "\"RGB\"");
+        this.setColour(color.css);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    },
 };
 
 Blockly.JavaScript["css_color"] = function (block) {
-     var colour_color = block.getFieldValue("color");
-     var code = `${colour_color}`;
-     return [code, Blockly.JavaScript.ORDER_NONE];
+    let colour_color = block.getFieldValue("color");
+    let code = `${colour_color}`;
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+
 Blockly.Blocks["css_color_rgb"] = {
-     init: function () {
-          this.appendDummyInput()
-               .appendField("R")
-               .appendField(new Blockly.FieldTextInput("255"), "red");
-          this.appendDummyInput()
-               .appendField("G")
-               .appendField(new Blockly.FieldTextInput("255"), "green");
-          this.appendDummyInput()
-               .appendField("B")
-               .appendField(new Blockly.FieldTextInput("255"), "blue");
-          this.setOutput(true, null);
-          this.setColour(color.css);
-          this.setTooltip("");
-          this.setHelpUrl("");
-     },
+    init: function () {
+        this.appendDummyInput()
+            .appendField("R")
+            .appendField(new Blockly.FieldTextInput("255"), "red");
+        this.appendDummyInput()
+            .appendField("G")
+            .appendField(new Blockly.FieldTextInput("255"), "green");
+        this.appendDummyInput()
+            .appendField("B")
+            .appendField(new Blockly.FieldTextInput("255"), "blue");
+        this.setOutput(true, "\"RGB\"");
+        this.setColour(color.css);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    },
 };
 
 Blockly.JavaScript["css_color_rgb"] = function (block) {
-     var red = block.getFieldValue("red");
-     var green = block.getFieldValue("green");
-     var blue = block.getFieldValue("blue");
-     var code = `rgb(${red}, ${green}, ${blue})`;
-     return [code, Blockly.JavaScript.ORDER_NONE];
+    let red = block.getFieldValue("red");
+    let green = block.getFieldValue("green");
+    let blue = block.getFieldValue("blue");
+    let code = `rgb(${red}, ${green}, ${blue})`;
+    return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
-Blockly.Blocks["css_background_color"] = {
-     init: function () {
-          this.appendValueInput("color")
-               .setCheck("String")
-               .appendField("设置背景颜色");
-          this.setPreviousStatement(true, null);
-          this.setNextStatement(true, null);
-          this.setColour(color.css);
-          this.setTooltip("");
-          this.setHelpUrl("");
-     },
+
+Blockly.Blocks['css_background_color'] = {
+    init: function () {
+        this.appendValueInput("COLOR")
+            .setCheck("\"RGB\"")
+            .appendField("设置背景颜色");
+        this.setColour(color.css);
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
 };
 
-Blockly.JavaScript["css_background_color"] = function (block) {
-     var value_name = Blockly.JavaScript.valueToCode(
-          block,
-          "color",
-          Blockly.JavaScript.ORDER_ATOMIC
-     );
-     var code = `background: ${value_name};\n`;
-     return code;
+Blockly.JavaScript['css_background_color'] = function (block) {
+    let color = Blockly.JavaScript.valueToCode(block, 'COLOR', Blockly.JavaScript.ORDER_ATOMIC);
+    let code = `background: ${color};\n`;
+    return code;
 };
 
-Blockly.Blocks["css_background_image"] = {
-     init: function () {
-          this.appendValueInput("url")
-               .setCheck("String")
-               .appendField("设置背景图片   URL");
-          this.setPreviousStatement(true, null);
-          this.setNextStatement(true, null);
-          this.setColour(color.css);
-          this.setTooltip("");
-          this.setHelpUrl("");
-     },
-};
 
-Blockly.JavaScript["css_background_image"] = function (block) {
-     var value_name = Blockly.JavaScript.valueToCode(
-          block,
-          "NAME",
-          Blockly.JavaScript.ORDER_ATOMIC
-     );
-     var code = "...;\n";
-     return code;
-};
+Blockly.Blocks['css_background_image'] = {
+    init: function() {
+      this.appendDummyInput()
+          .appendField("设置背景图片 URL：")
+          .appendField(new Blockly.FieldTextInput(""), "URL");
+      this.setPreviousStatement(true, null);
+      this.setNextStatement(true, null);
+      this.setColour(color.css);
+   this.setTooltip("");
+   this.setHelpUrl("");
+    }
+  };
+
+  Blockly.JavaScript['css_background_image'] = function(block) {
+    let url = block.getFieldValue('URL');
+    let code = '...;\n';
+    return code;
+  };
 
 Blockly.Blocks["css_Background_Image_Style"] = {
      init: function () {
