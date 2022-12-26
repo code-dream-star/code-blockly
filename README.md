@@ -8,5 +8,4 @@
  <img src=https://img.shields.io/badge/author-Code_Dream_Star-blue />
 </p>
 
-Code Blockly 基于开源的 Google Blockly 开发，其含有多种语言的图形化界面非常利于新手快速上手编程，体验编程的乐趣。
-
+Code Blockly 是 Code Dream Star 基于开源的 Google Blockly 开发的图形化编辑器，其含有多种语言的图形化界面非常利于新手快速上手编程，体验编程的乐趣。
