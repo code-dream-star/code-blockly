@@ -186,6 +186,7 @@ export abstract class FieldInput<T extends InputTypes> extends Field<T> {
    */
   protected override doValueInvalid_(_invalidValue: AnyDuringMigration) {
     if (this.isBeingEdited_) {
+      this.isDirty_ = true;
       this.isTextValid_ = false;
       const oldValue = this.value_;
       // Revert value when the text becomes invalid.
@@ -207,12 +208,9 @@ export abstract class FieldInput<T extends InputTypes> extends Field<T> {
    *     that this is a string.
    */
   protected override doValueUpdate_(newValue: AnyDuringMigration) {
+    this.isDirty_ = true;
     this.isTextValid_ = true;
     this.value_ = newValue;
-    if (!this.isBeingEdited_) {
-      // This should only occur if setValue is triggered programmatically.
-      this.isDirty_ = true;
-    }
   }
 
   /**
@@ -273,7 +271,10 @@ export abstract class FieldInput<T extends InputTypes> extends Field<T> {
   }
 
   /**
-   * Show the inline free-text editor on top of the text.
+   * Show an editor for the field.
+   * Shows the inline free-text editor on top of the text by default.
+   * Shows a prompt editor for mobile browsers if the modalInputs option is
+   * enabled.
    *
    * @param _opt_e Optional mouse event that triggered the field to open, or
    *     undefined if triggered programmatically.
@@ -283,7 +284,7 @@ export abstract class FieldInput<T extends InputTypes> extends Field<T> {
   protected override showEditor_(_opt_e?: Event, opt_quietInput?: boolean) {
     this.workspace_ = (this.sourceBlock_ as BlockSvg).workspace;
     const quietInput = opt_quietInput || false;
-    if (!quietInput &&
+    if (!quietInput && this.workspace_.options.modalInputs &&
         (userAgent.MOBILE || userAgent.ANDROID || userAgent.IPAD)) {
       this.showPromptEditor_();
     } else {
@@ -293,7 +294,8 @@ export abstract class FieldInput<T extends InputTypes> extends Field<T> {
 
   /**
    * Create and show a text input editor that is a prompt (usually a popup).
-   * Mobile browsers have issues with in-line textareas (focus and keyboards).
+   * Mobile browsers may have issues with in-line textareas (focus and
+   * keyboards).
    */
   private showPromptEditor_() {
     dialog.prompt(
@@ -379,7 +381,6 @@ export abstract class FieldInput<T extends InputTypes> extends Field<T> {
 
     htmlInput.value = htmlInput.defaultValue = this.getEditorText_(this.value_);
     htmlInput.setAttribute('data-untyped-default-value', this.value_);
-    htmlInput.setAttribute('data-old-value', '');
 
     this.resizeEditor_();
 
@@ -489,15 +490,7 @@ export abstract class FieldInput<T extends InputTypes> extends Field<T> {
    * @param _e Keyboard event.
    */
   private onHtmlInputChange_(_e: Event) {
-    const text = this.htmlInput_!.value;
-    if (text !== this.htmlInput_!.getAttribute('data-old-value')) {
-      this.htmlInput_!.setAttribute('data-old-value', text);
-
-      const value = this.getValueFromEditorText_(text);
-      this.setValue(value);
-      this.forceRerender();
-      this.resizeEditor_();
-    }
+    this.setValue(this.getValueFromEditorText_(this.htmlInput_!.value));
   }
 
   /**

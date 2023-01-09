@@ -95,6 +95,9 @@ export class Block implements IASTNodeLocation, IDeletable {
   /** An optional method called during initialization. */
   init?: (() => AnyDuringMigration)|null = undefined;
 
+  /** An optional method called during disposal. */
+  destroy?: (() => void) = undefined;
+
   /**
    * An optional serialization method for defining how to serialize the
    * mutation state to XML. This must be coupled with defining
@@ -324,16 +327,15 @@ export class Block implements IASTNodeLocation, IDeletable {
     if (this.isDeadOrDying()) {
       return;
     }
+    // Terminate onchange event calls.
+    if (this.onchangeWrapper_) {
+      this.workspace.removeChangeListener(this.onchangeWrapper_);
+    }
 
     this.unplug(healStack);
     if (eventUtils.isEnabled()) {
       eventUtils.fire(new (eventUtils.get(eventUtils.BLOCK_DELETE))(this));
     }
-
-    if (this.onchangeWrapper_) {
-      this.workspace.removeChangeListener(this.onchangeWrapper_);
-    }
-
     eventUtils.disable();
 
     try {
@@ -362,6 +364,9 @@ export class Block implements IASTNodeLocation, IDeletable {
       }
     } finally {
       eventUtils.enable();
+      if (typeof this.destroy === 'function') {
+        this.destroy();
+      }
       this.disposed = true;
     }
   }

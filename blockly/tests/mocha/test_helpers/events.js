@@ -20,6 +20,18 @@ export function createChangeListenerSpy(workspace) {
 }
 
 /**
+ * Creates a mock event for testing if arbitrary events get fired/received.
+ * @param {!Blockly.Workspace} workspace The workspace to create the mock in.
+ * @return {!Object} A mock event that can be fired via Blockly.Events.fire
+ */
+export function createMockEvent(workspace) {
+  return {
+    isNull: () => false,
+    workspaceId: workspace.id,
+  };
+}
+
+/**
  * Asserts whether the given xml property has the expected property.
  * @param {!Node} xmlValue The xml value to check.
  * @param {!Node|string} expectedValue The expected value.
@@ -128,6 +140,49 @@ export function assertEventFired(spy, instanceType, expectedProperties,
   const expectedEvent =
       sinon.match.instanceOf(instanceType).and(sinon.match(expectedProperties));
   sinon.assert.calledWith(spy, expectedEvent);
+}
+
+/**
+ * Returns a matcher that asserts that the actual object has the same properties
+ * and values (shallowly equated) as the expected object.
+ * @param {!Object} expected The expected set of properties we expect the
+ *    actual object to have.
+ * @return {function(*): boolean} A matcher that returns true if the `actual`
+ *     object has all of the properties of the `expected` param, with the same
+ *     values.
+ */
+function shallowMatch(expected) {
+  return (actual) => {
+    for (const key in expected) {
+      if (actual[key] !== expected[key]) {
+        return false;
+      }
+    }
+    return true;
+  };
+}
+
+/**
+ * Asserts that an event with the given values (shallowly evaluated) was fired.
+ * @param {!SinonSpy|!SinonSpyCall} spy The spy or spy call to use.
+ * @param {function(new:Blockly.Events.Abstract)} instanceType Expected instance
+ *    type of event fired.
+ * @param {!Object<string, *>} expectedProperties Map of of expected properties
+ *    to check on fired event.
+ * @param {string} expectedWorkspaceId Expected workspace id of event fired.
+ * @param {?string=} expectedBlockId Expected block id of event fired.
+ */
+export function assertEventFiredShallow(
+    spy, instanceType, expectedProperties, expectedWorkspaceId, expectedBlockId) {
+  const properties = {
+    ...expectedProperties,
+    workspaceId: expectedWorkspaceId,
+    blockId: expectedBlockId,
+  };
+  sinon.assert.calledWith(
+      spy,
+      sinon.match.instanceOf(instanceType)
+          .and(shallowMatch(properties)));
 }
 
 /**
