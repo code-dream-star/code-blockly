@@ -12,14 +12,14 @@
     "prefer_related_applications": false,
     "icons": [
         {
-            "src": "./static/logo/logo.png",
-            "type": "image/png",
+            "src": "./static/logo/logo_lite.svg",
+            "type": "image/svg",
             "sizes": "512x512",
             "purpose": "any"
         },
         {
-            "src": "./static/logo/logo.png",
-            "type": "image/png",
+            "src": "./static/logo/logo_lite.svg",
+            "type": "image/svg",
             "sizes": "192x192",
             "purpose": "maskable"
         }
