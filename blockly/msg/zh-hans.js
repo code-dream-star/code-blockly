@@ -1,17 +1,5 @@
-/* eslint-disable */
-;(function(root, factory) {
-  if (typeof define === 'function' && define.amd) { // AMD
-    define([], factory);
-  } else if (typeof exports === 'object') { // Node.js
-    module.exports = factory();
-  } else { // Browser
-    var messages = factory();
-    for (var key in messages) {
-      root.Blockly.Msg[key] = messages[key];
-    }
-  }
-}(this, function() {
 // This file was automatically generated.  Do not modify.
+// This file was modified by the xiaohong2022
 
 'use strict';
 
@@ -436,5 +424,3 @@ Blockly.Msg["TEXTS_HUE"] = "160";
 Blockly.Msg["PROCEDURES_HUE"] = "290";
 Blockly.Msg["COLOUR_HUE"] = "20";
 Blockly.Msg["VARIABLES_DYNAMIC_HUE"] = "310";
-return Blockly.Msg;
-}));
