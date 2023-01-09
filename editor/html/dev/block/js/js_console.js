@@ -61,7 +61,7 @@ Blockly.Blocks['js_console_clear'] = {
     init: function () {
       this.appendDummyInput()
         .appendField("控制台报错")
-        .appendField(new Blockly.FieldTextInput("报错！错误！停止！"), "error");
+        .appendField(new Blockly.FieldTextInput("叮~您有一个新的bug"), "error");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(color.console);

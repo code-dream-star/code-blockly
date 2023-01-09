@@ -40,6 +40,26 @@ Blockly.JavaScript["style"] = function (block) {
     return code;
 };
 
+
+Blockly.Blocks['embed_css'] = {
+    init: function () {
+        this.appendStatementInput("style")
+            .setCheck(null)
+            .appendField("嵌入内部样式");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.embed);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['embed_css'] = function (block) {
+    var statements = Blockly.JavaScript.statementToCode(block, 'style');
+    var code = `style="${statements}" `;
+    return code;
+};
+
 Blockly.Blocks["iframe"] = {
     init: function () {
         this.appendDummyInput()
@@ -66,10 +86,10 @@ Blockly.Blocks["iframe"] = {
 
 
 Blockly.JavaScript["iframe"] = function (block) {
-  var url = block.getFieldValue("url");
-  var w = block.getFieldValue("width");
-  var h = block.getFieldValue("height");
-  var statements = Blockly.JavaScript.statementToCode(block, "statements");
-  var code = `<iframe src="${url}" width="${w}" height="${h}"${statements}></iframe>`;
-  return code;
+    var url = block.getFieldValue("url");
+    var w = block.getFieldValue("width");
+    var h = block.getFieldValue("height");
+    var statements = Blockly.JavaScript.statementToCode(block, "statements");
+    var code = `<iframe src="${url}" width="${w}" height="${h}"${statements}></iframe>`;
+    return code;
 };

@@ -9,7 +9,7 @@ Blockly.Blocks["define_web_pages"] = {
       this.appendDummyInput().appendField("定义网页");
       this.appendStatementInput("blocks").setCheck(null);
       this.setColour(color.structure);
-      this.setTooltip("头部框架");
+      this.setTooltip("");
       this.setHelpUrl("");
     },
   };

@@ -1,7 +1,7 @@
 /**
  * 头部(head)标签
- * 5个
- * 文档✓
+ * 6个
+ * 文档×
  */
 
 Blockly.Blocks["head_title"] = {
@@ -103,20 +103,40 @@ Blockly.JavaScript['head_keywords'] = function (block) {
 
 
 Blockly.Blocks['head_description'] = {
-    init: function() {
-      this.appendDummyInput()
-          .appendField("设置网站简介")
-          .appendField(new Blockly.FieldTextInput("这是一个网页"), "description");
-      this.setPreviousStatement(true, null);
-      this.setNextStatement(true, null);
-      this.setColour(color.head);
-   this.setTooltip("");
-   this.setHelpUrl("");
+    init: function () {
+        this.appendDummyInput()
+            .appendField("设置网站简介")
+            .appendField(new Blockly.FieldTextInput("这是一个网页"), "description");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.head);
+        this.setTooltip("");
+        this.setHelpUrl("");
     }
-  };
+};
 
-  Blockly.JavaScript['head_description'] = function(block) {
+Blockly.JavaScript['head_description'] = function (block) {
     var description = block.getFieldValue('description');
-    var code = `<meta name="description" content="${description}">`;
+    var code = `<meta name="description" content="${description}">\n`;
     return code;
-  };
+};
+
+
+Blockly.Blocks['head_author'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("设置网页作者为")
+            .appendField(new Blockly.FieldTextInput("default"), "author");
+        this.setPreviousStatement(true, null);
+        this.setNextStatement(true, null);
+        this.setColour(color.head);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['head_author'] = function (block) {
+    var author = block.getFieldValue('author');
+    var code = `<meta name="author" content="${author}">\n`;
+    return code;
+};

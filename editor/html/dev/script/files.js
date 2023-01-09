@@ -1,6 +1,6 @@
 // 菜单功能
 var morenxml =
-    '<xml><block type="define_web_pages" id="YGvzo%a|Kgnf{OdU93)X" x="-4" y="239"><statement name="blocks"><block type="define_web_pages_head" id="Sgrz8+r1?1HEE{4bo:+T"><statement name="blocks"><block type="head_charset" id="5Okb}^6by~5nHsLW;n_K"><field name="CODE">utf-8</field><next><block type="head_title" id="**qXHE4L`THVMM,(.a2E"><field name="title">Document</field></block></next></block></statement><next><block type="define_web_pages_body" id="`Vi/Ryq-;t^qYRxSfG)6"></block></next></block></statement></block></xml>';
+    '<xml><block type="define_web_pages" x="0" y="0"><statement name="blocks"><block type="define_web_pages_head"><statement name="blocks"><block type="head_charset"><field name="CODE">utf-8</field><next><block type="head_title"><field name="title">Document</field></block></next></block></statement><next><block type="define_web_pages_body"></block></next></block></statement></block></xml>';
 
 const addhtml = (position, localName, data, html) => {
     var newHtml = document.createElement(localName);
@@ -155,15 +155,13 @@ $("body")[0].addEventListener("click", (e) => {
                     () => {
                         saveFile(
                             "MyWeb.html",
-                            "<!-- 代码由 " +
-                            window.location.href +
-                            " 生成，感谢您对我们的支持。-->\n" +
+                            "<!-- 代码由 https://code-dream-star.github.io/code-blockly 生成，感谢您对我们的支持。-->\n" +
                             Blockly.JavaScript.workspaceToCode(workspace)
                         );
                     },
                     null,
                     () => {
-                        window.open("../../docs");
+                        window.open("https://open-code-dream-star.feishu.cn/wiki/wikcnNjY2wZJ4YW9cGUptuXOCNg");
                     },
                     opensettngs,
                 ][Number(e.target.getAttribute("d")) - 1]();

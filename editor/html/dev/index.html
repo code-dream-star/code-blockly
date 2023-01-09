@@ -12,9 +12,13 @@
     <link rel="shortcut icon" href="../../../static/logo/logo_dev_lite.svg" type="image/x-icon" />
     <script>
         window.onload = function () {
-            document.querySelector("html > body > div#loading").remove();
+            document.querySelector("html > body > div#loading").style.opacity = 0
+            setTimeout(() => {
+                document.querySelector("html > body > div#loading").remove();
+            }, 300)
         };
     </script>
+    <link href="../../../static/files/colour/egg/idiom.json" rel="prefetch">
 </head>
 
 <body class="mdui-appbar-with-toolbar mdui-theme-accent-blue">
@@ -27,22 +31,516 @@
                 flex-direction: column;
                 align-content: center;
                 position: fixed;
-                background-color: #fff;
+                background-color: #fffa;
                 color: rgb(0, 132, 255);
-                font-size: 2em;
+                top: 0;
+                left: 0;
                 width: 100%;
                 height: 100%;
                 z-index: 99999999999999999999999999999999999999999999999999999999999;
+                transition: .3s;
+            }
+
+            #loading>b {
+                font-size: 30px;
+            }
+
+            #loading>span {
+                font-size: 16px;
+            }
+
+            #loading>div>div {
+                width: 50px;
+                height: 50px;
+                margin-bottom: 10px;
+            }
+
+            #loading .mdui-spinner-layer {
+                border-color: rgb(0, 132, 255);
+            }
+
+            .mdui-spinner {
+                position: relative;
+                display: inline-block;
+                width: 28px;
+                height: 28px;
+                -webkit-animation: mdui-spinner 1568ms linear infinite;
+                animation: mdui-spinner 1568ms linear infinite
+            }
+
+            @-webkit-keyframes mdui-spinner {
+                to {
+                    -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg)
+                }
+            }
+
+            @keyframes mdui-spinner {
+                to {
+                    -webkit-transform: rotate(360deg);
+                    transform: rotate(360deg)
+                }
+            }
+
+            .mdui-spinner-layer {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                border-color: #3f51b5;
+                opacity: 0;
+                opacity: 1;
+                -webkit-animation: mdui-spinner-layer-fill-unfill-rotate 5332ms cubic-bezier(.4, 0, .2, 1) infinite both;
+                animation: mdui-spinner-layer-fill-unfill-rotate 5332ms cubic-bezier(.4, 0, .2, 1) infinite both
+            }
+
+            @-webkit-keyframes mdui-spinner-layer-fill-unfill-rotate {
+                12.5% {
+                    -webkit-transform: rotate(135deg);
+                    transform: rotate(135deg)
+                }
+
+                25% {
+                    -webkit-transform: rotate(270deg);
+                    transform: rotate(270deg)
+                }
+
+                37.5% {
+                    -webkit-transform: rotate(405deg);
+                    transform: rotate(405deg)
+                }
+
+                50% {
+                    -webkit-transform: rotate(540deg);
+                    transform: rotate(540deg)
+                }
+
+                62.5% {
+                    -webkit-transform: rotate(675deg);
+                    transform: rotate(675deg)
+                }
+
+                75% {
+                    -webkit-transform: rotate(810deg);
+                    transform: rotate(810deg)
+                }
+
+                87.5% {
+                    -webkit-transform: rotate(945deg);
+                    transform: rotate(945deg)
+                }
+
+                to {
+                    -webkit-transform: rotate(1080deg);
+                    transform: rotate(1080deg)
+                }
+            }
+
+            @keyframes mdui-spinner-layer-fill-unfill-rotate {
+                12.5% {
+                    -webkit-transform: rotate(135deg);
+                    transform: rotate(135deg)
+                }
+
+                25% {
+                    -webkit-transform: rotate(270deg);
+                    transform: rotate(270deg)
+                }
+
+                37.5% {
+                    -webkit-transform: rotate(405deg);
+                    transform: rotate(405deg)
+                }
+
+                50% {
+                    -webkit-transform: rotate(540deg);
+                    transform: rotate(540deg)
+                }
+
+                62.5% {
+                    -webkit-transform: rotate(675deg);
+                    transform: rotate(675deg)
+                }
+
+                75% {
+                    -webkit-transform: rotate(810deg);
+                    transform: rotate(810deg)
+                }
+
+                87.5% {
+                    -webkit-transform: rotate(945deg);
+                    transform: rotate(945deg)
+                }
+
+                to {
+                    -webkit-transform: rotate(1080deg);
+                    transform: rotate(1080deg)
+                }
+            }
+
+            @-webkit-keyframes mdui-spinner-layer-1-fade-in-out {
+                from {
+                    opacity: 1
+                }
+
+                25% {
+                    opacity: 1
+                }
+
+                26% {
+                    opacity: 0
+                }
+
+                89% {
+                    opacity: 0
+                }
+
+                90% {
+                    opacity: 1
+                }
+
+                100% {
+                    opacity: 1
+                }
+            }
+
+            @keyframes mdui-spinner-layer-1-fade-in-out {
+                from {
+                    opacity: 1
+                }
+
+                25% {
+                    opacity: 1
+                }
+
+                26% {
+                    opacity: 0
+                }
+
+                89% {
+                    opacity: 0
+                }
+
+                90% {
+                    opacity: 1
+                }
+
+                100% {
+                    opacity: 1
+                }
+            }
+
+            @-webkit-keyframes mdui-spinner-layer-2-fade-in-out {
+                from {
+                    opacity: 0
+                }
+
+                15% {
+                    opacity: 0
+                }
+
+                25% {
+                    opacity: 1
+                }
+
+                50% {
+                    opacity: 1
+                }
+
+                51% {
+                    opacity: 0
+                }
+            }
+
+            @keyframes mdui-spinner-layer-2-fade-in-out {
+                from {
+                    opacity: 0
+                }
+
+                15% {
+                    opacity: 0
+                }
+
+                25% {
+                    opacity: 1
+                }
+
+                50% {
+                    opacity: 1
+                }
+
+                51% {
+                    opacity: 0
+                }
+            }
+
+            @-webkit-keyframes mdui-spinner-layer-3-fade-in-out {
+                from {
+                    opacity: 0
+                }
+
+                40% {
+                    opacity: 0
+                }
+
+                50% {
+                    opacity: 1
+                }
+
+                75% {
+                    opacity: 1
+                }
+
+                76% {
+                    opacity: 0
+                }
+            }
+
+            @keyframes mdui-spinner-layer-3-fade-in-out {
+                from {
+                    opacity: 0
+                }
+
+                40% {
+                    opacity: 0
+                }
+
+                50% {
+                    opacity: 1
+                }
+
+                75% {
+                    opacity: 1
+                }
+
+                76% {
+                    opacity: 0
+                }
+            }
+
+            @-webkit-keyframes mdui-spinner-layer-4-fade-in-out {
+                from {
+                    opacity: 0
+                }
+
+                65% {
+                    opacity: 0
+                }
+
+                75% {
+                    opacity: 1
+                }
+
+                90% {
+                    opacity: 1
+                }
+
+                100% {
+                    opacity: 0
+                }
+            }
+
+            @keyframes mdui-spinner-layer-4-fade-in-out {
+                from {
+                    opacity: 0
+                }
+
+                65% {
+                    opacity: 0
+                }
+
+                75% {
+                    opacity: 1
+                }
+
+                90% {
+                    opacity: 1
+                }
+
+                100% {
+                    opacity: 0
+                }
+            }
+
+            .mdui-spinner-gap-patch {
+                position: absolute;
+                top: 0;
+                left: 45%;
+                width: 10%;
+                height: 100%;
+                overflow: hidden;
+                border-color: inherit
+            }
+
+            .mdui-spinner-gap-patch .mdui-spinner-circle {
+                left: -450%;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                width: 1000%
+            }
+
+            .mdui-spinner-circle-clipper {
+                position: relative;
+                display: inline-block;
+                width: 50%;
+                height: 100%;
+                overflow: hidden;
+                border-color: inherit
+            }
+
+            .mdui-spinner-circle-clipper .mdui-spinner-circle {
+                position: absolute;
+                top: 0;
+                right: 0;
+                bottom: 0;
+                -webkit-box-sizing: border-box;
+                box-sizing: border-box;
+                width: 200%;
+                height: 100%;
+                border-color: inherit;
+                border-style: solid;
+                border-width: 3px;
+                border-bottom-color: transparent !important;
+                border-radius: 50%;
+                -webkit-animation: none;
+                animation: none
+            }
+
+            .mdui-spinner-circle-clipper.mdui-spinner-left {
+                float: left
+            }
+
+            .mdui-spinner-circle-clipper.mdui-spinner-left .mdui-spinner-circle {
+                left: 0;
+                border-right-color: transparent !important;
+                -webkit-transform: rotate(129deg);
+                transform: rotate(129deg);
+                -webkit-animation: mdui-spinner-left-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both;
+                animation: mdui-spinner-left-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both
+            }
+
+            .mdui-spinner-circle-clipper.mdui-spinner-right {
+                float: right
+            }
+
+            .mdui-spinner-circle-clipper.mdui-spinner-right .mdui-spinner-circle {
+                left: -100%;
+                border-left-color: transparent !important;
+                -webkit-transform: rotate(-129deg);
+                transform: rotate(-129deg);
+                -webkit-animation: mdui-spinner-right-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both;
+                animation: mdui-spinner-right-spin 1333ms cubic-bezier(.4, 0, .2, 1) infinite both
+            }
+
+            @-webkit-keyframes mdui-spinner-left-spin {
+                from {
+                    -webkit-transform: rotate(130deg);
+                    transform: rotate(130deg)
+                }
+
+                50% {
+                    -webkit-transform: rotate(-5deg);
+                    transform: rotate(-5deg)
+                }
+
+                to {
+                    -webkit-transform: rotate(130deg);
+                    transform: rotate(130deg)
+                }
+            }
+
+            @keyframes mdui-spinner-left-spin {
+                from {
+                    -webkit-transform: rotate(130deg);
+                    transform: rotate(130deg)
+                }
+
+                50% {
+                    -webkit-transform: rotate(-5deg);
+                    transform: rotate(-5deg)
+                }
+
+                to {
+                    -webkit-transform: rotate(130deg);
+                    transform: rotate(130deg)
+                }
+            }
+
+            @-webkit-keyframes mdui-spinner-right-spin {
+                from {
+                    -webkit-transform: rotate(-130deg);
+                    transform: rotate(-130deg)
+                }
+
+                50% {
+                    -webkit-transform: rotate(5deg);
+                    transform: rotate(5deg)
+                }
+
+                to {
+                    -webkit-transform: rotate(-130deg);
+                    transform: rotate(-130deg)
+                }
+            }
+
+            @keyframes mdui-spinner-right-spin {
+                from {
+                    -webkit-transform: rotate(-130deg);
+                    transform: rotate(-130deg)
+                }
+
+                50% {
+                    -webkit-transform: rotate(5deg);
+                    transform: rotate(5deg)
+                }
+
+                to {
+                    -webkit-transform: rotate(-130deg);
+                    transform: rotate(-130deg)
+                }
             }
         </style>
+        <div>
+            <div class="mdui-spinner">
+                <div class="mdui-spinner-layer ">
+                    <div class="mdui-spinner-circle-clipper mdui-spinner-left">
+                        <div class="mdui-spinner-circle"></div>
+                    </div>
+                    <div class="mdui-spinner-gap-patch">
+                        <div class="mdui-spinner-circle"></div>
+                    </div>
+                    <div class="mdui-spinner-circle-clipper mdui-spinner-right">
+                        <div class="mdui-spinner-circle"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <b>Loading...</b>
+        <span id="lodingtext"><noscript>请问你JavaScript启用了吗？</noscript></span>
+        <script>
+            !async function () {
+                const noshow = ["吼！隐身术！"]
+                const d = document.getElementById("lodingtext")
+                const data = [
+                    "Code Dream Star",
+                    "听说打开控制台会有奇妙的事情？",
+                    "你们都给我变彩蛋，变好多好多的彩蛋，变各种各样的彩蛋，我就喜欢，变给我看",
+                    "彩蛋彩蛋快出来，彩蛋彩蛋不出来，自己来做，我飞~",
+                    "你可能不知道！Code Blockly有∞个彩蛋！",
+                    noshow
+                ];
+                d.innerText = data[~~(Math.random() * data.length)];
+                if (d.innerText.includes(noshow)) {
+                    d.style.color = "#fff0"
+                }
+            }();
+        </script>
     </div>
-    <!-- 导入GoogleBlockly -->
+    <!-- 导入Google Blockly -->
     <script src="../../../blockly/blockly_compressed.js"></script>
     <script src="../../../blockly/blocks_compressed.js"></script>
     <script src="../../../blockly/javascript_compressed.js"></script>
-    <script src="../../../blockly/msg/js/zh-hans.js"></script>
-    <!--导入积木-->
+    <script src="../../../blockly/msg/zh-hans.js"></script>
+    <!--HTML积木-->
     <script src="./block/structure.js"></script>
     <script src="./block/head.js"></script>
     <script src="./block/text.js"></script>
@@ -50,9 +548,21 @@
     <script src="./block/embed.js"></script>
     <script src="./block/video.js"></script>
     <script src="./block/attribute.js"></script>
-    <script src="./block/css.js"></script>
+    <!--CSS积木-->
+    <script src="./block/css/background.js"></script>
+    <script src="./block/css/border.js"></script>
+    <script src="./block/css/css.js"></script>
+    <script src="./block/css/link.js"></script>
+    <script src="./block/css/list.js"></script>
+    <script src="./block/css/margin.js"></script>
+    <script src="./block/css/table.js"></script>
+    <script src="./block/css/text.js"></script>
+    <!--JS积木-->
     <script src="./block/js/js_console.js"></script>
     <script src="./block/js/object.js"></script>
+    <script src="./block/js/get.js"></script>
+    <script src="./block/js/window.js"></script>
+    <script src="./block/js/regexp.js"></script>
     <!--导入SweetAlert-->
     <script src="../../../static/js/sweetalert.js"></script>
     <!--导入mdui-->
@@ -63,9 +573,9 @@
     <!-- 导入jq -->
     <script src="../../../static/js/jq.js"></script>
     <!-- 图标库  -->
-    <!-- 自制图标 利用IconPark上传使用 -->
-    <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_17.68e036c43713c7d8a82979bc756dbb8f.js"></script>    <!--导入css -->
-    <link rel="stylesheet" href="../../../static/css/index.css" />
+    <script
+        src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_30.66ab8120efa3ea44eb01f8313162dc8a.js"></script>
+    <link rel="stylesheet" href="../../../static/css/style.css" />
     <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
     <svg style="position: absolute;width: 0px;height: 0px;overflow: hidden;" aria-hidden="true">
         <symbol viewBox="0 0 48 48" id="icon-撤销" fill="none">
@@ -142,12 +652,21 @@
             <path d="M16 10L19.289 4H28.7771L32 10H16Z" fill="none" stroke="#333" stroke-width="4"
                 stroke-linejoin="round" />
         </symbol>
+        <symbol viewBox="0 0 48 48" id="icon-搜素" fill="none">
+            <path d="M4 7H44" stroke="#333" stroke-width="4" stroke-linecap="round" />
+            <path d="M4 23H15" stroke="#333" stroke-width="4" stroke-linecap="round" />
+            <path d="M4 39H15" stroke="#333" stroke-width="4" stroke-linecap="round" />
+            <path
+                d="M31.5 34C36.1944 34 40 30.1944 40 25.5C40 20.8056 36.1944 17 31.5 17C26.8056 17 23 20.8056 23 25.5C23 30.1944 26.8056 34 31.5 34Z"
+                fill="none" stroke="#333" stroke-width="4" />
+            <path d="M37 32L44 39.0505" stroke="#333" stroke-width="4" stroke-linecap="round" />
+        </symbol>
     </svg>
     <!--app -->
     <div id="app">
         <!-- 右下角导航栏 -->
         <div class="right-bottom-navigation-bar">
-            <div class="right-bottom-navigation-bar-div" data-tip="撤销">
+            <!-- <div class="right-bottom-navigation-bar-div" data-tip="撤销">
                 <div class="right-bottom-navigation-bar-div-svg">
                     <svg>
                         <use xlink:href="#icon-撤销"></use>
@@ -160,7 +679,7 @@
                         <use xlink:href="#icon-重做"></use>
                     </svg>
                 </div>
-            </div>
+            </div> -->
             <div class="right-bottom-navigation-bar-division"></div>
             <div class="right-bottom-navigation-bar-div" data-tip="缩小">
                 <div class="right-bottom-navigation-bar-div-svg">
@@ -300,7 +819,7 @@
                 </g>
             </svg></div>
         <!-- 历史垃圾桶 -->
-        <div class="history-trash-btn"><svg xmlns="http://www.w3.org/2000/svg"
+        <!-- <div class="history-trash-btn"><svg xmlns="http://www.w3.org/2000/svg"
                 xmlns:xlink="http://www.w3.org/1999/xlink" fill="none" version="1.1" width="64" id="delete-svg-up"
                 height="16" viewBox="0 0 64 16">
                 <g style="mix-blend-mode:passthrough">
@@ -316,7 +835,13 @@
                         fill-rule="evenodd" fill="#FFFFFF" fill-opacity="1"></path>
                 </g>
             </svg>
-        </div>
+        </div> -->
+        <!-- 搜索 -->
+        <!-- <div class="search-block-btn">
+            <svg>
+                <use xlink:href="#icon-搜素"></use>
+            </svg>
+        </div> -->
         <!-- 工作区 -->
         <div class="workzone">
             <div id="blocklyDiv"></div>
@@ -324,7 +849,7 @@
         <!-- 积木定义xml -->
     </div>
     <xml id="toolbox" style="display: none">
-        <category name="模板" colour="%color template" expanded="true">
+        <category name="模板" category_id="%color template">
             <block type="define_web_pages">
                 <statement name="blocks">
                     <block type="define_web_pages_head">
@@ -343,29 +868,33 @@
                 </statement>
             </block>
         </category>
-        <category name="构造" colour="%color structure">
+        <category name="构造" category_id="%color structure">
             <block type="define_web_pages"></block>
             <block type="define_web_pages_head"></block>
             <block type="define_web_pages_body"></block>
         </category>
-        <category name="头部" colour="%color head">
+        <category name="头部" category_id="%color head">
             <block type="head_charset"></block>
             <block type="head_title"></block>
             <block type="head_link"></block>
             <block type="head_keywords"></block>
             <block type="head_description"></block>
+            <block type="head_author"></block>
         </category>
-        <category name="嵌入" colour="%color embed">
+        <category name="嵌入" category_id="%color embed">
             <block type="script"></block>
             <block type="style"></block>
+            <block type="embed_css"></block>
             <block type="iframe"></block>
         </category>
-        <category name="属性" colour="%color attribute">
+        <category name="属性" category_id="%color attribute">
             <block type="attribute_id"></block>
+            <block type="attribute_class"></block>
+            <block type="attribute_css"></block>
             <block type="attribute_width"></block>
             <block type="attribute_height"></block>
         </category>
-        <category name="文本" colour="%color text">
+        <category name="文本" category_id="%color text">
             <block type="text_chuntext"></block>
             <block type="text_p"></block>
             <block type="text_title"></block>
@@ -373,8 +902,7 @@
             <block type="text_br"></block>
             <block type="text_annotation"></block>
         </category>
-        <category name="表单" colour="%color form">
-            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+        <category name="表单" category_id="%color form">
             <block type="create_a_form"></block>
             <block type="form_submit_button"></block>
             <block type="form_select_box"></block>
@@ -385,30 +913,119 @@
             <block type="form_select_down_menu_option"></block>
             <block type="form_bounding_box"></block>
         </category>
-        <category name="媒体" colour="%color image">
+        <category name="媒体" category_id="%color video">
             <block type="video_image"></block>
+            <block type="video"></block>
+            <block type="video_source"></block>
         </category>
         <sep></sep>
-        <category name="css" colour="%color css">
+        <category name="css" category_id="%color css" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
             <block type="css_Create"></block>
+            <block type="css_Unit"></block>
             <block type="css_Color"></block>
-            <block type="css_Color_RGB"></block>
-            <block type="css_Background_Color"></block>
+            <block type="css_Color_RGB" inline="true"></block>
+            <block type="css_Color_16" inline="true"></block>
+        </category>
+        <category name="css背景" category_id="%color cssbackground" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="css_Background_Color" disabled="0">
+                <value name="COLOR">
+                    <shadow type="css_Color" id="yX7|}Qg@;R++}c9G;zPC">
+                        <field name="color">#2ec7e7</field>
+                    </shadow>
+                </value>
+            </block>
             <block type="css_Background_Image"></block>
-            <block type="css_Background_Image_Style"></block>            
+            <block type="css_Background_Image_Style"></block>
+        </category>
+        <category name="css文本" category_id="%color csstext" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <label text="字体"></label>
+            <block type="css_Font_Size">
+                <value name="value">
+                    <block type="css_Unit" id="9$,}oy^yu[D**(BIt](;">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+            <block type="css_Font_Style"></block>
+            <label text="文本"></label>
+            <block type="css_Text_Alignment"></block>
+            <block type="css_Setting_Text_Embellishments"></block>
+            <block type="css_Setting_Text_Rientation"></block>
+            <block type="css_Indentation_Of_Text" id="0" x="0" y="0" disabled="0">
+                <value name="value">
+                    <block type="css_Unit" id="X=wC(DoPCnw`E!eBU1OZ">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+        <category name="css链接" category_id="%color csslink" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="css_Link"></block>
+        </category>
+        <category name="css列表" category_id="%color csslist" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="css_List_Style"></block>
+        </category>
+        <category name="css表格" category_id="%color csstable" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="css_Table_Width"></block>
+        </category>
+        <category name="css边框" category_id="%color cssborder" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="css_Border_Color">
+                <value name="value">
+                    <block type="css_Color" id="m8UtV!CI8d.?3}#bB%o_">
+                        <field name="color">#2ec7e7</field>
+                    </block>
+                </value>
+            </block>
+            <block type="css_Rounded_Corners">
+                <value name="value">
+                    <block type="css_Unit" id="wi(n(2KZ%IpG)K=pip@w">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+            <block type="css_Height_Frame">
+                <value name="input">
+                    <block type="css_Unit" id="`FZp?:20Y!Cg!_gshY/i">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+            <block type="css_Border_Style"></block>
+        </category>
+        <category name="css边距" category_id="%color cssmargin" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="css_Boxlog">
+                <value name="input">
+                    <block type="css_Unit" id="`FZp?:20Y!Cg!_gshY/i">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
         </category>
         <sep></sep>
-        <category name="控制" colour="%color control">
+        <category name="控制" category_id="%color control">
             <block type="controls_if"></block>
-            <block type="controls_repeat_ext" colour="#8ca6c0">
+            <block type="controls_repeat_ext" category_id="#8ca6c0">
                 <value name="TIMES">
                     <shadow type="math_number">
                         <field name="NUM">10</field>
                     </shadow>
                 </value>
             </block>
-            <block type="controls_whileUntil" colour="#8ca6c0"></block>
-            <block type="controls_for" colour="#8ca6c0">
+            <block type="controls_whileUntil" category_id="#8ca6c0"></block>
+            <block type="controls_for" category_id="#8ca6c0">
                 <field name="VAR" id="57g(4![Bc(~B67SRUvvd">i</field>
                 <value name="FROM">
                     <shadow type="math_number">
@@ -426,20 +1043,17 @@
                     </shadow>
                 </value>
             </block>
-            <block type="controls_forEach" colour="#8ca6c0">
+            <block type="controls_forEach" category_id="#8ca6c0">
                 <field name="VAR" id="=ea2SQ,8Dye^#~zQHfJV">j</field>
             </block>
-            <block type="controls_flow_statements" colour="#8ca6c0"></block>
+            <block type="controls_flow_statements" category_id="#8ca6c0"></block>
         </category>
-        <category name="控制台" colour="%color console">
-            <block type="js_console_clear"></block>
-            <block type="js_console_log"></block>
-            <block type="js_console_warn"></block>
-            <block type="js_console_error"></block>
-        </category>
-        <category name="运算" colour="%color math">
+
+        <category name="运算" category_id="%color math">
             <label text="数学"></label>
-            <block type="math_number"></block>
+            <block type="math_number">
+                <field name="NUM">1086</field>
+            </block>
             <block type="math_arithmetic">
                 <value name="A">
                     <shadow type="math_number">
@@ -492,7 +1106,7 @@
             <block type="math_round">
                 <value name="NUM">
                     <shadow type="math_number">
-                        <field name="NUM">3.1</field>
+                        <field name="NUM">3.14</field>
                     </shadow>
                 </value>
             </block>
@@ -533,14 +1147,26 @@
             <block type="logic_ternary"></block>
             <block type="logic_null"></block>
             <label text="字符串"></label>
-            <block type="text"></block>
+            <block type="text">
+                <field name="TEXT">Code Dream Star YYDS</field>
+            </block>
             <block type="text_join">
-                <mutation items="2">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                    <block type="text">
+                        <field name="TEXT"></field>
+                    </block>
+                </value>
+                <value name="ADD1">
+                    <block type="text">
+                        <field name="TEXT"></field>
+                    </block>
+                </value>
             </block>
             <block type="text_append">
                 <value name="TEXT">
                     <shadow type="text">
-                        <field name="TEXT" />
+                        <field name="TEXT"></field>
                     </shadow>
                 </value>
             </block>
@@ -607,8 +1233,8 @@
                 </value>
             </block>
         </category>
-        <category name="变量" colour="%color varible" custom="VARIABLE"></category>
-        <category name="列表" colour="%color list">
+        <category name="变量" category_id="%color varible" custom="VARIABLE"></category>
+        <category name="列表" category_id="%color list">
             <block type="lists_create_with">
                 <mutation items="1">
             </block>
@@ -676,7 +1302,7 @@
                 <field name="DIRECTION">1</field>
             </block>
         </category>
-        <category name="对象" colour="%color object">
+        <category name="对象" category_id="%color object">
             <block type="object_null"></block>
             <block type="object_set"></block>
             <block type="object_get"></block>
@@ -687,14 +1313,48 @@
             <block type="object_freeze"></block>
             <block type="object_isfreeze"></block>
         </category>
-        <category name="函数" colour="%color function" custom="PROCEDURE"></category>
-        <category name="历史" expanded="true" colour="#aaa">
+        <category name="函数" category_id="%color function" custom="PROCEDURE"></category>
+        <category name="控制台" category_id="%color console">
+            <block type="js_console_clear"></block>
+            <block type="js_console_log"></block>
+            <block type="js_console_warn"></block>
+            <block type="js_console_error"></block>
+        </category>
+        <category name="获取" category_id="%color get">
+            <block type="docment_get_id"></block>
+            <block type="window_get_location_href"></block>
+        </category>
+        <category name="浏览器" category_id="%color window">
+            <block type="window_open"></block>
+            <block type="window_close"></block>
+            <block type="window_open_return"></block>
+            <block type="window_close_return"></block>
+            <block type="window_history_back"></block>
+            <block type="window_location_reload"></block>
+        </category>
+        <category name="正则" category_id="%color regexp" css-row="beta-category blocklyTreeRow">
+            <block type="regexp_create">
+                <value name="NAME">
+                    <shadow type="text">
+                        <field name="TEXT">(?:)</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <sep></sep>
+        <category name="搜索" category_id="search">
+            <label text="搜索积木"></label>
+            <button text="开始" callbackkey="search start"></button>
+        </category>
+        <category name="历史" category_id="garbage">
             <button text="点我清空" callbackkey="Clear history"></button>
             <label text="空空如也"></label>
         </category>
     </xml>
     <!-- 加载blockly -->
+    <script src="./script/custom-renderer.js"></script>
     <script src="./script/index.js"></script>
+    <script src="../../../static/files/colour/egg/ceg.js"></script>
     <script src="./script/files.js"></script>
 </body>
 
