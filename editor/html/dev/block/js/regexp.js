@@ -1,6 +1,7 @@
 /**
- * 正则表达式
- *
+ * 正则表达式(regexp)标签
+ * 1个
+ * 文档×
  */
 Blockly.Blocks["regexp_create"] = {
      init: function () {
@@ -20,8 +21,6 @@ Blockly.JavaScript["regexp_create"] = function (block) {
           "NAME",
           Blockly.JavaScript.ORDER_ATOMIC
      );
-     // TODO: Assemble JavaScript into code variable.
      var code = `new RegExp(${value_name})`;
-     // TODO: Change ORDER_NONE to the correct strength.
      return [code, Blockly.JavaScript.ORDER_NONE];
 };

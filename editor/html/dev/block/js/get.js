@@ -1,6 +1,6 @@
 /**
  * 获取(get)标签
- * 1个
+ * 3个
  * 文档×
  */
 Blockly.Blocks['docment_get_id'] = {
@@ -49,7 +49,35 @@ Blockly.Blocks['window_get_location_href'] = {
 
 Blockly.JavaScript['window_get_location_href'] = function (block) {
     var dropdownmenu = block.getFieldValue("menu");
-    var code = 'window.location.'+ dropdownmenu;
+    var code = 'window.location.' + dropdownmenu;
     return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
+
+Blockly.Blocks['get_date'] = {
+    init: function () {
+        this.appendDummyInput()
+            .appendField("获取")
+            .appendField(new Blockly.FieldDropdown([
+                ["当前时间", "new Date()"],
+                ["当前年份", "new Date().getFullYear()"],
+                ["当前日", "new Date().getDate()"],
+                ["当前星期", "new Date().getDay()"],
+                ["当前小时", "new Date().getHours()"],
+                ["当前分钟", "new Date().getMinutes()"],
+                ["当前秒", "new Date().getSeconds()"],
+                ["当前毫秒", "new Date().getMilliseconds()"],
+                ["从1970.1.1开始的毫秒数", "new Date().getTime()"]
+            ]), "DATE");
+        this.setOutput(true, null);
+        this.setColour(color.get);
+        this.setTooltip("");
+        this.setHelpUrl("");
+    }
+};
+
+Blockly.JavaScript['get_date'] = function (block) {
+    var get_date = block.getFieldValue('DATE');
+    var code = `${get_date}`;
+    return [code, Blockly.JavaScript.ORDER_NONE];
+};

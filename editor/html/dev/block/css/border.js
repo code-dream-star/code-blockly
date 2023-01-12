@@ -24,7 +24,6 @@ Blockly.JavaScript["css_Border_Color"] = function (block) {
           "value",
           Blockly.JavaScript.ORDER_ATOMIC
      );
-     // TODO: Assemble JavaScript into code variable.
      var code = `border-color: ${value_value};\n`;
      return code;
 };
@@ -49,7 +48,6 @@ Blockly.JavaScript["css_Rounded_Corners"] = function (block) {
           "value",
           Blockly.JavaScript.ORDER_ATOMIC
      );
-     // TODO: Assemble JavaScript into code variable.
      var code = `border-radius: ${value_value};\n`;
      return code;
 };
@@ -74,7 +72,6 @@ Blockly.JavaScript["css_Height_Frame"] = function (block) {
           "input",
           Blockly.JavaScript.ORDER_ATOMIC
      );
-     // TODO: Assemble JavaScript into code variable.
      var code = `border-width: ${text_input};\n`;
      return code;
 };
@@ -108,7 +105,6 @@ Blockly.Blocks["css_Border_Style"] = {
 
 Blockly.JavaScript["css_Border_Style"] = function (block) {
      var dropdown_drop_down_menu = block.getFieldValue("Drop down menu");
-     // TODO: Assemble JavaScript into code variable.
      var code = `border-style: ${dropdown_drop_down_menu};\n`;
      return code;
 };

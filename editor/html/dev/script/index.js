@@ -32,7 +32,7 @@ console.log("特别鸣谢：小宏XeLa，木水屑，编码喵，Tafi，广安�
 console.log("代码开源：https://github.com/code-dream-star/code-blockly/");
 console.log(
      version,
-     "Copyright © 2023 by Code Dream Star",
+     "Copyright © 2022-2023 by Code Dream Star",
      "All rights reserved"
 );
 
@@ -133,6 +133,7 @@ const color = {
      get: "#52D1C5",
      window: "#B551D1",
      regexp: "#9226C7",
+     OOP: "#65CE81",
 };
 
 Object.assign(window, { color });
@@ -605,7 +606,6 @@ workspace.registerButtonCallback("search start", async function () {
                workspace.updateToolbox($("#toolbox")[0]);
                Blockly.mainWorkspace.toolbox_.selectItemByPosition(29);
                // 刷新“历史”模块
-               //FIXME：修复无法搜索
                loadicon();
           }
      });

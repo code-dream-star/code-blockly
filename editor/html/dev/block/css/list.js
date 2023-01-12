@@ -33,7 +33,6 @@ Blockly.Blocks["css_List_Style"] = {
 
 Blockly.JavaScript["css_List_Style"] = function (block) {
     var dropdown_drop_down_menu = block.getFieldValue("Drop down menu");
-    // TODO: Assemble JavaScript into code variable.
     var code = `list-style: ${dropdown_drop_down_menu};\n`;
     return code;
 };

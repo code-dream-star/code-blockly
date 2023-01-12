@@ -21,7 +21,7 @@ Blockly.Blocks['js_console_clear'] = {
     init: function () {
       this.appendDummyInput()
         .appendField("控制台输出")
-        .appendField(new Blockly.FieldTextInput("开始运行"), "log");
+        .appendField(new Blockly.FieldTextInput("芜湖！程序跑起来啦！"), "log");
       this.setPreviousStatement(true, null);
       this.setNextStatement(true, null);
       this.setColour(color.console);

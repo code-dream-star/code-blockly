@@ -42,7 +42,6 @@ Blockly.JavaScript["css_Boxlog"] = function (block) {
           "input",
           Blockly.JavaScript.ORDER_ATOMIC
      );
-     // TODO: Assemble JavaScript into code variable.
      var code = `${dropdown_drop_down_menu}-${dropdown_wwwee}: ${text_input};\n`;
      return code;
 };

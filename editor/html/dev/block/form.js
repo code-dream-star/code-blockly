@@ -130,7 +130,6 @@ Blockly.JavaScript["form_text_box"] = function (block) {
         block,
         "attribute"
     );
-    // TODO: Assemble JavaScript into code variable.
     var code = `<input type="${dropdown_drop_down_menu}" value="${text_value}" placeholder="${text_placeholder}" ${statements_attribute}>\n`;
     return code;
 };
@@ -193,7 +192,6 @@ Blockly.JavaScript["form_select_box"] = function (block) {
         block,
         "attribute"
     );
-    // TODO: Assemble JavaScript into code variable.
     var code = `<input type="${dropdown_drop_down_menu}" value="${text_value}" ${dropdown_drop_down_menu == "radio" ? `name="${text_classification}" ` : ""}${statements_attribute}>\n`;
     return code;
 };
@@ -232,7 +230,6 @@ Blockly.JavaScript['form_select_down_menu'] = function (block) {
     var checkbox_disabled = block.getFieldValue('disabled') == 'TRUE';
     var statements_attribute = Blockly.JavaScript.statementToCode(block, 'attribute');
     var statements_content = Blockly.JavaScript.statementToCode(block, 'content');
-    // TODO: Assemble JavaScript into code variable.
     var code =
         `<select${checkbox_multiple ? " multiple" : ""}${checkbox_disabled ? " disabled" : ""} size="${number_size}"${statements_attribute}>\n${statements_content}</select>\n`;
     return code;
@@ -261,7 +258,6 @@ Blockly.Blocks['form_select_down_menu_optgroup'] = {
 Blockly.JavaScript['form_select_down_menu_optgroup'] = function (block) {
     var text_name = block.getFieldValue('name');
     var statements_insertion = Blockly.JavaScript.statementToCode(block, 'insertion');
-    // TODO: Assemble JavaScript into code variable.
     var code = `<optgroup label="${text_name}">\n${statements_insertion}</optgroup>\n`;
     return code;
 };
@@ -295,7 +291,6 @@ Blockly.JavaScript['form_select_down_menu_option'] = function (block) {
     var text_value = block.getFieldValue('value');
     var checkbox_disabled = block.getFieldValue('disabled') == 'TRUE';
     var text_font_family_ = block.getFieldValue('font-family ');
-    // TODO: Assemble JavaScript into code variable.
     var code = `<option${checkbox_selected ? " selected" : ""}${checkbox_disabled ? " disabled" : ""} value="${text_value}">${text_text}</option>\n`;
     return code;
 };

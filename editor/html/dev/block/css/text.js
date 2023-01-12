@@ -18,7 +18,6 @@ Blockly.Blocks['css_Font_Size'] = {
 
   Blockly.JavaScript['css_Font_Size'] = function(block) {
     var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
     var code = `font-size: ${value_value};\n`;
     return code;
   };
@@ -46,7 +45,6 @@ Blockly.Blocks["css_Font_Style"] = {
 
 Blockly.JavaScript["css_Font_Style"] = function (block) {
     var menu = block.getFieldValue("menu");
-    // TODO: Assemble JavaScript into code variable.
     var code = `font-style: ${menu};\n`;
     return code;
 };
@@ -188,7 +186,6 @@ Blockly.Blocks['css_Indentation_Of_Text'] = {
 
 Blockly.JavaScript['css_Indentation_Of_Text'] = function(block) {
     var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-    // TODO: Assemble JavaScript into code variable.
     var code = `text-indent: ${value_value};\n`;
     return code;
 };

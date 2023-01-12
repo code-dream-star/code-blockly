@@ -141,9 +141,7 @@ Blockly.Blocks["css_Unit"] = {
 Blockly.JavaScript["css_Unit"] = function (block) {
      var N = block.getFieldValue("NAME");
      var U = block.getFieldValue("unit");
-     // TODO: Assemble JavaScript into code variable.
      var code = N + U;
-     // TODO: Change ORDER_NONE to the correct strength.
      return [code, Blockly.JavaScript.ORDER_NONE];
 };
 
