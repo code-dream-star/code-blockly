@@ -1,8 +1,8 @@
 ---
-name: Bug
-about: BUG？冲它！
-title: ''
-labels: bug
+name: 严重的Bug
+about: 一些Bug很可能影响体验，所以此类Bug会优先处理
+title: "[严重的Bug]"
+labels: ''
 assignees: ''
 
 ---
