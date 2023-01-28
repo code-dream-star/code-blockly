@@ -2,7 +2,7 @@
 name: Bug
 about: BUG？冲它！
 title: ''
-labels: bug
+labels: ''
 assignees: ''
 
 ---
