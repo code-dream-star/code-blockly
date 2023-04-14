@@ -1,5 +1,5 @@
 Blockly.JavaScript.ORDER_ATOMIC = 99; // 代码生成时不生成多余的括号
-var version = "html-V0.3.0-dev(10022)";
+var version = "web-V0.3.0.20220109(43defd2)-dev";
 console.log(
      `%c 
 #####                           ######                                  #####                      
