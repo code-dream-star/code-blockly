@@ -17,8 +17,8 @@ Code Blockly 是 Code Dream Star 基于开源的 Google Blockly 开发的图形�
 - code-dream-star.github.io/code-blockly
 ### 访问本地版（可离线使用）
 1. 克隆本仓库(https://github.com/code-dream-star/code-blockly.git)
-2. 打开项目文件夹并进入index.html
-3. 双击打开即可
+2. 打开项目文件夹
+3. 双击打开index.html即可
 
 ## 反馈
 1. [GitHub Issues](https://github.com/code-dream-star/code-blockly/issues)

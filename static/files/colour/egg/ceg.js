@@ -27,10 +27,19 @@
           },
      };
 
-     Blockly.JavaScript["code_block_star_card"] = function (block) {
-          var code = `"Code Dream Star YYDS"`;
-          return [code, Blockly.JavaScript.ORDER_NONE];
-     };
+     if (Blockly.JavaScript) {
+          Blockly.JavaScript["code_block_star_card"] = function (block) {
+               var code = `"Code Dream Star YYDS"`;
+               return [code, Blockly.JavaScript.ORDER_NONE];
+          };
+     }
+
+     if (Blockly.Python) {
+          Blockly.Python["code_block_star_card"] = function (block) {
+               var code = `"Code Dream Star YYDS"`;
+               return [code, Blockly.JavaScript.ORDER_NONE];
+          };
+     }
 
      var cegyes = false;
      const gameBlocksXml = `<blocK type="code_block_star_card" inline="true"></block>
@@ -40,7 +49,7 @@
           if (t1.length) {
                if (
                     t1[0].inputList[0].fieldRow[1].value_ ==
-                         "Code Dream Star YYDS" &&
+                    "Code Dream Star YYDS" &&
                     cegyes == false
                ) {
                     cegyes = true;
@@ -156,7 +165,7 @@
                          const r = ~~(Math.random() * 4);
                          const r2 =
                               this.idiomlist[
-                                   ~~(Math.random() * this.idiomlist.length)
+                              ~~(Math.random() * this.idiomlist.length)
                               ];
                          for (const i in r2) {
                               this.setFieldValue(
@@ -191,9 +200,17 @@
           },
      };
 
-     Blockly.JavaScript["game_block_guess_idioms"] = function (block) {
-          return "";
-     };
+     if (Blockly.JavaScript) {
+          Blockly.JavaScript["game_block_guess_idioms"] = function (block) {
+               return "";
+          };
+     }
+
+     if (Blockly.Python) {
+          Blockly.Python["game_block_guess_idioms"] = function (block) {
+               return "";
+          };
+     }
 
      Blockly.Blocks["game_block_timer"] = {
           init: function () {
@@ -214,7 +231,9 @@
                this.setTooltip("");
                this.setHelpUrl("");
                this.time = 0;
-               setInterval(() => {
+               var x = setInterval(() => {
+                    if (!this.workspace) clearInterval(x);
+                    if (this.isInFlyout) clearInterval(x);
                     if (this.time > 99 * 60 * 60 * 1000) {
                          this.time = 0;
                     }
@@ -227,9 +246,8 @@
                const h = String(d.getHours());
                const m = String(d.getMinutes());
                const s = String(d.getSeconds());
-               const t = `${h.length > 1 ? h : "0" + h}${
-                    m.length > 1 ? m : "0" + m
-               }${s.length > 1 ? s : "0" + s}`;
+               const t = `${h.length > 1 ? h : "0" + h}${m.length > 1 ? m : "0" + m
+                    }${s.length > 1 ? s : "0" + s}`;
                for (const i in t) {
                     this.setFieldValue(t[i], String(i));
                }
@@ -244,7 +262,15 @@
           },
      };
 
-     Blockly.JavaScript["game_block_timer"] = function (block) {
-          return "";
-     };
+     if (Blockly.JavaScript) {
+          Blockly.JavaScript["game_block_timer"] = function (block) {
+               return "";
+          };
+     }
+
+     if (Blockly.Python) {
+          Blockly.Python["game_block_timer"] = function (block) {
+               return "";
+          };
+     }
 })();
