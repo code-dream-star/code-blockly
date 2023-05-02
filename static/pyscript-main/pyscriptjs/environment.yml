@@ -1,0 +1,25 @@
+channels:
+    - defaults
+    - conda-forge
+    - microsoft
+dependencies:
+    - python=3.11
+    - pip
+    - pytest=7
+    - nodejs=16
+    - black
+    - isort
+    - codespell
+    - pre-commit
+    - pillow
+    - numpy
+    - markdown
+    - toml
+    - pip:
+          - playwright
+          - pytest-playwright
+          - pytest-xdist
+          # We need Pyodide and micropip so we can import them in our Python
+          # unit tests
+          - pyodide_py==0.22
+          - micropip==0.2.2
