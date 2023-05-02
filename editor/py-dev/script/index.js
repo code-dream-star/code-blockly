@@ -1,5 +1,5 @@
 Blockly.Python.ORDER_ATOMIC = 99; // 代码生成时不生成多余的括号
-var version = "py-V0.1.0.20220501(??????)-dev";
+var version = "py-V0.1.0.20220501(10000)-dev";
 console.log(
     `%c 
 #####                           ######                                  #####                      
