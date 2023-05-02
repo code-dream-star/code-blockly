@@ -1,5 +1,5 @@
 Blockly.JavaScript.ORDER_ATOMIC = 99; // 代码生成时不生成多余的括号
-var version = "web-V0.3.0.20220109(43defd2)-dev";
+var version = "web-V0.4.0.20220501(10000)-dev";
 console.log(
      `%c 
 #####                           ######                                  #####                      
@@ -35,6 +35,8 @@ console.log(
      "Copyright © 2022-2023 by Code Dream Star",
      "All rights reserved"
 );
+
+$("#settingsdialog-tab2>p").text(version);
 
 (async function main() {
      "use strict";
@@ -147,7 +149,7 @@ Object.assign(window, { color });
           e.setAttribute(
                "colour",
                config.target[
-                    e.getAttribute("category_id").replace("%color ", "")
+               e.getAttribute("category_id").replace("%color ", "")
                ]
           );
      });
@@ -198,17 +200,48 @@ function loadicon() {
 
 loadicon();
 
+window.onsettingchange = function () {
+     if ($settingsitem['CodeblocklySettingsdialogId1-c'] == 'true') {
+          $(`.Codeblockly1-c_CSS`).each((_, a) => { a.remove() })
+     }
+     if ($settingsitem['CodeblocklySettingsdialogId1-c'] == 'false') {
+          $(`<style class="Codeblockly1-c_CSS">.blocklySvg>circle {display: none;}</style>`).appendTo(document.head);
+     }
+     if ($settingsitem['CodeblocklySettingsdialogId0-c'] == 'true') {
+          $(`<style class="Codeblockly0-c_CSS_2">.blocklyHighlightedConnectionPath {stroke: #FFF200 !important;}</style>`).appendTo(document.head);
+          $(`.Codeblockly0-c_CSS`).each((_, a) => { a.remove() })
+     }
+     if ($settingsitem['CodeblocklySettingsdialogId0-c'] == 'false') {
+          $(`<style class="Codeblockly0-c_CSS">.blocklyHighlightedConnectionPath {stroke: #0000 !important;}</style>`).appendTo(document.head);
+          $(`.Codeblockly0-c_CSS_2`).each((_, a) => { a.remove() })
+     }
+     if ($settingsitem['CodeblocklySettingsdialogId2-c'] == 'false') {
+          $(`.Codeblockly2-c_CSS`).each((_, a) => {a.remove()})
+     }
+     if ($settingsitem['CodeblocklySettingsdialogId2-c'] == 'true') {
+          $(`<style class="Codeblockly2-c_CSS">.blocklyDropDownArrow {display: none;}.blocklyDropDownDiv{background-color:#fff!important;border:none!important;transform:translate(0,8px)!important;transition:transform .25s ease 0s,opacity .25s ease 0s,box-shadow .18s ease 0s!important;padding:0!important}.blocklyDropdownMenu .blocklyMenuItemContent{color:#222!important}.blocklyDropdownMenu .blocklyMenuItem{background:#fff;border-left:solid 5px #0000;padding-left:18px}.blocklyDropdownMenu .blocklyMenuItem.goog-option-selected{background:#ddd;border-left:solid 5px #aaa}.blocklyDropdownMenu .blocklyMenuItem:hover{background:#f4f4f4}.blocklyDropdownMenu .blocklyMenuItem.goog-option-selected:hover{background:#ececec}.blocklyMenuItemSelected .blocklyMenuItemCheckbox{display:none}</style>`).appendTo(document.head);
+     }
+}
+
 // 事件
 workspace.addChangeListener(function (e) {
-     // 输出（test use）
-     console.log(e);
+     !function () {
+          let a = Object.values(document.querySelectorAll("*")).filter(v => v.id.startsWith("blocklySelectedGlowFilter"));
+          a.forEach(v => {
+               v.querySelector("feFlood").setAttribute("flood-color", "#fff");
+          })
+          let b = Object.values(document.querySelectorAll("*")).filter(v => v.id.startsWith("blocklyReplacementGlowFilter"));
+          b.forEach(v => {
+               v.querySelector("feFlood").setAttribute("flood-color", "#fff");
+          })
+     }();
 
      // 生成代码
      var code = Blockly.JavaScript.workspaceToCode(workspace);
      var html = hljs
           .highlight(
                "<!-- 代码由 https://code-dream-star.github.io/code-blockly/ 生成，感谢您对我们的支持。-->\n" +
-                    code,
+               code,
                { language: "HTML" }
           )
           .value.split("\n")
@@ -349,8 +382,8 @@ $(".right-bottom-navigation-bar > div").each((_, a) => {
                     }
                     break;
                case "预览":
-                    const d = window.open();
-                    var code = Blockly.JavaScript.workspaceToCode(workspace);
+                    const d = window.open(...($settingsitem['CodeblocklySettingsdialogId1-s']==="newdialog" ? ["", "", "top=0;left=0"] : []));
+                    var code = Blockly.Python.workspaceToCode(workspace);
                     var html = code.split("\n").join("").split("  ").join("");
                     d.document.write(html);
                     break;
@@ -414,7 +447,7 @@ workspace.setTheme(BlocklyTheme);
 // 弹窗
 !(function () {
      const o = {
-          async alert(w = "", f = () => {}) {
+          async alert(w = "", f = () => { }) {
                await swal("", w, {
                     buttons: {
                          text: "收到！",
@@ -423,14 +456,14 @@ workspace.setTheme(BlocklyTheme);
                f();
                return;
           },
-          async confirm(w = "", f = () => {}) {
+          async confirm(w = "", f = () => { }) {
                const a = await swal("", w, {
                     buttons: ["取消", "确认"],
                });
                f(a);
                return a;
           },
-          async prompt(w = "", p = "", f = () => {}) {
+          async prompt(w = "", p = "", f = () => { }) {
                const a = await swal("", w, {
                     buttons: true,
                     content: {
@@ -451,11 +484,11 @@ workspace.setTheme(BlocklyTheme);
           if (v.startsWith("set")) {
                Blockly.dialog[v](
                     o[
-                         v
-                              .replace(/[A-Z]/, (r) => {
-                                   return r.toLocaleLowerCase();
-                              })
-                              .slice(3)
+                    v
+                         .replace(/[A-Z]/, (r) => {
+                              return r.toLocaleLowerCase();
+                         })
+                         .slice(3)
                     ]
                );
           }

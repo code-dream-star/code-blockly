@@ -540,6 +540,8 @@
     <script src="../../blockly/blocks_compressed.js"></script>
     <script src="../../blockly/javascript_compressed.js"></script>
     <script src="../../blockly/msg/zh-hans.js"></script>
+    <!-- 导入积木+/-按钮插件-->
+    <script src="../../static/js/block-plus-minus.js"></script>
     <!--HTML积木-->
     <script src="../../static/block/web-dev/structure.js"></script>
     <script src="../../static/block/web-dev/head.js"></script>
@@ -549,20 +551,20 @@
     <script src="../../static/block/web-dev/video.js"></script>
     <script src="../../static/block/web-dev/attribute.js"></script>
     <!--CSS积木-->
-    <script src="../../static/block/web-dev/css/background.js"></script>
-    <script src="../../static/block/web-dev/css/border.js"></script>
-    <script src="../../static/block/web-dev/css/css.js"></script>
-    <script src="../../static/block/web-dev/css/link.js"></script>
-    <script src="../../static/block/web-dev/css/list.js"></script>
-    <script src="../../static/block/web-dev/css/margin.js"></script>
-    <script src="../../static/block/web-dev/css/table.js"></script>
-    <script src="../../static/block/web-dev/css/text.js"></script>
+    <script src="../../static/block/css-dev/background.js"></script>
+    <script src="../../static/block/css-dev/border.js"></script>
+    <script src="../../static/block/css-dev/css.js"></script>
+    <script src="../../static/block/css-dev/link.js"></script>
+    <script src="../../static/block/css-dev/list.js"></script>
+    <script src="../../static/block/css-dev/margin.js"></script>
+    <script src="../../static/block/css-dev/table.js"></script>
+    <script src="../../static/block/css-dev/text.js"></script>
     <!--JS积木-->
-    <script src="../../static/block/web-dev/js/js_console.js"></script>
-    <script src="../../static/block/web-dev/js/object.js"></script>
-    <script src="../../static/block/web-dev/js/get.js"></script>
-    <script src="../../static/block/web-dev/js/window.js"></script>
-    <script src="../../static/block/web-dev/js/regexp.js"></script>
+    <script src="../../static/block/js-dev/js_console.js"></script>
+    <script src="../../static/block/js-dev/object.js"></script>
+    <script src="../../static/block/js-dev/get.js"></script>
+    <script src="../../static/block/js-dev/window.js"></script>
+    <script src="../../static/block/js-dev/regexp.js"></script>
     <!--导入SweetAlert-->
     <script src="../../static/js/sweetalert.js"></script>
     <!--导入mdui-->
@@ -573,7 +575,8 @@
     <!-- 导入jq -->
     <script src="../../static/js/jq.js"></script>
     <!-- 图标库  -->
-    <script src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_31.a239a38f84de463071df685f68177edc.js"></script>
+    <script
+        src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_32.0b82559dbc90883d1fa7f8c4f1757e5a.js"></script>
     <link rel="stylesheet" href="../../static/css/style.css" />
     <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
     <svg style="position: absolute;width: 0px;height: 0px;overflow: hidden;" aria-hidden="true">
@@ -773,11 +776,27 @@
             </div>
             <div id="settingsdialog-tab1">
                 <ul class="mdui-list">
-                    <li class="mdui-subheader">积木盒</li>
+                    <li class="mdui-subheader">积木</li>
                     <label class="mdui-list-item">
-                        <div class="mdui-list-item-content">常驻模式</div>
+                        <div class="mdui-list-item-content">积木插入高亮显示</div>
                         <li class="mdui-switch">
-                            <input type="checkbox" onchange="updatasettings(this, 0,'c')" class="SettingsdialogId0-c" />
+                            <input type="checkbox" onchange="updatasettings(this, 0,'c')" class="SettingsdialogId0-c"
+                                checked />
+                            <i class="mdui-switch-icon"></i>
+                        </li>
+                    </label>
+                    <label class="mdui-list-item">
+                        <div class="mdui-list-item-content">积木插入动画圆圈</div>
+                        <li class="mdui-switch">
+                            <input type="checkbox" onchange="updatasettings(this, 1,'c')" class="SettingsdialogId1-c"
+                                checked />
+                            <i class="mdui-switch-icon"></i>
+                        </li>
+                    </label>
+                    <label class="mdui-list-item">
+                        <div class="mdui-list-item-content">下拉框美化</div>
+                        <li class="mdui-switch">
+                            <input type="checkbox" onchange="updatasettings(this,2,'c')" class="SettingsdialogId2-c" />
                             <i class="mdui-switch-icon"></i>
                         </li>
                     </label>
@@ -793,11 +812,16 @@
                     </div>
                 </ul>
             </div>
-            <div id="settingsdialog-tab2" class="mdui-p-a-2">
-                <p>404!</p>
+            <div id="settingsdialog-tab2" class="mdui-p-a-2" align="center">
+                <img src="../../static/logo/logo_dev.svg" height="60">
+                <h2>Code Blokly Dev</h2>
+                <p></p>
             </div>
-            <div id="settingsdialog-tab3" class="mdui-p-a-2">
-                <p>404!</p>
+            <div id="settingsdialog-tab3" class="mdui-p-a-2" align="center">
+                <p>Google Blockly</p>
+                <p>MDUI</p>
+                <p>SweetAlert</p>
+                <p>JQuery</p>
             </div>
         </div>
         <!-- 删除垃圾桶 -->
@@ -860,6 +884,7 @@
                         <statement name="blocks">
                             <block type="head_charset"></block>
                         </statement>
+
                         <next>
                             <block type="define_web_pages_body"></block>
                         </next>
@@ -1142,6 +1167,7 @@
             <block type="logic_compare"></block>
             <block type="logic_operation"></block>
             <block type="logic_boolean"></block>
+            <block type="logic_negate"></block>
             <block type="logic_ternary"></block>
             <block type="logic_null"></block>
             <label text="字符串"></label>
@@ -1227,6 +1253,42 @@
                 <value name="TEXT">
                     <shadow type="text">
                         <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_count">
+                <value name="SUB">
+                    <shadow type="text">
+                        <field name="TEXT">文</field>
+                    </shadow>
+                </value>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">文本</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_replace">
+                <value name="FROM">
+                    <shadow type="text">
+                        <field name="TEXT">文</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="text">
+                        <field name="TEXT">纹</field>
+                    </shadow>
+                </value>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">文本</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="text_reverse">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">文本</field>
                     </shadow>
                 </value>
             </block>
@@ -1332,14 +1394,16 @@
             <block type="window_location_reload"></block>
         </category>
         <category name="正则" category_id="%color regexp" css-row="beta-category blocklyTreeRow">
-            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
             <block type="regexp_create">
-                <value name="NAME">
+                <value name="text">
                     <shadow type="text">
                         <field name="TEXT">(?:)</field>
                     </shadow>
                 </value>
             </block>
+            <block type="regexp_test"></block>
+            <block type="regexp_execone"></block>
+            <block type="regexp_exec"></block>
         </category>
         <category name="OOP" category_id="%color OOP" css-row="beta-category blocklyTreeRow">
             <button class="blue-button" text="实验性功能" callbackkey="beta"></button>

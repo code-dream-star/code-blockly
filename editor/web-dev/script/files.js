@@ -61,7 +61,7 @@ const openfile = () => {
 };
 
 function showWorks() {
-    var v = localStorage.getItem("CodeBlocklyUserBlocklyWorksXML");
+    var v = localStorage.getItem(("CodeBlocklyUserBlocklyWorksXML-" + /.+\/editor\/(.+)\//.exec(location.href)[1]));
     Blockly.Xml.domToWorkspace(
         Blockly.Xml.textToDom(!v ? morenxml : v),
         workspace
@@ -70,12 +70,11 @@ function showWorks() {
 
 function saveWorks(t) {
     localStorage.setItem(
-        "CodeBlocklyUserBlocklyWorksXML",
+        ("CodeBlocklyUserBlocklyWorksXML-" + /.+\/editor\/(.+)\//.exec(location.href)[1]),
         Blockly.Xml.domToText(Blockly.Xml.workspaceToDom(workspace))
     ); //保存作品
     if (t) swal("", "作品保存成功！", "success");
 }
-
 function saveFile(name, data) {
     var urlObject = window.URL || window.webkitURL || window;
     var export_blob = new Blob([data]);
@@ -89,13 +88,18 @@ function saveFile(name, data) {
 }
 
 function opensettngs() {
-    new mdui.Dialog($(".settingsdialog")[0]).open()
+    var x= new mdui.Dialog($(".settingsdialog")[0])
+    x.options.modal=true
+    x.open()
 }
 
 function updatasettings(e, t, s) {
     const v = s == "s" ? e.value : e.checked;
     localStorage.setItem(`CodeblocklySettingsdialogId${t}-${s}`, v + [])
     $settingsitem[`CodeblocklySettingsdialogId${t}-${s}`] = v + [];
+    if (window.onsettingchange) {
+        window.onsettingchange()
+    }
 }
 
 function loadsettings() {
@@ -109,6 +113,9 @@ function loadsettings() {
                 e.value = localStorage[s];
             } else {
                 e.checked = eval(localStorage[s]);
+            }
+            if (window.onsettingchange) {
+                window.onsettingchange()
             }
         }
     }
@@ -176,3 +183,5 @@ $("body")[0].addEventListener("click", (e) => {
 new mdui.Tab('#settingsdialog-tab').show(0);
 
 $('#settingsdialog-tab > div').css("width", "149.328px");
+
+loadsettings()
