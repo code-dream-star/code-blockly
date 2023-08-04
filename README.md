@@ -1,5 +1,7 @@
 # Code Blockly
+
 English | [简体中文](README.zh-CN.md)
+
  <p>
     <a href="https://github.com/code-dream-star/code-blockly/blob/main/licence"><img src="https://img.shields.io/github/license/code-dream-star/code-blockly"></a>
     <a href="https://github.com/code-dream-star/code-blockly/"><img src="https://img.shields.io/github/stars/code-dream-star/code-blockly"></a>
@@ -10,28 +12,36 @@ English | [简体中文](README.zh-CN.md)
 </p>
 
 ## Introduction
-Code Blockly is a graphical editor developed by Code Dream Star based on the open source Google Blockly, and its graphical interface in multiple languages is very conducive to novices to quickly get started programming and experience the fun of programming.
 
-## Use
-### Visit the web version
+Code Blockly is a graphical editor developed by Code Dream Star based on _Google Blockly_, and its graphical interface in multiple languages is very conducive to novices to quickly get started programming and experience the fun of programming.
+
+## How to Use
+
+### Web Client
+
 - code-dream-star.github.io/code-blockly
-### Access the local version (available offline)
+
+### Local Client
+
 1. Clone the repository (https://github.com/code-dream-star/code-blockly.git)
 2. Open the project folder
-3. Double-click to open the index.html
+3. Double-click index.html to run it
 
 ## Feedback
+
 1. [GitHub Issues](https://github.com/code-dream-star/code-blockly/issues)
 2. [FeiShu Form](code-dream-star.github.io/code-blockly#form)
 3. [QQ Group](https://jq.qq.com/?_wv=1027&k=8re37Nfl)
 
-## Contribute to the contribution
+## Contribution
+
 1. Fork the repository
-2. Create a new YourName_main branch
-3. Submit the code
-4. Pull Request to this repository
+2. Create a new branch
+3. Push your commit
+4. Open Pull Request to this repository
 
 ## Acknowledgements
+
 - [IconPark](http://iconpark.oceanengine.com/)
 - [Waddle](http://coco-central.cn)
 - [SweetAlert](https://sweetalert.js.org/)
