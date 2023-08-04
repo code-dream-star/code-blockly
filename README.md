@@ -25,7 +25,7 @@ Code Blockly is a graphical editor developed by Code Dream Star based on _Google
 
 1. Clone the repository (https://github.com/code-dream-star/code-blockly.git)
 2. Open the project folder
-3. Double-click index.html to run it
+3. Double-click `index.html` to run it
 
 ## Feedback
 
