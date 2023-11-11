@@ -544,6 +544,9 @@
     <script src="../../static/js/block-plus-minus.js"></script>
     <!--Python基础积木-->
     <script src="../../static/block/py-dev/events.js"></script>
+    <!--Python第三方库-->
+    <script src="../../static/block/py-dev/os.js"></script>
+    <script src="../../static/block/py-dev/requests.js"></script>
     <!--导入SweetAlert-->
     <script src="../../static/js/sweetalert.js"></script>
     <!--导入mdui-->
@@ -555,7 +558,7 @@
     <script src="../../static/js/jq.js"></script>
     <!-- 图标库  -->
     <script
-        src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_32.0b82559dbc90883d1fa7f8c4f1757e5a.js"></script>
+        src="https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_20390_34.d839d57ddaaef8e94c27988abcf96654.js"></script>
     <link rel="stylesheet" href="../../static/css/style.css" />
     <!--来自于 IconPark https://iconpark.oceanengine.com/official-->
     <svg style="position: absolute;width: 0px;height: 0px;overflow: hidden;" aria-hidden="true">
@@ -1208,6 +1211,33 @@
             <block type="object_isfreeze"></block>
         </category>
         <category name="函数" category_id="%color function" custom="PROCEDURE"></category>
+        <sep></sep>
+        <category name="爬虫" category_id="%color requests">
+            <block type="requests_get"></block>
+            <block type="requests_post"></block>
+        </category>
+        <category name="OS库" category_id="%color os">
+            <block type="os_access"></block>
+            <block type="os_chdir"></block>
+            <block type="os_chflags"></block>
+            <block type="os_Permission_detection"></block>
+            <block type="os_set_permissions"></block>
+            <block type="os_modifying_the_root_directory"></block>
+            <block type="os_close_descriptor"></block>
+            <block type="os_close_all_descriptors"></block>
+            <block type="os_copy_the_file_descriptor"></block>
+            <block type="os_descriptor_substitution"></block>
+            <block type="os_descriptor_changedir"></block>
+            <block type="os_modifying_file_permissions"></block>
+            <block type="os_type_selection"></block>
+            <block type="os_change_file_ownership"></block>
+            <block type="os_force_write"></block>
+            <block type="os_create_file"></block>
+            <block type="os_file_setting"></block>
+            <block type="os_system_configuration_information"></block>
+            <block type="os_acquisition_state"></block>
+            <block type="os_status"></block>
+        </category>
         <sep></sep>
         <category name="搜索" category_id="search">
             <label text="搜索积木"></label>

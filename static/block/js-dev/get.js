@@ -3,7 +3,7 @@
  * 3个
  * 文档×
  */
-Blockly.Blocks['docment_get_id'] = {
+Blockly.Blocks['document_get_id'] = {
     init: function () {
         this.appendDummyInput()
             .appendField("获取html元素ID")
@@ -15,7 +15,7 @@ Blockly.Blocks['docment_get_id'] = {
     }
 };
 
-Blockly.JavaScript['js_get_id'] = function (block) {
+Blockly.JavaScript['document_get_id'] = function (block) {
     var id = block.getFieldValue('input');
     var code = `document.getElementById(${id});\n`;
     return [code, Blockly.JavaScript.ORDER_NONE];

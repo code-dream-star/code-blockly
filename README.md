@@ -18,7 +18,7 @@ Code Blockly is a graphical editor developed by Code Dream Star based on the ope
 ### Access the local version (available offline)
 1. Clone the repository (https://github.com/code-dream-star/code-blockly.git)
 2. Open the project folder
-3. Double-click to open the index.html
+3. Double-click `index.html` to run it
 
 ## Feedback
 1. [GitHub Issues](https://github.com/code-dream-star/code-blockly/issues)
@@ -33,7 +33,7 @@ Code Blockly is a graphical editor developed by Code Dream Star based on the ope
 
 ## Acknowledgements
 - [IconPark](http://iconpark.oceanengine.com/)
-- [Waddle](http://coco-central.cn)
+- [Waddle](http://waddle.coco-central.cn)
 - [SweetAlert](https://sweetalert.js.org/)
 - [MDUI](https://www.mdui.org/)
 - [CoCo Manual](https://codemao.yuque.com/kzbwh0/coco_guide)

@@ -178,6 +178,7 @@ var workspace = Blockly.inject("blocklyDiv", {
      renderer: "zelos", // 主题风格
 });
 
+
 // 加载toolbox图标
 function loadicon() {
      workspace.toolbox_.contents_.forEach((e) => {
@@ -409,14 +410,14 @@ $(".code-dialog-button[left]")[0].addEventListener("click", () => {
 });
 
 // 加载结束后，进行适配化这个适配可能有些Bug
-setInterval(() => {
+function resize() {
      document.querySelectorAll(".workzone > div").forEach((e) => {
           e.style.height = document.documentElement.clientHeight - 64 + "px";
      });
-}, 16);
-setInterval(() => {
      Blockly.svgResize(workspace);
-}, 16);
+}
+resize()
+window.addEventListener("resize", resize);
 
 // 主题
 

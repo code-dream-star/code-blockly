@@ -1,5 +1,5 @@
-Blockly.Python.ORDER_ATOMIC = 99; // 代码生成时不生成多余的括号
-var version = "py-V0.1.0.20220501(10000)-dev";
+Blockly.JavaScript.ORDER_ATOMIC = 99; // 代码生成时不生成多余的括号
+var version = "ARENA-V0.1.0.20220807(10000)-dev";
 console.log(
     `%c 
 #####                           ######                                  #####                      
@@ -36,10 +36,7 @@ console.log(
     "All rights reserved"
 );
 
-
 $("#settingsdialog-tab2>p").text(version);
-
-
 
 (async function main() {
     "use strict";
@@ -112,17 +109,28 @@ document.body.style.overflow = "hidden"; //禁止页面滑动
 
 // 积木颜色
 const color = {
-    events: "#009DFF",
-    control: "#68CDFF",
-    math: "#FEAE8A",
-    procedure: "#F88767",
-    function: "#77D657",
-    varible: "#FFBB55",
-    list: "#F9CC37",
-    text: "#F7C862",
-    object: "#A073FF",
-    requests: "#38DC74",
-    os: "#4864FF"
+    //-----
+    console: "#e68a4f",
+    operation: "#feae8a",
+    loop: "#68cdff",
+    control: "#68cdff",
+    math: "#feae8a",
+    procedure: "#f88767",
+    function: "#77d657",
+    varible: "#ffbb55",
+    list: "#f9cc37",
+    colour: "#2bc9a7",
+    //-----
+    "ARENA-world": "#0397F0",
+    "ARENA-voxels": "#FF7300",
+    "ARENA-entity": "#EBA74B",
+    "ARENA-player": "#9749D6",
+    //-----
+    object: "#a073ff",
+    get: "#52D1C5",
+    window: "#B551D1",
+    regexp: "#9226C7",
+    OOP: "#65CE81",
 };
 
 Object.assign(window, { color });
@@ -165,6 +173,7 @@ var workspace = Blockly.inject("blocklyDiv", {
     renderer: "zelos", // 主题风格
 });
 
+
 // 加载toolbox图标
 function loadicon() {
     workspace.toolbox_.contents_.forEach((e) => {
@@ -186,8 +195,6 @@ function loadicon() {
 }
 
 loadicon();
-
-
 
 window.onsettingchange = function () {
     if ($settingsitem['CodeblocklySettingsdialogId1-c'] == 'true') {
@@ -212,10 +219,8 @@ window.onsettingchange = function () {
     }
 }
 
-
 // 事件
 workspace.addChangeListener(function (e) {
-
     !function () {
         let a = Object.values(document.querySelectorAll("*")).filter(v => v.id.startsWith("blocklySelectedGlowFilter"));
         a.forEach(v => {
@@ -228,18 +233,18 @@ workspace.addChangeListener(function (e) {
     }();
 
     // 生成代码
-    var code = Blockly.Python.workspaceToCode(workspace);
-    var pycode = hljs
+    var code = Blockly.JavaScript.workspaceToCode(workspace);
+    var html = hljs
         .highlight(
-            "# 代码由 https://code-dream-star.github.io/code-blockly/ 生成，感谢您对我们的支持。\n" +
+            "// 代码由 https://code-dream-star.github.io/code-blockly/ 生成，感谢您对我们的支持。\n" +
             code,
-            { language: "python" }
+            { language: "JavaScript" }
         )
         .value.split("\n")
         .join("<br>")
         .split("  ")
         .join("&nbsp;");
-    $(".code-dialog > code").html(pycode);
+    $(".code-dialog > code").html(html);
 
     // 自动保存
     if (typeof saveWorks != [][0] + []) {
@@ -310,8 +315,6 @@ workspace.addChangeListener(function (e) {
         // 刷新toolbox
         workspace.updateToolbox($("#toolbox")[0]);
         loadicon();
-
-
     }
 });
 
@@ -375,9 +378,10 @@ $(".right-bottom-navigation-bar > div").each((_, a) => {
                 }
                 break;
             case "预览":
+                const d = window.open(...($settingsitem['CodeblocklySettingsdialogId1-s'] === "newdialog" ? ["", "", "top=0;left=0"] : []));
                 var code = Blockly.Python.workspaceToCode(workspace);
-                var url = "./pyrun.html#" + encodeURIComponent(code)
-                window.open(url, ...($settingsitem['CodeblocklySettingsdialogId1-s'] === "newdialog" ? ["", "top=0;left=0"] : []));
+                var html = code.split("\n").join("").split("  ").join("");
+                d.document.write(html);
                 break;
         }
     });
@@ -403,7 +407,7 @@ $(".code-dialog-button[left]")[0].addEventListener("click", () => {
 // 加载结束后，进行适配化这个适配可能有些Bug
 function resize() {
     document.querySelectorAll(".workzone > div").forEach((e) => {
-         e.style.height = document.documentElement.clientHeight - 64 + "px";
+        e.style.height = document.documentElement.clientHeight - 64 + "px";
     });
     Blockly.svgResize(workspace);
 }
@@ -415,7 +419,7 @@ window.addEventListener("resize", resize);
 BlocklyTheme = Blockly.Theme.defineTheme("BlocklyTheme", {
     base: Blockly.Themes.Classic,
     blockStyles: {
-        loop_blocks: { colourPrimary: color["control"] },
+        loop_blocks: { colourPrimary: color["loop"] },
         math_blocks: { colourPrimary: color["math"] },
         logic_blocks: { colourPrimary: color["math"] },
         text_blocks: { colourPrimary: color["math"] },
