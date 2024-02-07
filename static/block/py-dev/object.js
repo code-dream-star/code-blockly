@@ -176,42 +176,42 @@ Blockly.defineBlocksWithJsonArray([{
 }]);
 
 Blockly.Python['object_null'] = function (block) {
-    return ["{}", Blockly.JavaScript.ORDER_NONE];;
+    return ["{}", Blockly.Python.ORDER_NONE];;
 };
 Blockly.Python['object_copy'] = function (block) {
-    var value_target = Blockly.JavaScript.valueToCode(block, 'target', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_target = Blockly.Python.valueToCode(block, 'target', Blockly.Python.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'object', Blockly.Python.ORDER_ATOMIC);
     var code = `${value_object || "({})"}.update(${value_target || "{}"})\n`;
     return code;
 };
 Blockly.Python['object_delete'] = function (block) {
-    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
-    var text_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'object', Blockly.Python.ORDER_ATOMIC);
+    var text_key = Blockly.Python.valueToCode(block, 'key', Blockly.Python.ORDER_ATOMIC);
     var code = `del ${value_object || "({})"}[${text_key ? text_key : null}]\n`;
     return code;
 };
 Blockly.Python['object_set'] = function (block) {
-    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
-    var text_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
-    var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'object', Blockly.Python.ORDER_ATOMIC);
+    var text_key = Blockly.Python.valueToCode(block, 'key', Blockly.Python.ORDER_ATOMIC);
+    var value_value = Blockly.Python.valueToCode(block, 'value', Blockly.Python.ORDER_ATOMIC);
     var code = `${value_object || "({})"}[${text_key ? text_key : null}] = ${value_value ? value_value : null}\n`;
     return code;
 };
 Blockly.Python['object_inc'] = function (block) {
-    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
-    var text_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'object', Blockly.Python.ORDER_ATOMIC);
+    var text_key = Blockly.Python.valueToCode(block, 'key', Blockly.Python.ORDER_ATOMIC);
     var code = `('${text_key}' in ${value_object || "({})"})`;
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.Python.ORDER_NONE];
 };
 Blockly.Python['object_get'] = function (block) {
-    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
-    var text_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'object', Blockly.Python.ORDER_ATOMIC);
+    var text_key = Blockly.Python.valueToCode(block, 'key', Blockly.Python.ORDER_ATOMIC);
     var code = `${value_object || "({})"}[${text_key ? text_key : null}]`;
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.Python.ORDER_NONE];
 };
 Blockly.Python['object_geto'] = function (block) {
-    var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
+    var value_object = Blockly.Python.valueToCode(block, 'object', Blockly.Python.ORDER_ATOMIC);
     var dropdown_option = block.getFieldValue('option');
     if (dropdown_option == "length") { var code = `Object.keys(${value_object || "{}"}).length`; } else { var code = `Object.${dropdown_option}(${value_object || "({})"})`; }
-    return [code, Blockly.JavaScript.ORDER_NONE];
+    return [code, Blockly.Python.ORDER_NONE];
 };
