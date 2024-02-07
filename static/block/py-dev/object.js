@@ -212,6 +212,6 @@ Blockly.Python['object_get'] = function (block) {
 Blockly.Python['object_geto'] = function (block) {
     var value_object = Blockly.Python.valueToCode(block, 'object', Blockly.Python.ORDER_ATOMIC);
     var dropdown_option = block.getFieldValue('option');
-    if (dropdown_option == "length") { var code = `Object.keys(${value_object || "{}"}).length`; } else { var code = `Object.${dropdown_option}(${value_object || "({})"})`; }
+    if (dropdown_option == "length") { var code = `len(${value_object || "{}"})`; } else { var code = `${dropdown_option}(${value_object || "({})"})`; }
     return [code, Blockly.Python.ORDER_NONE];
 };
