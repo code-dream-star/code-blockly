@@ -176,6 +176,6 @@ Blockly.JavaScript['world_event'] = function (block) {
     var dropdown_name = block.getFieldValue('NAME');
     var statements_name = Blockly.JavaScript.statementToCode(block, 'NAME');
     // TODO: 汇编成 JavaScript 代码变量
-    var code = '...;\n';
+    var code = `world.${dropdown_name}(({ entity }) =>{\n})\n`;
     return code;
 };
