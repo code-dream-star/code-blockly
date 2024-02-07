@@ -194,7 +194,7 @@ Blockly.Python['object_set'] = function (block) {
     var value_object = Blockly.JavaScript.valueToCode(block, 'object', Blockly.JavaScript.ORDER_ATOMIC);
     var text_key = Blockly.JavaScript.valueToCode(block, 'key', Blockly.JavaScript.ORDER_ATOMIC);
     var value_value = Blockly.JavaScript.valueToCode(block, 'value', Blockly.JavaScript.ORDER_ATOMIC);
-    var code = `${value_object || "({})"}[${text_key ? text_key : null}] = ${value_value ? text_key : null}\n`;
+    var code = `${value_object || "({})"}[${text_key ? text_key : null}] = ${value_value ? value_value : null}\n`;
     return code;
 };
 Blockly.Python['object_inc'] = function (block) {
