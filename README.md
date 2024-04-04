@@ -33,7 +33,7 @@ Code Blockly is a graphical editor developed by Code Dream Star based on the ope
 
 ## Acknowledgements
 - [IconPark](http://iconpark.oceanengine.com/)
-- [Waddle](http://waddle.coco-central.cn)
+- [Waddle](http://waddle.cocotais.cn)
 - [SweetAlert](https://sweetalert.js.org/)
 - [MDUI](https://www.mdui.org/)
 - [CoCo Manual](https://codemao.yuque.com/kzbwh0/coco_guide)
