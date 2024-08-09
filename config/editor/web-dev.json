@@ -1,0 +1,49 @@
+{
+    "versionBefore": "",
+    "versionAfter": "",
+    "scripts": [
+        "https://fastly.jsdelivr.net/npm/blockly@9.3.3/javascript_compressed.js",
+        "https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/javascript.min.js",
+        "https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_31066_19.aa029d2c4c189d96324f58d73bc9ddb4.js",
+        "../../static/js/others/web-dev-color.js",
+        "../../static/js/blocks/web_head.js",
+        "../../static/js/blocks/web_text.js",
+        "../../static/js/blocks/web_video.js",
+        "../../static/js/blocks/web_attribute.js",
+        "../../static/js/blocks/web_embed.js",
+        "../../static/js/blocks/web_form.js",
+        "../../static/js/blocks/web_structure.js",
+        "../../static/js/blocks/web_css_text.js",
+        "../../static/js/blocks/web_css_background.js",
+        "../../static/js/blocks/web_css_border.js",
+        "../../static/js/blocks/web_css.js",
+        "../../static/js/blocks/web_css_link.js",
+        "../../static/js/blocks/web_css_list.js",
+        "../../static/js/blocks/web_css_margin.js",
+        "../../static/js/blocks/web_css_table.js"
+    ],
+    "code": {
+        "header": "<!-- 代码由 {{ origin }} 生成，感谢您对我们的支持。-->\n",
+        "blocklyLanguage": "JavaScript",
+        "highlightLanguage": "html"
+    },
+    "works": {
+        "fileExtensionName": ".cbweb",
+        "defaultWorks": {
+            "blocks": {
+                "languageVersion": 0,
+                "blocks": [
+                    {
+                        "type": "procedures_defnoreturn",
+                        "id": "[e?{q{R0+|sB,/?38bC}",
+                        "x": 148,
+                        "y": 40,
+                        "fields": {
+                            "NAME": "HelloWorld"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

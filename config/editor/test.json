@@ -1,0 +1,34 @@
+{
+    "versionBefore": "",
+    "versionAfter": "",
+    "scripts": [
+        "https://fastly.jsdelivr.net/npm/blockly@9.3.3/javascript_compressed.js",
+        "https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/languages/javascript.min.js",
+        "https://lf1-cdn-tos.bytegoofy.com/obj/iconpark/icons_31066_19.aa029d2c4c189d96324f58d73bc9ddb4.js",
+        "../../static/js/blocks/hello.js"
+    ],
+    "code": {
+        "header": "// 代码由 {{ origin }} 生成，感谢您对我们的支持。\n",
+        "blocklyLanguage": "JavaScript",
+        "highlightLanguage": "JavaScript"
+    },
+    "works": {
+        "fileExtensionName": ".cbtest",
+        "defaultWorks": {
+            "blocks": {
+                "languageVersion": 0,
+                "blocks": [
+                    {
+                        "type": "procedures_defnoreturn",
+                        "id": "[e?{q{R0+|sB,/?38bC}",
+                        "x": 148,
+                        "y": 40,
+                        "fields": {
+                            "NAME": "HelloWorld"
+                        }
+                    }
+                ]
+            }
+        }
+    }
+}

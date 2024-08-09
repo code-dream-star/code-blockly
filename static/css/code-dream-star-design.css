@@ -1,0 +1,262 @@
+:root {
+    /* FontSize */
+    --cds-design-fontsize-72: 72px;
+    --cds-design-fontsize-70: 70px;
+    --cds-design-fontsize-60: 60px;
+    --cds-design-fontsize-48: 48px;
+    --cds-design-fontsize-36: 36px;
+    --cds-design-fontsize-32: 32px;
+    --cds-design-fontsize-24: 24px;
+    --cds-design-fontsize-16: 16px;
+    --cds-design-fontsize-12: 12px;
+
+    /* Brand */
+    --cds-design-color-brand-101: #3662EC;
+    --cds-design-color-brand-102: #0B34B3;
+    --cds-design-color-brand-103: #94B7ED;
+    --cds-design-color-brand-104: #CAD6FD;
+    --cds-design-color-brand-105: #E3E8F7;
+    --cds-design-color-brand-106: #537CFF;
+    --cds-design-color-brand-107: #091A50;
+
+    --cds-design-color-brand-201: #07B9B9;
+    --cds-design-color-brand-202: #098D8D;
+    --cds-design-color-brand-203: #75E7E7;
+    --cds-design-color-brand-204: #A0E4E4;
+    --cds-design-color-brand-205: #D5EEEE;
+
+    --cds-design-color-brand-301: linear-gradient(166deg, #3662EC 8%, #07B9B9 92%);
+    --cds-design-color-brand-302: linear-gradient(166deg, #EC3636 8%, #B90707 92%);
+    --cds-design-color-brand-303: linear-gradient(170deg, #537CFF -18%, rgba(255, 255, 255, 0) -18%, #536AFF 98%);
+    --cds-design-color-brand-304: linear-gradient(170deg, rgba(255, 255, 255, 0) -18%, #537CFF -18%, #B780FF 98%);
+
+    /* Line */
+    --cds-design-color-line-101: #F7F7F7;
+    --cds-design-color-line-102: #9B9B9B;
+
+    /* Fill */
+    --cds-design-color-fill-101: #FFFFFF;
+    --cds-design-color-fill-102: #F3F3F3;
+    --cds-design-color-fill-103: #E8E8E8;
+    --cds-design-color-fill-104: #D1D8E8;
+    --cds-design-color-fill-105: #C2CCE4;
+    --cds-design-color-fill-106: #242424;
+    --cds-design-color-fill-107: rgb(255, 255, 255, 50%);
+
+    /* Text */
+    --cds-design-color-text-101: #FFFFFF;
+    --cds-design-color-text-102: #C9CDD4;
+    --cds-design-color-text-103: #A0AAB6;
+    --cds-design-color-text-104: #4E5969;
+    --cds-design-color-text-105: #393C40;
+
+    /* Success */
+    --cds-design-color-success-101: #50E377;
+    --cds-design-color-success-102: #00DC3B;
+    --cds-design-color-success-103: #83E19C;
+    --cds-design-color-success-104: #ACEBBD;
+    --cds-design-color-success-105: #DFFFE8;
+
+    /* Notice */
+    --cds-design-color-notice-101: #F0D75D;
+    --cds-design-color-notice-102: #D9BF3F;
+    --cds-design-color-notice-103: #CDBE8C;
+    --cds-design-color-notice-104: #EEEDA8;
+    --cds-design-color-notice-105: #EEEDBC;
+
+    /* Warning */
+    --cds-design-color-warning-101: #F68B26;
+    --cds-design-color-warning-102: #DC7311;
+    --cds-design-color-warning-103: #DC9D60;
+    --cds-design-color-warning-104: #F6C493;
+    --cds-design-color-warning-105: #FFE4CA;
+
+    /* Error */
+    --cds-design-color-error-101: #E85858;
+    --cds-design-color-error-102: #C13E3E;
+    --cds-design-color-error-103: #F4B3B3;
+    --cds-design-color-error-104: #F4B3B3;
+    --cds-design-color-error-105: #FFE9E9;
+
+    /* Border Radius */
+    --cds-design-radius-all: 1000px;
+    --cds-design-radius-30: 30px;
+    --cds-design-radius-10: 10px;
+    --cds-design-radius-top: 10px 10px 0 0;
+    --cds-design-radius-bottom: 0 0 10px 10px;
+    --cds-design-radius-5: 5px;
+    --cds-design-radius-1: 1px;
+
+    /* Box Shadow */
+    --cds-design-shadow: 0 4px 10px 0 rgb(0, 0, 0, 30.2%);
+
+    /* Border Width */
+    --cds-design-border-stroke-1: 1px;
+    --cds-design-border-breakline: 2px;
+    --cds-design-border-stroke-4: 4px;
+    --cds-design-border-stroke-5: 5px;
+    --cds-design-border-stroke-10: 10px;
+    --cds-design-border-arrow: 20px;
+}
+
+
+/* —————————— 通用 / 按钮 —————————— */
+
+.cds-button {
+    padding: 12px 17px;
+    background-color: var(--cds-design-button-c1);
+    color: var(--cds-design-button-c2);
+    border: solid 1px transparent;
+    border-radius: 0;
+    margin: 0;
+    font-size: var(--cds-design-fontsize-16);
+    cursor: pointer;
+}
+
+.cds-button:disabled {
+    cursor: no-drop;
+}
+
+/* —————— 6种配色 —————— */
+/* 配色：brand 1 */
+.cds-button,
+.cds-theme-brand1 .cds-button,
+.cds-button.cds-theme-brand1 {
+    --cds-design-button-c1: var(--cds-design-color-brand-101);
+    --cds-design-button-c2: var(--cds-design-color-text-101);
+    --cds-design-button-c3: var(--cds-design-color-brand-102);
+    --cds-design-button-c4: var(--cds-design-color-brand-103);
+    --cds-design-button-c5: var(--cds-design-color-brand-105);
+    --cds-design-button-c6: var(--cds-design-color-text-103);
+    --cds-design-button-c7: var(--cds-design-color-text-105);
+}
+
+/* 配色：brand 2 */
+.cds-theme-brand2 .cds-button,
+.cds-button.cds-theme-brand2 {
+    --cds-design-button-c1: var(--cds-design-color-brand-201);
+    --cds-design-button-c3: var(--cds-design-color-brand-202);
+    --cds-design-button-c4: var(--cds-design-color-brand-203);
+    --cds-design-button-c5: var(--cds-design-color-brand-205);
+}
+
+/* 配色：成功 */
+.cds-button.cds-button-success {
+    --cds-design-button-c1: var(--cds-design-color-success-101);
+    --cds-design-button-c3: var(--cds-design-color-success-102);
+    --cds-design-button-c4: var(--cds-design-color-success-103);
+    --cds-design-button-c5: var(--cds-design-color-success-105);
+}
+
+/* 配色：提醒 */
+.cds-button.cds-button-notice {
+    --cds-design-button-c1: var(--cds-design-color-notice-101);
+    --cds-design-button-c3: var(--cds-design-color-notice-102);
+    --cds-design-button-c4: var(--cds-design-color-notice-103);
+    --cds-design-button-c5: var(--cds-design-color-notice-105);
+}
+
+/* 配色：警告 */
+.cds-button.cds-button-warning {
+    --cds-design-button-c1: var(--cds-design-color-warning-101);
+    --cds-design-button-c3: var(--cds-design-color-warning-102);
+    --cds-design-button-c4: var(--cds-design-color-warning-103);
+    --cds-design-button-c5: var(--cds-design-color-warning-105);
+}
+
+/* 配色：错误 */
+.cds-button.cds-button-error {
+    --cds-design-button-c1: var(--cds-design-color-error-101);
+    --cds-design-button-c3: var(--cds-design-color-error-102);
+    --cds-design-button-c4: var(--cds-design-color-error-103);
+    --cds-design-button-c5: var(--cds-design-color-error-105);
+}
+
+/* —————— 3种样式 —————— */
+/* 样式：主按钮 */
+.cds-button:hover {
+    background-color: var(--cds-design-button-c3);
+    color: var(--cds-design-button-c2);
+}
+
+.cds-button:disabled {
+    background-color: var(--cds-design-button-c4);
+    color: var(--cds-design-button-c2);
+}
+
+/* 样式：辅助按钮 */
+.cds-button.cds-button-assist {
+    background-color: var(--cds-design-button-c2);
+    color: var(--cds-design-button-c1);
+}
+
+.cds-button.cds-button-assist:hover {
+    background-color: var(--cds-design-button-c4);
+    color: var(--cds-design-button-c1);
+}
+
+.cds-button.cds-button-assist.cds-button-warning:hover,
+.cds-button.cds-button-assist.cds-button-notice:hover,
+.cds-button.cds-button-assist.cds-button-success:hover{
+    color: var(--cds-design-button-c2);
+}
+
+.cds-button.cds-button-assist:disabled {
+    background-color: var(--cds-design-button-c5);
+    color: var(--cds-design-button-c4);
+}
+
+.cds-button.cds-button-assist.cds-button-warning:disabled,
+.cds-button.cds-button-assist.cds-button-notice:disabled,
+.cds-button.cds-button-assist.cds-button-success:disabled{
+    color: var(--cds-design-button-c4);
+}
+
+/* 样式：线框按钮 */
+.cds-button.cds-button-border {
+    background-color: transparent;
+    color: var(--cds-design-button-c1);
+    border-color: var(--cds-design-button-c1);
+}
+
+.cds-button.cds-button-border:hover {
+    background-color: var(--cds-design-button-c2);
+    color: var(--cds-design-button-c1);
+    border-color: var(--cds-design-button-c1);
+}
+
+.cds-button.cds-button-border:disabled {
+    background-color: transparent;
+    color: var(--cds-design-button-c4);
+    border-color: var(--cds-design-button-c4);
+}
+
+/* —————— 4种大小 —————— */
+/* 大小：默认（无css） */
+
+/* 大小：大 */
+.cds-button.cds-button-big {
+    padding: 17px 17px;
+}
+
+/* 大小：小 */
+.cds-button.cds-button-small {
+    padding: 8px 17px;
+}
+
+/* 大小：迷你 */
+.cds-button.cds-button-mini {
+    padding: 10px 17px;
+    font-size: var(--cds-design-fontsize-12);
+}
+
+/* —————— 2种圆角 —————— */
+/* 圆角：普通 */
+.cds-button.cds-button-rounded {
+    border-radius: var(--cds-design-radius-10);
+}
+
+/* 圆角：全圆角 */
+.cds-button.cds-button-all-rounded {
+    border-radius: var(--cds-design-radius-all);
+}

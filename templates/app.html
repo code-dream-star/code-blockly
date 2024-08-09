@@ -1,0 +1,57 @@
+<header>
+    <img src="{{ icon }}" alt="logo" width="50" height="50">
+    <nav>
+        <div class="nav" id="nav-file">
+            <span>文件</span>
+            <ul>
+                <li id="nav-file-new">新建空白作品</li>
+                <li id="nav-file-save">保存作品</li>
+                <hr>
+                <li id="nav-file-save-local">导出作品</li>
+                <li id="nav-file-open-local">导入作品</li>
+            </ul>
+        </div>
+        <div class="nav" id="nav-settings">
+            <span>设置</span>
+        </div>
+        <div class="nav" id="nav-more">
+            <span>更多</span>
+            <ul>
+                <li id="nav-more-about">关于</li>
+            </ul>
+        </div>
+    </nav>
+    <div class="space"></div>
+    <img class="avatar" src="../../static/img/avatar.png">
+</header>
+<main style class>
+    <div class="toolbox-trash">
+        <img src="../../static/img/trash-cap.png" class="toolbox-trash-cap">
+        <img src="../../static/img/trash-pail.png" class="toolbox-trash-pail">
+    </div>
+    <div class="workspace"></div>
+    <div class="sidebar">
+        <div class="sidebar-slider"></div>
+        <div class="sidebar-item" id="sidebar-code">
+            <pre><code id="code"></code></pre>
+            <div class="code-copy">
+                <img src="../../static/img/copy.png">
+            </div>
+        </div>
+    </div>
+    <div class="toolbar">
+        <div class="toolbar-item" id="toolbar-zoom-out">
+            <img src="../../static/img/zoom-out.png" width="24" height="24">
+        </div>
+        <div class="toolbar-item" id="toolbar-size">100%</div>
+        <div class="toolbar-item" id="toolbar-zoom-in">
+            <img src="../../static/img/zoom-in.png" width="24" height="24">
+        </div>
+        <div class="toolbar-item" id="toolbar-code">
+            <img src="../../static/img/code.png" width="24" height="24">
+        </div>
+        <div class="toolbar-item" id="toolbar-cloud">
+            <img src="../../static/img/cloud.png" width="24" height="24">
+        </div>
+    </div>
+</main>

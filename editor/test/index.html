@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="code-blockly-editor" content="test" />
+    <link rel="shortcut icon" href="../../static/img/logo.png">
+    <link rel="stylesheet" href="../../static/css/loading.css">
+    <title>TEST - Code Blockly 2.0</title>
+</head>
+
+<body>
+    <div id="loading">
+        <h2>加载失败</h2>
+        <p><noscript>请先启用 JavaScript 以运行网站</noscript></p>
+        <script>
+            !function () {
+                const text = document.querySelector("#loading p");
+                const data = [
+                    "Code Dream Star",
+                    "听说打开控制台会有奇妙的事情？",
+                    "你们都给我变彩蛋，变好多好多的彩蛋，变各种各样的彩蛋，我就喜欢，变给我看",
+                    "彩蛋彩蛋快出来，彩蛋彩蛋不出来，彩蛋彩蛋出不来，自己来做，我飞~",
+                    "你可能不知道！Code Blockly有∞个彩蛋！"
+                ];
+
+                document.querySelector("#loading h2").innerText = "加载中...";
+                text.innerText = data[~~(Math.random() * data.length)];
+            }()
+        </script>
+    </div>
+    <div id="app"></div>
+    <script src="https://fastly.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.min.js"></script>
+    <script src="../../static/js/loader.js"></script>
+    <script>CodeBlocklyLoader.load();</script>
+</body>
+
+</html>

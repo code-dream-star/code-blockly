@@ -1,0 +1,539 @@
+<xml>
+    <category name="搜索" icon="search" css-container="toolbox-search-category"></category>
+        <category name="模板" icon="template">
+            <block type="web_define_web_pages">
+                <statement name="blocks">
+                    <block type="web_define_web_pages_head">
+                        <statement name="blocks">
+                            <block type="web_head_title">
+                                <field name="title">Document</field>
+                            </block>
+                        </statement>
+                        <statement name="blocks">
+                            <block type="web_head_charset"></block>
+                        </statement>
+
+                        <next>
+                            <block type="web_define_web_pages_body"></block>
+                        </next>
+                    </block>
+                </statement>
+            </block>
+        </category>
+        <category name="构造" icon="structure">
+            <block type="web_define_web_pages"></block>
+            <block type="web_define_web_pages_head"></block>
+            <block type="web_define_web_pages_body"></block>
+        </category>
+        <category name="头部" icon="head">
+            <block type="web_head_charset"></block>
+            <block type="web_head_title"></block>
+            <block type="web_head_link"></block>
+            <block type="web_head_keywords"></block>
+            <block type="web_head_description"></block>
+            <block type="web_head_author"></block>
+        </category>
+        <category name="嵌入" icon="embed">
+            <block type="web_script"></block>
+            <block type="web_style"></block>
+            <block type="web_embed_css"></block>
+            <block type="web_iframe"></block>
+        </category>
+        <category name="属性" icon="attribute">
+            <block type="web_attribute_id"></block>
+            <block type="web_attribute_class"></block>
+            <block type="web_attribute_css"></block>
+            <block type="web_attribute_width"></block>
+            <block type="web_attribute_height"></block>
+        </category>
+        <category name="文本" icon="text">
+            <block type="web_text_chuntext"></block>
+            <block type="web_text_p"></block>
+            <block type="web_text_title"></block>
+            <block type="web_text_a"></block>
+            <block type="web_text_br"></block>
+            <block type="web_text_annotation"></block>
+        </category>
+        <category name="表单" icon="form" >
+            <block type="web_create_a_form"></block>
+            <block type="web_form_submit_button"></block>
+            <block type="web_form_select_box"></block>
+            <block type="web_form_text_box"></block>
+            <block type="web_form_bounding_box"></block>
+            <block type="web_form_select_down_menu"></block>
+            <block type="web_form_select_down_menu_optgroup"></block>
+            <block type="web_form_select_down_menu_option"></block>
+            <block type="web_form_bounding_box"></block>
+        </category>
+        <category name="媒体" icon="form">
+            <block type="web_video_image"></block>
+            <block type="web_video"></block>
+            <block type="web_video_source"></block>
+        </category>
+        <sep></sep>
+        <category name="CSS" icon="css" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="web_css_Create"></block>
+            <block type="web_css_Unit"></block>
+            <block type="web_css_Color"></block>
+            <block type="web_css_Color_RGB" inline="true"></block>
+            <block type="web_css_Color_16" inline="true"></block>
+        </category>
+        <category name="CSS背景" icon="cssbackground"  css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="web_css_Background_Color" disabled="0">
+                <value name="COLOR">
+                    <shadow type="css_Color" id="yX7|}Qg@;R++}c9G;zPC">
+                        <field name="color">#2ec7e7</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_css_Background_Image"></block>
+            <block type="web_css_Background_Image_Style"></block>
+        </category>
+        <category name="CSS文本" icon="csstext" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <label text="字体"></label>
+            <block type="web_css_Font_Size">
+                <value name="value">
+                    <block type="web_css_Unit" id="9$,}oy^yu[D**(BIt](;">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+            <block type="web_css_Font_Style"></block>
+            <label text="文本"></label>
+            <block type="web_css_Text_Alignment"></block>
+            <block type="web_css_Setting_Text_Embellishments"></block>
+            <block type="web_css_Setting_Text_Rientation"></block>
+            <block type="web_css_Indentation_Of_Text" id="0" x="0" y="0" disabled="0">
+                <value name="value">
+                    <block type="web_css_Unit" id="X=wC(DoPCnw`E!eBU1OZ">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+        <category name="CSS链接" icon="csslink" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="web_css_Link"></block>
+        </category>
+        <category name="CSS列表" icon="csslist" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="web_css_List_Style"></block>
+        </category>
+        <category name="CSS表格" icon="csstable" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+        </category>
+        <category name="CSS边框" icon="cssborder" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="web_css_Border_Color">
+                <value name="value">
+                    <block type="web_css_Color" id="m8UtV!CI8d.?3}#bB%o_">
+                        <field name="color">#2ec7e7</field>
+                    </block>
+                </value>
+            </block>
+            <block type="css_Rounded_Corners">
+                <value name="value">
+                    <block type="web_css_Unit" id="wi(n(2KZ%IpG)K=pip@w">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+            <block type="web_css_Height_Frame">
+                <value name="input">
+                    <block type="web_css_Unit" id="`FZp?:20Y!Cg!_gshY/i">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+            <block type="web_css_Border_Style"></block>
+        </category>
+        <category name="CSS边距" icon="cssmargin" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+            <block type="web_css_Boxlog">
+                <value name="input">
+                    <block type="web_css_Unit" id="`FZp?:20Y!Cg!_gshY/i">
+                        <field name="NAME">0</field>
+                        <field name="unit">px</field>
+                    </block>
+                </value>
+            </block>
+        </category>
+        <sep></sep>
+        <category name="控制" icon="control">
+            <block type="web_controls_if"></block>
+            <block type="web_controls_repeat_ext" category_id="#8ca6c0">
+                <value name="TIMES">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_controls_whileUntil" category_id="#8ca6c0"></block>
+            <block type="web_controls_for" category_id="#8ca6c0">
+                <field name="VAR" id="57g(4![Bc(~B67SRUvvd">i</field>
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+                <value name="BY">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_controls_forEach" category_id="#8ca6c0">
+                <field name="VAR" id="=ea2SQ,8Dye^#~zQHfJV">j</field>
+            </block>
+            <block type="web_controls_flow_statements" category_id="#8ca6c0"></block>
+        </category>
+
+        <category name="运算" icon="math">
+            <label text="数学"></label>
+            <block type="web_math_number">
+                <field name="NUM">1086</field>
+            </block>
+            <block type="web_math_arithmetic">
+                <value name="A">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="B">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_math_random_int">
+                <value name="FROM">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_math_random_float"></block>
+            <block type="web_math_number_property">
+                <value name="NUMBER_TO_CHECK">
+                    <shadow type="math_number">
+                        <field name="NUM">0</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_math_single">
+                <field name="OP">ROOT</field>
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">9</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="math_trig">
+                <field name="OP">SIN</field>
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">45</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_math_constant"></block>
+            <block type="web_math_round">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">3.14</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_math_on_list"></block>
+            <block type="web_math_modulo">
+                <value name="DIVIDEND">
+                    <shadow type="math_number">
+                        <field name="NUM">64</field>
+                    </shadow>
+                </value>
+                <value name="DIVISOR">
+                    <shadow type="math_number">
+                        <field name="NUM">10</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_math_constrain">
+                <value name="VALUE">
+                    <shadow type="math_number">
+                        <field name="NUM">50</field>
+                    </shadow>
+                </value>
+                <value name="LOW">
+                    <shadow type="math_number">
+                        <field name="NUM">1</field>
+                    </shadow>
+                </value>
+                <value name="HIGH">
+                    <shadow type="math_number">
+                        <field name="NUM">100</field>
+                    </shadow>
+                </value>
+            </block>
+            <label text="逻辑"></label>
+            <block type="web_logic_compare"></block>
+            <block type="web_logic_operation"></block>
+            <block type="web_logic_boolean"></block>
+            <block type="web_logic_negate"></block>
+            <block type="web_logic_ternary"></block>
+            <block type="web_logic_null"></block>
+            <label text="字符串"></label>
+            <block type="web_text">
+                <field name="TEXT">Code Dream Star YYDS</field>
+            </block>
+            <block type="web_text_join">
+                <mutation items="2"></mutation>
+                <value name="ADD0">
+                    <block type="web_text">
+                        <field name="TEXT"></field>
+                    </block>
+                </value>
+                <value name="ADD1">
+                    <block type="web_text">
+                        <field name="TEXT"></field>
+                    </block>
+                </value>
+            </block>
+            <block type="web_text_append">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT"></field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_length">
+                <value name="MESSAGE">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_isEmpty">
+                <value name="MESSAGE">
+                    <shadow type="text">
+                        <field name="TEXT"></field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_indexOf">
+                <field name="END">FIRST</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                    </shadow>
+                </value>
+                <value name="FIND">
+                    <block type="web_text">
+                        <field name="TEXT">abc</field>
+                    </block>
+                </value>
+            </block>
+            <block type="web_text_charAt">
+                <mutation at="true" />
+                <field name="WHERE">FROM_START</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_getSubstring">
+                <mutation at1="true" at2="true" />
+                <field name="WHERE1">FROM_START</field>
+                <field name="WHERE2">FROM_START</field>
+                <value name="STRING">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="o(H,3vpcGU*(B$;@WJos">text</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_changeCase">
+                <field name="CASE">UPPERCASE</field>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_trim">
+                <field name="MODE">BOTH</field>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">abc</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_count">
+                <value name="SUB">
+                    <shadow type="text">
+                        <field name="TEXT">文</field>
+                    </shadow>
+                </value>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">文本</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_replace">
+                <value name="FROM">
+                    <shadow type="text">
+                        <field name="TEXT">文</field>
+                    </shadow>
+                </value>
+                <value name="TO">
+                    <shadow type="text">
+                        <field name="TEXT">纹</field>
+                    </shadow>
+                </value>
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">文本</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_text_reverse">
+                <value name="TEXT">
+                    <shadow type="text">
+                        <field name="TEXT">文本</field>
+                    </shadow>
+                </value>
+            </block>
+        </category>
+        <category name="变量" icon="varible" custom="VARIABLE"></category>
+        <category name="列表" icon="list">
+            <block type="web_lists_create_with">
+                <mutation items="1" />
+            </block>
+            <block type="web_lists_create_with">
+                <mutation items="3" />
+            </block>
+            <block type="web_lists_repeat">
+                <value name="NUM">
+                    <shadow type="math_number">
+                        <field name="NUM">5</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_lists_length"></block>
+            <block type="web_lists_isEmpty"></block>
+            <block type="web_lists_indexOf">
+                <field name="END">FIRST</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_lists_getIndex">
+                <mutation statement="false" at="true" />
+                <field name="MODE">GET</field>
+                <field name="WHERE">FROM_START</field>
+                <value name="VALUE">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_lists_setIndex">
+                <mutation at="true" />
+                <field name="MODE">SET</field>
+                <field name="WHERE">FROM_START</field>
+                <value name="LIST">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_lists_getSublist">
+                <mutation at1="true" at2="true" />
+                <field name="WHERE1">FROM_START</field>
+                <field name="WHERE2">FROM_START</field>
+                <value name="LIST">
+                    <shadow type="variables_get">
+                        <field name="VAR" id="2G;)Eq${Io2,L:Ql*.Z7">list</field>
+                   </shadow>
+                </value>
+            </block>
+            <block type="web_lists_split">
+                <mutation mode="SPLIT" />
+                <field name="MODE">SPLIT</field>
+                <value name="DELIM">
+                    <shadow type="text">
+                        <field name="TEXT">,</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_lists_sort">
+                <field name="TYPE">NUMERIC</field>
+                <field name="DIRECTION">1</field>
+            </block>
+        </category>
+        <category name="对象" icon="object">
+            <block type="web_object_null"></block>
+            <block type="web_object_set"></block>
+            <block type="web_object_get"></block>
+            <block type="web_object_delete"></block>
+            <block type="web_object_inc"></block>
+            <block type="web_object_geto"></block>
+            <block type="web_object_copy"></block>
+            <block type="web_object_freeze"></block>
+            <block type="web_object_isfreeze"></block>
+        </category>
+        <category name="函数" icon="function" custom="PROCEDURE"></category>
+        <category name="控制台" icon="console">
+            <block type="web_js_console_clear"></block>
+            <block type="web_js_console_log"></block>
+            <block type="web_js_console_warn"></block>
+            <block type="web_js_console_error"></block>
+        </category>
+        <category name="获取" icon="get">
+            <block type="web_document_get_id"></block>
+            <block type="web_window_get_location_href"></block>
+            <block type="web_get_date"></block>
+        </category>
+        <category name="浏览器" icon="window">
+            <block type="web_window_open"></block>
+            <block type="web_window_close"></block>
+            <block type="web_window_open_return"></block>
+            <block type="web_window_close_return"></block>
+            <block type="web_window_history_back"></block>
+            <block type="web_window_location_reload"></block>
+        </category>
+        <category name="正则" icon="regexp" css-row="beta-category blocklyTreeRow">
+            <block type="web_regexp_create">
+                <value name="text">
+                    <shadow type="text">
+                        <field name="TEXT">(?:)</field>
+                    </shadow>
+                </value>
+            </block>
+            <block type="web_regexp_test"></block>
+            <block type="web_regexp_execone"></block>
+            <block type="web_regexp_exec"></block>
+        </category>
+        <category name="OOP" icon="OOP" css-row="beta-category blocklyTreeRow">
+            <button class="blue-button" text="实验性功能" callbackkey="beta"></button>
+        </category>
+</xml>

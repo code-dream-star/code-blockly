@@ -1,0 +1,505 @@
+div#app {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--cds-design-color-brand-105);
+}
+
+/* 导航栏 */
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    background-color: var(--cds-design-color-fill-107);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%);
+    padding: 0px 8px;
+    height: 65px;
+    position: relative;
+    z-index: 999;
+}
+
+header .space {
+    flex: 1;
+}
+
+header img:last-child {
+    width: 46px;
+    height: 46px;
+}
+
+header nav {
+    display: flex;
+    flex-direction: row;
+    gap: 22px;
+    user-select: none;
+}
+
+header .nav {
+    position: relative;
+    cursor: pointer;
+}
+
+header .nav ul {
+    position: absolute;
+    list-style-type: none;
+    padding-inline-start: 0px;
+    width: 150px;
+    z-index: 9999;
+    background-color: var(--cds-design-color-fill-101);
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%);
+    top: 48.5px;
+    left: -5px;
+    opacity: 0;
+    border-radius: var(--cds-design-radius-10);
+    border-top-left-radius: 0;
+    visibility: hidden;
+    margin: 0;
+    transition: cubic-bezier(0.755, 0.05, 0.855, 0.06) .2s;
+    transform: scaleY(0.8);
+    transform-origin: 0% 0%;
+    overflow: hidden;
+}
+
+header .nav.show ul {
+    transition: cubic-bezier(0.23, 1, 0.32, 1) .2s;
+    visibility: visible;
+    opacity: 1;
+    transform: scaleY(1);
+    transform-origin: 0% 0%;
+}
+
+header img:first-child {
+    margin-right: 22px;
+    width: 50px;
+    height: 50px;
+}
+
+header .nav span {
+    font-size: var(--cds-design-fontsize-24);
+    color: #3d3d3d;
+    font-family: HarmonyOS_Sans_SC_Light;
+}
+
+header .nav ul li {
+    padding: 10px 12px;
+    cursor: pointer;
+    font-family: HarmonyOS_Sans_SC_Regular;
+}
+
+header .nav ul hr {
+    margin: 0;
+    border-style: unset;
+    border-top: var(--cds-design-border-stroke-1) solid var(--cds-design-color-fill-103);
+}
+
+header .nav ul li:hover {
+    background-color: var(--cds-design-color-fill-102);
+}
+
+header .nav ul li:active {
+    background-color: var(--cds-design-color-fill-103);
+}
+
+
+/* 主页面 */
+main {
+    width: 100%;
+    height: calc(100% - 65px);
+    position: relative;
+}
+
+main.sidebar-sliding * {
+    animation: none !important;
+    transition: none !important;
+    user-select: none !important;
+    cursor: e-resize;
+}
+
+/* 工作区 */
+main .workspace {
+    width: 100%;
+    height: 100%;
+    transition: width cubic-bezier(0.645, 0.045, 0.355, 1) .3s;
+}
+
+main.sidebar-show .workspace {
+    width: calc(100% - var(--sidebar-width, 0px));
+}
+
+/* 工具栏 */
+.toolbar {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: row;
+    gap: 7px;
+    padding: 6px 8px;
+    height: 42px;
+    transition: right cubic-bezier(0.645, 0.045, 0.355, 1) .3s;
+    z-index: 99;
+}
+
+main.sidebar-show .toolbar {
+    right: calc(30px + var(--sidebar-width, 0px))
+}
+
+
+.toolbar-item {
+    padding: 3px 4px;
+    cursor: pointer;
+    border-radius: var(--cds-design-radius-5);
+    transition: .1s;
+    user-select: none;
+    font-family: HarmonyOS_Sans_SC_Bold;
+    color: #3D3D3D;
+}
+
+.toolbar-item:hover {
+    background-color: rgba(0, 0, 0, 6%)
+}
+
+.toolbar-item:active,
+.toolbar-item.active {
+    background-color: rgba(0, 0, 0, 10%)
+}
+
+/* 边框 */
+.sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: var(--cds-design-color-fill-107);
+    backdrop-filter: blur(10px);
+    z-index: 998;
+    width: var(--sidebar-width);
+    transform: translateX(110%);
+    transition: transform cubic-bezier(0.645, 0.045, 0.355, 1) .3s;
+    overflow: hidden;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+main.sidebar-show .sidebar {
+    transform: translateX(0);
+}
+
+.sidebar-item {
+    width: 100%;
+    height: 100%;
+}
+
+.sidebar-slider {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    height: 100%;
+    width: 3px;
+    cursor: e-resize;
+    transition: .2s;
+}
+
+main:not(.sidebar-show) .sidebar-slider {
+    display: none;
+}
+
+.sidebar-slider:hover,
+main.sidebar-sliding .sidebar-slider {
+    background: var(--cds-design-color-brand-101);
+}
+
+/* 代码框 */
+#sidebar-code pre {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+    padding: 8px 12px;
+    overflow: auto;
+}
+
+#sidebar-code pre::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+#sidebar-code pre::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #CCCCCC;
+}
+
+#sidebar-code code#code {
+    white-space: pre;
+    font-family: "Source Code Pro", "DejaVu Sans Mono", "Ubuntu Mono", "Anonymous Pro", "Droid Sans Mono", Menlo, Monaco, Consolas, Inconsolata, Courier, monospace, "PingFang SC", "Microsoft YaHei", sans-serif;
+    line-height: 20px;
+    font-size: 14px;
+}
+
+#sidebar-code .code-copy {
+    position: absolute;
+    right: 26px;
+    bottom: 30px;
+    background: var(--cds-design-color-brand-101);
+    padding: 13px;
+    border-radius: var(--cds-design-radius-all);
+    width: 46px;
+    height: 46px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+#sidebar-code .code-copy::before {
+    position: absolute;
+    content: "";
+    top: -110px;
+    left: -110px;
+    width: 271px;
+    height: 271px;
+    background: var(--cds-design-color-brand-101);
+    z-index: -1;
+    border-radius: var(--cds-design-radius-all);
+    filter: blur(10px);
+    opacity: .4;
+}
+
+/* 垃圾桶 */
+.toolbox-trash {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    height: 100%;
+    left: 0;
+    width: 65px;
+    z-index: 99;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 4px;
+    background: rgb(0 0 0 / 0%);
+    opacity: 0;
+    user-select: none;
+    visibility: hidden;
+    transition: .3s;
+    pointer-events: none;
+}
+
+.toolbox-trash-cap {
+    transition: .12s ease-out;
+}
+
+.toolbox-trash.show {
+    opacity: 1;
+    background: rgb(0 0 0 / 40%);
+    visibility: visible;
+    pointer-events: unset;
+}
+
+.toolbox-trash.show:hover {
+    background: rgb(0 0 0 / 60%);
+}
+
+.toolbox-trash.show:hover .toolbox-trash-cap {
+    -webkit-transform: translate(-4px, -4px) rotate(-20deg);
+    transform: translate(-4px, -4px) rotate(-20deg);
+}
+
+/* 关于页面 */
+.about-dialog {
+    width: 600px;
+    padding: 0;
+}
+
+.about img.about-header {
+    margin-bottom: 16px;
+}
+
+.about p {
+    background: var(--cds-design-color-brand-301);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-family: HarmonyOS_Sans_SC_Medium;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: left;
+}
+
+.about p.about-version {
+    background: var(--cds-design-color-brand-101);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 40px 0 13px;
+    font-size: 24px;
+    text-align: center;
+}
+
+/* 积木栏搜索 */
+.toolbox-search input {
+    background-color: var(--cds-design-color-brand-105);
+    border: solid 1px #0000;
+    margin-left: 16px;
+    margin-top: 16px;
+    width: calc(100% - 32px);
+    padding: 9px;
+    border-radius: var(--cds-design-radius-5);
+    transition: .3s
+}
+
+.toolbox-search input:hover {
+    border-color: var(--cds-design-color-brand-101)
+}
+
+.toolbox-search input:focus-visible {
+    border-color: var(--cds-design-color-brand-101);
+    background-color: var(--cds-design-color-fill-107);
+}
+
+/* 搜索积木盒子 */
+.toolbox-search-category .blocklyTreeLabel {
+    display: none;
+}
+
+.toolbox-search-category .blocklyTreeRow.blocklyTreeSelected,
+.toolbox-search-category .blocklyTreeRow:not(.blocklyTreeSelected):hover {
+    background: none !important;
+    background-color: #0000 !important;
+}
+
+.toolbox-search-category .blocklyTreeRowContentContainer {
+    padding: 0;
+    background: #0000;
+    border-radius: var(--cds-design-radius-all);
+    width: 35px;
+    height: 35px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: .3s;
+}
+
+.toolbox-search-category {
+    display: flex;
+    justify-content: center;
+    margin: 8px 0;
+}
+
+.toolbox-search-category .blocklyTreeRow:hover .blocklyTreeRowContentContainer {
+    background-color: rgba(0, 0, 0, 6%)
+}
+
+.toolbox-search-category .blocklyTreeRow.blocklyTreeSelected .blocklyTreeRowContentContainer {
+    background-color: rgba(0, 0, 0, 10%)
+}
+
+.toolbox-search-category iconpark-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+    margin-bottom: 0 !important;
+    color: #3D3D3D;
+    transition: .3s;
+}
+
+.settings-dialog>div>h2 {
+    margin: 10px 0
+}
+
+.setings {
+    display: flex;
+    flex-direction: column;
+    min-height: 50vh;
+}
+
+.seting {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    position: relative;
+    padding: 10px 0;
+}
+
+.seting input {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.seting h3 {
+    margin: 0;
+}
+
+.seting span {
+    color: #aaa;
+    font-size: 14px;
+}
+
+.seting input[type="checkbox"] {
+    width: 50px;
+    height: 25px;
+    cursor: pointer;
+}
+
+.seting input[type="checkbox"]::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #aaa;
+    border-radius: 100px;
+    transition: .2s;
+}
+
+.seting input[type="checkbox"]:checked::before {
+    background-color: var(--cds-design-color-brand-101);
+}
+
+.seting input[type="checkbox"]::after {
+    content: "";
+    position: absolute;
+    top: calc(calc(100% / 2) - calc(20px / 2));
+    left: 3px;
+    width: 20px;
+    height: 20px;
+    background-color: #fff;
+    border-radius: 100px;
+    transition: .2s;
+}
+
+.seting input[type="checkbox"]:checked::after {
+    left: calc(100% - 20px - 3px);
+}
+
+.seting input {
+    background-color: #eee;
+    border: solid 1.5px #0000;
+    padding: 8px 10px;
+    border-radius: var(--cds-design-radius-5);
+    transition: .3s
+}
+
+.seting input:hover {
+    border-color: var(--cds-design-color-brand-101)
+}
+
+.seting input:focus-visible {
+    border-color: var(--cds-design-color-brand-101);
+    background-color: var(--cds-design-color-fill-107);
+}
+
+.seting input[type="number"] {
+    width: 100px
+}

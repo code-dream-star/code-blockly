@@ -1,0 +1,68 @@
+* {
+    box-sizing: border-box;
+    text-decoration: none;
+    outline: none;
+}
+
+*:disabled {
+    cursor: no-drop;
+}
+
+@font-face {
+    font-family: HarmonyOS_Sans_SC_Bold;
+    src: url(../../static/font/HarmonyOS-Sans/HarmonyOS\ Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Bold.ttf);
+}
+
+@font-face {
+    font-family: HarmonyOS_Sans_SC_Light;
+    src: url(../../static/font/HarmonyOS-Sans/HarmonyOS\ Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Light.ttf);
+}
+
+@font-face {
+    font-family: HarmonyOS_Sans_SC_Medium;
+    src: url(../../static/font/HarmonyOS-Sans/HarmonyOS\ Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Medium.ttf);
+}
+
+@font-face {
+    font-family: HarmonyOS_Sans_SC_Regular;
+    src: url(../../static/font/HarmonyOS-Sans/HarmonyOS\ Sans/HarmonyOS_Sans_SC/HarmonyOS_Sans_SC_Regular.ttf);
+}
+
+/* 加载页面 css */
+#loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    align-content: center;
+    position: fixed;
+    background-color: #fffa;
+    color: rgb(0, 132, 255);
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2147483647;
+    opacity: 1;
+    transition: .3s;
+}
+
+#loading h2 {
+    margin: 0 0 10px 0;
+    font-size: 30px;
+}
+
+#loading p {
+    margin: 0;
+    font-size: 16px;
+}
+
+#loading.hide {
+    opacity: 0;
+    pointer-events: none;
+}
+
+/* swal弹窗 */
+.swal2-popup {
+    border-radius: var(--cds-design-radius-10)!important;
+}

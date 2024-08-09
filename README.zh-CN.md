@@ -33,7 +33,7 @@ Code Blockly 是 Code Dream Star 基于开源的 Google Blockly 开发的图形�
    
 ## 致谢
 - [IconPark](http://iconpark.oceanengine.com/)
-- [Waddle编辑器](http://waddle.coco-central.cn)
+- [Waddle编辑器](http://waddle.cocotais.cn)
 - [SweetAlert](https://sweetalert.js.org/)
 - [MDUI](https://www.mdui.org/)
 - [CoCo 手册](https://codemao.yuque.com/kzbwh0/coco_guide)

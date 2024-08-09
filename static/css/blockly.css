@@ -1,0 +1,241 @@
+/* 去掉工作区四周的边框 */
+.blocklyMainBackground {
+    stroke-width: 0;
+    stroke: transparent;
+}
+
+/* 积木盒美化 */
+.blocklyTreeRow {
+    margin: 0;
+    padding: 0;
+    cursor: pointer;
+    height: auto;
+}
+
+.blocklyTreeRow:not(.blocklyTreeSelected):hover {
+    background-color: rgba(0, 0, 0, 5%) !important;
+}
+
+.blocklyTreeRow.blocklyTreeSelected {
+    background-color: rgba(0, 0, 0, 10%) !important;
+}
+
+.blocklyTreeRowContentContainer {
+    display: flex;
+    flex-direction: column;
+    padding: 9px 18.5px;
+    align-items: center;
+}
+
+.blocklyTreeRowContentContainer iconpark-icon {
+    font-size: 25px;
+    margin-bottom: 4px;
+}
+
+.blocklyTreeLabel {
+    padding: 0;
+    font-size: 14px;
+    font-family: 'HarmonyOS_Sans_SC_Light';
+}
+
+.blocklyTreeSelected .blocklyTreeLabel {
+    color: #000;
+}
+
+/* 取消积木盒内容预览中的滚动条 */
+.blocklyFlyoutScrollbar {
+    display: none;
+}
+
+/* 积木盒内容预览美化 + 动画 */
+.injectionDiv>.blocklyFlyout {
+    transition: transform cubic-bezier(0.645, 0.045, 0.355, 1) .3s;
+    display: block !important;
+    visibility: var(--display, hidden);
+    pointer-events: var(--display, none);
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+/* 积木盒区美化 */
+.blocklyToolboxDiv {
+    width: 62px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.1);
+}
+
+.blocklyTreeRowContentContainer {
+    padding: 9px 0px;
+}
+
+.blocklyToolboxDiv::-webkit-scrollbar {
+    display: none;
+}
+
+/* 右键菜单美化 */
+.blocklyWidgetDiv .blocklyMenu {
+    padding: 0;
+    border-radius: var(--cds-design-radius-10);
+    background-color: var(--cds-design-color-fill-101);
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%) !important;
+    min-width: 140px;
+    font-size: 14px;
+    border: 0;
+}
+
+.blocklyWidgetDiv .blocklyMenu::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.blocklyWidgetDiv .blocklyMenu::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #CCCCCC;
+}
+
+.blocklyWidgetDiv .blocklyMenuItem {
+    padding: 10px 12px;
+    background-color: var(--cds-design-color-fill-101);
+    font-family: HarmonyOS_Sans_SC_Regular !important;
+}
+
+.blocklyWidgetDiv .blocklyMenuItemHighlight {
+    background-color: var(--cds-design-color-fill-102);
+}
+
+.blocklyWidgetDiv .blocklyMenuItem:active:not(.blocklyMenuItemDisabled) {
+    background-color: var(--cds-design-color-fill-103);
+}
+
+.blocklyWidgetDiv .blocklyMenuItemDisabled {
+    cursor: no-drop;
+}
+
+/* 下拉菜单美化 */
+.blocklyDropDownDiv {
+    border: none !important;
+    border-color: #0000 !important;
+    background-color: #0000 !important;
+    padding: 0;
+    border-radius: 6px;
+    box-shadow: 0 4px 10px 0 rgb(0 0 0 / 10%) !important;
+    overflow: hidden;
+    margin-top: -10px;
+}
+
+.blocklyDropDownDiv .blocklyMenu {
+    background-color: var(--cds-design-color-fill-101);
+    min-width: 140px;
+    font-size: 14px;
+    border: 0;
+    padding: 4px !important;
+}
+
+.blocklyDropDownDiv .blocklyMenuItemContent {
+    color: #000 !important;
+}
+
+.blocklyDropDownDiv .blocklyDropDownArrow.blocklyArrowTop,
+.blocklyDropDownDiv .blocklyMenuItemCheckbox {
+    display: none;
+}
+
+.blocklyDropDownDiv .blocklyDropDownContent::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+}
+
+.blocklyDropDownDiv .blocklyDropDownContent::-webkit-scrollbar-track {
+    background-color: #fff;
+}
+
+.blocklyDropDownDiv .blocklyDropDownContent::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    background-color: #CCCCCC;
+}
+
+.blocklyDropDownDiv .blocklyMenuItem {
+    padding: 10px 12px;
+    background-color: var(--cds-design-color-fill-101);
+    padding-left: 16px;
+    border-radius: 6px;
+    font-family: HarmonyOS_Sans_SC_Regular !important;
+}
+
+.blocklyDropDownDiv .blocklyMenuItemSelected {
+    background-color: var(--cds-design-color-fill-101);
+    position: relative;
+}
+
+.blocklyDropDownDiv .blocklyMenuItemHighlight {
+    background-color: var(--cds-design-color-fill-101);
+}
+
+.blocklyDropDownDiv .blocklyMenuItem:hover {
+    background-color: var(--cds-design-color-fill-102);
+}
+
+.blocklyDropDownDiv .blocklyMenuItemSelected::before {
+    position: absolute;
+    content: '';
+    width: 4px;
+    height: 50%;
+    top: 25%;
+    background-color: var(--cds-design-color-brand-101);
+    border-radius: var(--cds-design-radius-5);
+    left: 0px;
+}
+
+.blocklyDropDownDiv .blocklyMenuItem:active {
+    background-color: var(--cds-design-color-fill-103);
+}
+
+.blocklyDropDownDiv .blocklyMenuItemSelected:active::before {
+    height: 40%;
+    top: 30%;
+}
+
+
+.blocklyDropDownDiv .blocklyMenuItemDisabled {
+    cursor: no-drop;
+}
+
+/* 删除的积木优化 */
+.blocklyBlockDragSurface {
+    z-index: 100;
+    pointer-events: none;
+}
+
+/* 积木优化 */
+filter[id*="blocklySelectedGlowFilter"] feFlood {
+    flood-color: #fff;
+}
+
+filter[id*="blocklyReplacementGlowFilter"] feFlood {
+    flood-color: #fff;
+}
+
+/* 工具提示优化 */
+.blocklyTooltipDiv {
+    background: #222c;
+    font-size: 12px;
+    color: #fff;
+    padding: 6px 10px;
+    border: none;
+    border-radius: 4px;
+}
+
+/* 积木拼接高亮 */
+.blocklyHighlightedConnectionPath {
+    stroke-opacity: 0;
+}
+
+.blocklySelected>.blocklyPath[filter] {
+    stroke: #fff !important;
+    stroke-width: 1.5px;
+}
+
+/* 积木拼接圆圈动画 */
+.blocklySvg>circle {
+    display: none;
+}

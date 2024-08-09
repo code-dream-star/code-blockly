@@ -1,0 +1,66 @@
+{
+    "title": "Code Blockly",
+    "icon": "../../static/img/logo.png",
+    "version": "v2.0.0--beta.1",
+    "scripts": [
+        "https://fastly.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.js",
+        "https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/highlight.min.js",
+        "https://fastly.jsdelivr.net/npm/blockly@9.3.3/blockly_compressed.js",
+        "https://fastly.jsdelivr.net/npm/blockly@9.3.3/blocks_compressed.js",
+        "https://fastly.jsdelivr.net/npm/@blockly/block-plus-minus@6.0.2/dist/index.js",
+        "https://fastly.jsdelivr.net/npm/blockly@9.3.3/msg/zh-hans.js",
+        "../../static/js/others/msg-zh-hans.js",
+        "../../static/js/utils/blockly.js",
+        "../../static/js/utils/clipboard.js",
+        "../../static/js/utils/file.js",
+        "../../static/js/utils/image.js",
+        "../../static/js/modules/nav.js",
+        "../../static/js/modules/toolbar.js",
+        "../../static/js/modules/sidebar.js",
+        "../../static/js/modules/workspace.js",
+        "../../static/js/modules/search.js",
+        "../../static/js/modules/dialog.js",
+        "../../static/js/modules/code.js",
+        "../../static/js/modules/works.js",
+        "../../static/js/modules/about.js",
+        "../../static/js/modules/settings.js"
+    ],
+    "styles": [
+        "https://fastly.jsdelivr.net/npm/sweetalert2@11.10.6/dist/sweetalert2.min.css",
+        "https://fastly.jsdelivr.net/gh/highlightjs/cdn-release@11.9.0/build/styles/vs.min.css",
+        "../../static/css/code-dream-star-design.css",
+        "../../static/css/editor.css",
+        "../../static/css/blockly.css"
+    ],
+    "workspace": {
+        "blockly": {
+            "zoom": {
+                "controls": false,
+                "wheel": true,
+                "startScale": 1,
+                "maxScale": 2.0,
+                "minScale": 0.4
+            },
+            "move": {
+                "wheel": true
+            },
+            "collapse": true,
+            "comments": true,
+            "sounds": true,
+            "trashcan": false,
+            "media": "https://fastly.jsdelivr.net/npm/blockly@10.4.2/media/",
+            "renderer": "zelos"
+        }
+    },
+    "sidebar": {
+        "width": "35%"
+    },
+    "settings": {
+        "code-self-closing": {
+            "type": "boolean",
+            "display": "代码栏自动关闭",
+            "description": "积木盒打开时，代码栏自动关闭",
+            "default": true
+        }
+    }
+}
